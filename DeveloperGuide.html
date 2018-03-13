@@ -2049,21 +2049,15 @@ for <code>RemarkCommandParser</code>.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">event planner in charge of marking attendance of many participants</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">event planner managing many participants</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">find a participant by his/her initials</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">mark attendance quickly</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">find persons quickly</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">event planner</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">manage participants based on tags</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">mass register/delete participants belonging to a certain group</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">event planner</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">add multiple contacts from a file</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">do without adding each contact manually</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
@@ -2307,7 +2301,7 @@ for <code>RemarkCommandParser</code>.</p>
 </li>
 </ul>
 </div>
-<h3 id="use-case-mark-person" class="discrete">Use case: Mark person</h3>
+<h3 id="use-case-mark-event-attendee-s-attendance" class="discrete">Use case: Mark event attendee&#8217;s attendance</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
@@ -2320,10 +2314,10 @@ for <code>RemarkCommandParser</code>.</p>
 <p>EventPlanner shows a list of persons</p>
 </li>
 <li>
-<p>User requests to mark that person</p>
+<p>User requests to mark the attendance of that person</p>
 </li>
 <li>
-<p>EventPlanner marks the person</p>
+<p>EventPlanner marks the attendance of that person</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2367,7 +2361,7 @@ for <code>RemarkCommandParser</code>.</p>
 <p>Should work on any <a href="#mainstream-os">mainstream OS</a> as long as it has Java <code>1.8.0_60</code> or higher installed.</p>
 </li>
 <li>
-<p>Should be able to hold up to 50000 persons without a noticeable sluggishness in performance for typical usage.</p>
+<p>Should be able to hold up to 50000 persons.</p>
 </li>
 <li>
 <p>A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.</p>
@@ -2388,7 +2382,7 @@ for <code>RemarkCommandParser</code>.</p>
 <p>Should not result in a large binary (more than 5mb)</p>
 </li>
 <li>
-<p>Should be able to run without relying on other dependencies</p>
+<p>Packaging should take care of dependencies</p>
 </li>
 </ol>
 </div>
@@ -2646,7 +2640,7 @@ Expected: Similar to previous.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-03-11 02:43:29 UTC
+Last updated 2018-03-13 13:37:40 UTC
 </div>
 </div>
 </body>
