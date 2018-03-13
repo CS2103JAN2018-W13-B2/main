@@ -229,8 +229,108 @@ The <code>redo</code> command fails as there are no <code>undo</code> commands e
 </div>
 </div>
 <div class="sect2">
+<h3 id="mark-attendance-for-event-participant-code-coming-in-v1-5-code"><a class="link" href="#mark-attendance-for-event-participant-code-coming-in-v1-5-code">Mark attendance for event participant <code>[coming in v1.5]</code></a></h3>
+
+</div>
+<div class="sect2">
+<h3 id="keep-all-participants-and-events-data-in-persistent-storage-code-coming-in-v1-5-code"><a class="link" href="#keep-all-participants-and-events-data-in-persistent-storage-code-coming-in-v1-5-code">Keep all participants' and events' data in persistent storage <code>[coming in v1.5]</code></a></h3>
+
+</div>
+<div class="sect2">
+<h3 id="import-participant-contact-information-from-an-csv-file-code-coming-in-v1-5-code"><a class="link" href="#import-participant-contact-information-from-an-csv-file-code-coming-in-v1-5-code">Import participant contact information from an csv file <code>[coming in v1.5]</code></a></h3>
+
+</div>
+<div class="sect2">
+<h3 id="export-participant-contact-information-to-an-csv-file-code-coming-in-v1-5-code"><a class="link" href="#export-participant-contact-information-to-an-csv-file-code-coming-in-v1-5-code">Export participant contact information to an csv file <code>[coming in v1.5]</code></a></h3>
+
+</div>
+<div class="sect2">
+<h3 id="include-privacy-settings-for-participants-information-code-coming-in-v2-0-code"><a class="link" href="#include-privacy-settings-for-participants-information-code-coming-in-v2-0-code">Include privacy settings for participants' information <code>[coming in v2.0]</code></a></h3>
+
+</div>
+<div class="sect2">
+<h3 id="find-a-participant-by-his-her-initials-code-coming-in-v2-0-code"><a class="link" href="#find-a-participant-by-his-her-initials-code-coming-in-v2-0-code">Find a participant by his/her initials <code>[coming in v2.0]</code></a></h3>
+
+</div>
+<div class="sect2">
+<h3 id="add-feedback-for-event-from-participant-code-coming-in-v2-0-code"><a class="link" href="#add-feedback-for-event-from-participant-code-coming-in-v2-0-code">Add feedback for event from participant <code>[coming in v2.0]</code></a></h3>
+
+</div>
+<div class="sect2">
+<h3 id="export-event-details-attendance-rate-feedback-etc-in-a-presentable-format-code-coming-in-v2-0-code"><a class="link" href="#export-event-details-attendance-rate-feedback-etc-in-a-presentable-format-code-coming-in-v2-0-code">Export event details (attendance rate, feedback etc) in a presentable format <code>[coming in v2.0]</code></a></h3>
+
+</div>
+<div class="sect2">
 <h3 id="encrypting-data-files-code-coming-in-v2-0-code"><a class="link" href="#encrypting-data-files-code-coming-in-v2-0-code">Encrypting data files <code>[coming in v2.0]</code></a></h3>
 
+</div>
+<div class="sect2">
+<h3 id="add-all-participants-with-a-particular-tag-to-an-event-code-coming-in-v2-0-code"><a class="link" href="#add-all-participants-with-a-particular-tag-to-an-event-code-coming-in-v2-0-code">Add all participants with a particular tag to an event <code>[coming in v2.0]</code></a></h3>
+
+</div>
+<div class="sect2">
+<h3 id="set-up-automatic-email-reminders-to-event-participants-code-coming-in-v2-0-code"><a class="link" href="#set-up-automatic-email-reminders-to-event-participants-code-coming-in-v2-0-code">Set up automatic email reminders to event participants <code>[coming in v2.0]</code></a></h3>
+
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="faq"><a class="link" href="#faq">FAQ</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>Q</strong>: How do I transfer my data to another Computer?<br>
+<strong>A</strong>: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Event Planner folder.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="command-summary"><a class="link" href="#command-summary">Command Summary</a></h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Add</strong> <code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]&#8230;&#8203;</code><br>
+e.g. <code>add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague</code></p>
+</li>
+<li>
+<p><strong>Add Event</strong> <code>add-event n/NAME [t/TAG]&#8230;&#8203;</code><br>
+e.g. <code>add-event n/AY201718 Graduation t/Graduation</code></p>
+</li>
+<li>
+<p><strong>Clear</strong> : <code>clear</code></p>
+</li>
+<li>
+<p><strong>Delete</strong> : <code>delete INDEX</code><br>
+e.g. <code>delete 3</code></p>
+</li>
+<li>
+<p><strong>Edit</strong> : <code>edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]&#8230;&#8203;</code><br>
+e.g. <code>edit 2 n/James Lee e/jameslee@example.com</code></p>
+</li>
+<li>
+<p><strong>Find</strong> : <code>find KEYWORD [MORE_KEYWORDS]</code><br>
+e.g. <code>find James Jake</code></p>
+</li>
+<li>
+<p><strong>List</strong> : <code>list</code></p>
+</li>
+<li>
+<p><strong>Help</strong> : <code>help</code></p>
+</li>
+<li>
+<p><strong>Select</strong> : <code>select INDEX</code><br>
+e.g.<code>select 2</code></p>
+</li>
+<li>
+<p><strong>History</strong> : <code>history</code></p>
+</li>
+<li>
+<p><strong>Undo</strong> : <code>undo</code></p>
+</li>
+<li>
+<p><strong>Redo</strong> : <code>redo</code></p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -559,7 +659,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-03-13 15:56:19 UTC
+Last updated 2018-03-13 17:59:06 UTC
 </div>
 </div>
 </body>
