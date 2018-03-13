@@ -48,17 +48,22 @@
 <li><a href="#clearing-all-entries-code-clear-code">3.18. Clearing all entries : <code>clear</code></a></li>
 <li><a href="#exiting-the-program-code-exit-code">3.19. Exiting the program : <code>exit</code></a></li>
 <li><a href="#saving-the-data">3.20. Saving the data</a></li>
-<li><a href="#mark-attendance-for-event-participant-code-coming-in-v1-5-code">3.21. Mark attendance for event participant <code>[coming in v1.5]</code></a></li>
-<li><a href="#keep-all-participants-and-events-data-in-persistent-storage-code-coming-in-v1-5-code">3.22. Keep all participants' and events' data in persistent storage <code>[coming in v1.5]</code></a></li>
-<li><a href="#import-participant-contact-information-from-an-csv-file-code-coming-in-v1-5-code">3.23. Import participant contact information from an csv file <code>[coming in v1.5]</code></a></li>
-<li><a href="#export-participant-contact-information-to-an-csv-file-code-coming-in-v1-5-code">3.24. Export participant contact information to an csv file <code>[coming in v1.5]</code></a></li>
-<li><a href="#include-privacy-settings-for-participants-information-code-coming-in-v2-0-code">3.25. Include privacy settings for participants' information <code>[coming in v2.0]</code></a></li>
-<li><a href="#find-a-participant-by-his-her-initials-code-coming-in-v2-0-code">3.26. Find a participant by his/her initials <code>[coming in v2.0]</code></a></li>
-<li><a href="#add-feedback-for-event-from-participant-code-coming-in-v2-0-code">3.27. Add feedback for event from participant <code>[coming in v2.0]</code></a></li>
-<li><a href="#export-event-details-attendance-rate-feedback-etc-in-a-presentable-format-code-coming-in-v2-0-code">3.28. Export event details (attendance rate, feedback etc) in a presentable format <code>[coming in v2.0]</code></a></li>
-<li><a href="#encrypting-data-files-code-coming-in-v2-0-code">3.29. Encrypting data files <code>[coming in v2.0]</code></a></li>
-<li><a href="#add-all-participants-with-a-particular-tag-to-an-event-code-coming-in-v2-0-code">3.30. Add all participants with a particular tag to an event <code>[coming in v2.0]</code></a></li>
-<li><a href="#set-up-automatic-email-reminders-to-event-participants-code-coming-in-v2-0-code">3.31. Set up automatic email reminders to event participants <code>[coming in v2.0]</code></a></li>
+<li><a href="#marking-attendance-for-event-participant-code-coming-in-v1-5-code">3.21. Marking attendance for event participant <code>[coming in v1.5]</code></a></li>
+<li><a href="#keeping-all-participants-and-events-data-in-persistent-storage-code-coming-in-v1-5-code">3.22. Keeping all participants' and events' data in persistent storage <code>[coming in v1.5]</code></a></li>
+<li><a href="#importing-participant-contact-information-from-an-csv-file-code-coming-in-v1-5-code">3.23. Importing participant contact information from an csv file <code>[coming in v1.5]</code></a></li>
+<li><a href="#exporting-participant-contact-information-to-an-csv-file-code-coming-in-v1-5-code">3.24. Exporting participant contact information to an csv file <code>[coming in v1.5]</code></a></li>
+<li><a href="#including-privacy-settings-for-participants-information-code-coming-in-v2-0-code">3.25. Including privacy settings for participants' information <code>[coming in v2.0]</code></a></li>
+<li><a href="#finding-a-participant-by-his-her-initials-code-coming-in-v2-0-code">3.26. Finding a participant by his/her initials <code>[coming in v2.0]</code></a></li>
+<li><a href="#finding-a-participant-via-fuzzy-search-code-coming-in-v2-0-code">3.27. Finding a participant via fuzzy search <code>[coming in v2.0]</code></a></li>
+<li><a href="#adding-feedback-for-event-from-participant-code-coming-in-v2-0-code">3.28. Adding feedback for event from participant <code>[coming in v2.0]</code></a></li>
+<li><a href="#setting-up-attendance-marking-via-quick-response-qr-codes-code-coming-in-v2-0-code">3.29. Setting up attendance marking via Quick Response (QR) codes <code>[coming in v2.0]</code></a></li>
+<li><a href="#setting-up-attendance-marking-via-radio-frequency-identification-rfid-chips-code-coming-in-v2-0-code">3.30. Setting up attendance marking via Radio-frequency identification (RFID) chips <code>[coming in v2.0]</code></a></li>
+<li><a href="#setting-up-attendance-marking-via-near-field-communication-nfc-tags-code-coming-in-v2-0-code">3.31. Setting up attendance marking via Near-field communication (NFC) tags <code>[coming in v2.0]</code></a></li>
+<li><a href="#synchronising-data-across-multiple-devices-code-coming-in-v2-0-code">3.32. Synchronising data across multiple devices <code>[coming in v2.0]</code></a></li>
+<li><a href="#exporting-event-details-attendance-rate-feedback-etc-in-a-presentable-format-code-coming-in-v2-0-code">3.33. Exporting event details (attendance rate, feedback etc) in a presentable format <code>[coming in v2.0]</code></a></li>
+<li><a href="#encrypting-data-files-code-coming-in-v2-0-code">3.34. Encrypting data files <code>[coming in v2.0]</code></a></li>
+<li><a href="#adding-all-participants-with-a-particular-tag-to-an-event-code-coming-in-v2-0-code">3.35. Adding all participants with a particular tag to an event <code>[coming in v2.0]</code></a></li>
+<li><a href="#setting-up-automatic-email-reminders-to-event-participants-code-coming-in-v2-0-code">3.36. Setting up automatic email reminders to event participants <code>[coming in v2.0]</code></a></li>
 </ul>
 </li>
 <li><a href="#faq">4. FAQ</a></li>
@@ -763,47 +768,67 @@ There is no need to save manually.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="mark-attendance-for-event-participant-code-coming-in-v1-5-code"><a class="link" href="#mark-attendance-for-event-participant-code-coming-in-v1-5-code">3.21. Mark attendance for event participant <code>[coming in v1.5]</code></a></h3>
+<h3 id="marking-attendance-for-event-participant-code-coming-in-v1-5-code"><a class="link" href="#marking-attendance-for-event-participant-code-coming-in-v1-5-code">3.21. Marking attendance for event participant <code>[coming in v1.5]</code></a></h3>
 
 </div>
 <div class="sect2">
-<h3 id="keep-all-participants-and-events-data-in-persistent-storage-code-coming-in-v1-5-code"><a class="link" href="#keep-all-participants-and-events-data-in-persistent-storage-code-coming-in-v1-5-code">3.22. Keep all participants' and events' data in persistent storage <code>[coming in v1.5]</code></a></h3>
+<h3 id="keeping-all-participants-and-events-data-in-persistent-storage-code-coming-in-v1-5-code"><a class="link" href="#keeping-all-participants-and-events-data-in-persistent-storage-code-coming-in-v1-5-code">3.22. Keeping all participants' and events' data in persistent storage <code>[coming in v1.5]</code></a></h3>
 
 </div>
 <div class="sect2">
-<h3 id="import-participant-contact-information-from-an-csv-file-code-coming-in-v1-5-code"><a class="link" href="#import-participant-contact-information-from-an-csv-file-code-coming-in-v1-5-code">3.23. Import participant contact information from an csv file <code>[coming in v1.5]</code></a></h3>
+<h3 id="importing-participant-contact-information-from-an-csv-file-code-coming-in-v1-5-code"><a class="link" href="#importing-participant-contact-information-from-an-csv-file-code-coming-in-v1-5-code">3.23. Importing participant contact information from an csv file <code>[coming in v1.5]</code></a></h3>
 
 </div>
 <div class="sect2">
-<h3 id="export-participant-contact-information-to-an-csv-file-code-coming-in-v1-5-code"><a class="link" href="#export-participant-contact-information-to-an-csv-file-code-coming-in-v1-5-code">3.24. Export participant contact information to an csv file <code>[coming in v1.5]</code></a></h3>
+<h3 id="exporting-participant-contact-information-to-an-csv-file-code-coming-in-v1-5-code"><a class="link" href="#exporting-participant-contact-information-to-an-csv-file-code-coming-in-v1-5-code">3.24. Exporting participant contact information to an csv file <code>[coming in v1.5]</code></a></h3>
 
 </div>
 <div class="sect2">
-<h3 id="include-privacy-settings-for-participants-information-code-coming-in-v2-0-code"><a class="link" href="#include-privacy-settings-for-participants-information-code-coming-in-v2-0-code">3.25. Include privacy settings for participants' information <code>[coming in v2.0]</code></a></h3>
+<h3 id="including-privacy-settings-for-participants-information-code-coming-in-v2-0-code"><a class="link" href="#including-privacy-settings-for-participants-information-code-coming-in-v2-0-code">3.25. Including privacy settings for participants' information <code>[coming in v2.0]</code></a></h3>
 
 </div>
 <div class="sect2">
-<h3 id="find-a-participant-by-his-her-initials-code-coming-in-v2-0-code"><a class="link" href="#find-a-participant-by-his-her-initials-code-coming-in-v2-0-code">3.26. Find a participant by his/her initials <code>[coming in v2.0]</code></a></h3>
+<h3 id="finding-a-participant-by-his-her-initials-code-coming-in-v2-0-code"><a class="link" href="#finding-a-participant-by-his-her-initials-code-coming-in-v2-0-code">3.26. Finding a participant by his/her initials <code>[coming in v2.0]</code></a></h3>
 
 </div>
 <div class="sect2">
-<h3 id="add-feedback-for-event-from-participant-code-coming-in-v2-0-code"><a class="link" href="#add-feedback-for-event-from-participant-code-coming-in-v2-0-code">3.27. Add feedback for event from participant <code>[coming in v2.0]</code></a></h3>
+<h3 id="finding-a-participant-via-fuzzy-search-code-coming-in-v2-0-code"><a class="link" href="#finding-a-participant-via-fuzzy-search-code-coming-in-v2-0-code">3.27. Finding a participant via fuzzy search <code>[coming in v2.0]</code></a></h3>
 
 </div>
 <div class="sect2">
-<h3 id="export-event-details-attendance-rate-feedback-etc-in-a-presentable-format-code-coming-in-v2-0-code"><a class="link" href="#export-event-details-attendance-rate-feedback-etc-in-a-presentable-format-code-coming-in-v2-0-code">3.28. Export event details (attendance rate, feedback etc) in a presentable format <code>[coming in v2.0]</code></a></h3>
+<h3 id="adding-feedback-for-event-from-participant-code-coming-in-v2-0-code"><a class="link" href="#adding-feedback-for-event-from-participant-code-coming-in-v2-0-code">3.28. Adding feedback for event from participant <code>[coming in v2.0]</code></a></h3>
 
 </div>
 <div class="sect2">
-<h3 id="encrypting-data-files-code-coming-in-v2-0-code"><a class="link" href="#encrypting-data-files-code-coming-in-v2-0-code">3.29. Encrypting data files <code>[coming in v2.0]</code></a></h3>
+<h3 id="setting-up-attendance-marking-via-quick-response-qr-codes-code-coming-in-v2-0-code"><a class="link" href="#setting-up-attendance-marking-via-quick-response-qr-codes-code-coming-in-v2-0-code">3.29. Setting up attendance marking via Quick Response (QR) codes <code>[coming in v2.0]</code></a></h3>
 
 </div>
 <div class="sect2">
-<h3 id="add-all-participants-with-a-particular-tag-to-an-event-code-coming-in-v2-0-code"><a class="link" href="#add-all-participants-with-a-particular-tag-to-an-event-code-coming-in-v2-0-code">3.30. Add all participants with a particular tag to an event <code>[coming in v2.0]</code></a></h3>
+<h3 id="setting-up-attendance-marking-via-radio-frequency-identification-rfid-chips-code-coming-in-v2-0-code"><a class="link" href="#setting-up-attendance-marking-via-radio-frequency-identification-rfid-chips-code-coming-in-v2-0-code">3.30. Setting up attendance marking via Radio-frequency identification (RFID) chips <code>[coming in v2.0]</code></a></h3>
 
 </div>
 <div class="sect2">
-<h3 id="set-up-automatic-email-reminders-to-event-participants-code-coming-in-v2-0-code"><a class="link" href="#set-up-automatic-email-reminders-to-event-participants-code-coming-in-v2-0-code">3.31. Set up automatic email reminders to event participants <code>[coming in v2.0]</code></a></h3>
+<h3 id="setting-up-attendance-marking-via-near-field-communication-nfc-tags-code-coming-in-v2-0-code"><a class="link" href="#setting-up-attendance-marking-via-near-field-communication-nfc-tags-code-coming-in-v2-0-code">3.31. Setting up attendance marking via Near-field communication (NFC) tags <code>[coming in v2.0]</code></a></h3>
+
+</div>
+<div class="sect2">
+<h3 id="synchronising-data-across-multiple-devices-code-coming-in-v2-0-code"><a class="link" href="#synchronising-data-across-multiple-devices-code-coming-in-v2-0-code">3.32. Synchronising data across multiple devices <code>[coming in v2.0]</code></a></h3>
+
+</div>
+<div class="sect2">
+<h3 id="exporting-event-details-attendance-rate-feedback-etc-in-a-presentable-format-code-coming-in-v2-0-code"><a class="link" href="#exporting-event-details-attendance-rate-feedback-etc-in-a-presentable-format-code-coming-in-v2-0-code">3.33. Exporting event details (attendance rate, feedback etc) in a presentable format <code>[coming in v2.0]</code></a></h3>
+
+</div>
+<div class="sect2">
+<h3 id="encrypting-data-files-code-coming-in-v2-0-code"><a class="link" href="#encrypting-data-files-code-coming-in-v2-0-code">3.34. Encrypting data files <code>[coming in v2.0]</code></a></h3>
+
+</div>
+<div class="sect2">
+<h3 id="adding-all-participants-with-a-particular-tag-to-an-event-code-coming-in-v2-0-code"><a class="link" href="#adding-all-participants-with-a-particular-tag-to-an-event-code-coming-in-v2-0-code">3.35. Adding all participants with a particular tag to an event <code>[coming in v2.0]</code></a></h3>
+
+</div>
+<div class="sect2">
+<h3 id="setting-up-automatic-email-reminders-to-event-participants-code-coming-in-v2-0-code"><a class="link" href="#setting-up-automatic-email-reminders-to-event-participants-code-coming-in-v2-0-code">3.36. Setting up automatic email reminders to event participants <code>[coming in v2.0]</code></a></h3>
 
 </div>
 </div>
@@ -871,7 +896,7 @@ e.g.<code>select 2</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-03-13 17:59:06 UTC
+Last updated 2018-03-13 18:48:57 UTC
 </div>
 </div>
 </body>
