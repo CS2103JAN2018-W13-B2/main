@@ -83,16 +83,16 @@
 </ul>
 </li>
 <li><a href="#product-scope">Appendix B: Product Scope</a></li>
-<li><a href="#user-stories">Appendix C: User Stories</a></li>
-<li><a href="#use-cases">Appendix D: Use Cases</a></li>
-<li><a href="#non-functional-requirements">Appendix E: Non Functional Requirements</a></li>
-<li><a href="#glossary">Appendix F: Glossary</a></li>
-<li><a href="#product-survey">Appendix G: Product Survey</a></li>
-<li><a href="#instructions-for-manual-testing">Appendix H: Instructions for Manual Testing</a>
+<li><a href="#user-stories">8. User Stories</a></li>
+<li><a href="#use-cases">Appendix C: Use Cases</a></li>
+<li><a href="#non-functional-requirements">Appendix D: Non Functional Requirements</a></li>
+<li><a href="#glossary">Appendix E: Glossary</a></li>
+<li><a href="#product-survey">Appendix F: Product Survey</a></li>
+<li><a href="#instructions-for-manual-testing">Appendix G: Instructions for Manual Testing</a>
 <ul class="sectlevel2">
-<li><a href="#launch-and-shutdown">H.1. Launch and Shutdown</a></li>
-<li><a href="#deleting-a-person">H.2. Deleting a person</a></li>
-<li><a href="#saving-data">H.3. Saving data</a></li>
+<li><a href="#launch-and-shutdown">G.1. Launch and Shutdown</a></li>
+<li><a href="#deleting-a-person">G.2. Deleting a person</a></li>
+<li><a href="#saving-data">G.3. Saving data</a></li>
 </ul>
 </li>
 </ul>
@@ -1957,10 +1957,69 @@ for <code>RemarkCommandParser</code>.</p>
 <div class="paragraph">
 <p><strong>Value proposition</strong>: streamline attendance taking and registration of event participants, far superior to traditional pen and paper registration</p>
 </div>
+<div class="paragraph">
+<p><strong>Feature Contribution</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Raynold Ng:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Minor: Creating a pane view for EpicEvent list and implementing the <code>list-events</code> command. This allows the user to view the list of events.</p>
+</li>
+<li>
+<p>Major: Three pane view (persons, events, and event participant). The user should be able to view persons, events and attendees of an event at the same time. That would also allow the user to execute event administration commands as he can view both events and contacts at the same time.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Wei Liang:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Minor: Adding of EpicEvent class to keep track of events and a command to add an event. This facilitates the implementation of the other commands to manipulate events.</p>
+</li>
+<li>
+<p>Major: Mass registering of persons to events by tag and marking and unmarking of attendance for each event participant. These commands facilitate the registration and attendance portion of the event planner.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Jiang Yue:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Minor: Adding commands to modify EpicEvents in the eventlist. The commands implemented include <code>delete-event</code>, <code>find-event</code> and <code>edit-event</code>. The commands allow user to locate an event with <code>find-event</code> and then to modify the located event by deleting the event or editing the information of the event with <code>delete-event</code> and <code>edit-event</code> respectively.</p>
+</li>
+<li>
+<p>Major: Persistent storage and import/export from csv files. The user should be able to have their data retained after the app is closed so that they can continue their edits when then open the app next time. The user should also be able to import or export data from csv files so that the same data can be used across multiple platforms.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Wei Heng:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Minor: Adding commands for Person-EpicEvents interactions, which includes adding new fields/methods to the EpicEvent class. The commands implemented include <code>register</code>, <code>deregister</code> and <code>list-registered</code>. The commands allow user to register/deregister a person to/from an event, as well as list an event&#8217;s register in the UI.</p>
+</li>
+<li>
+<p>Major: Revamp of undo/redo feature. Currently, the entire EventPlanner is saved every time an UndoableCommand is executed, which is a huge drain on memory and violates important non-functional requirements relating to capacity of EventPlanner. Each UndoableCommand will have an UndoableCommand oppositeCommand, which it will execute to reverse the changes made by the original command. This will also allow edit&#8217;s behavior to be mutable, so we may modify an event/person directly without passing a new copy to every single person/event that is in it/it is in.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="user-stories"><a class="link" href="#user-stories">Appendix C: User Stories</a></h2>
+<h2 id="user-stories"><a class="link" href="#user-stories">8. User Stories</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Priorities: High (must have) - <code>* * *</code>, Medium (nice to have) - <code>* *</code>, Low (unlikely to have) - <code>*</code></p>
@@ -2166,7 +2225,7 @@ for <code>RemarkCommandParser</code>.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="use-cases"><a class="link" href="#use-cases">Appendix D: Use Cases</a></h2>
+<h2 id="use-cases"><a class="link" href="#use-cases">Appendix C: Use Cases</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>(For all use cases below, the <strong>System</strong> is the <code>EventPlanner</code> and the <strong>Actor</strong> is the <code>user</code>, unless specified otherwise)</p>
@@ -2371,7 +2430,7 @@ for <code>RemarkCommandParser</code>.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="non-functional-requirements"><a class="link" href="#non-functional-requirements">Appendix E: Non Functional Requirements</a></h2>
+<h2 id="non-functional-requirements"><a class="link" href="#non-functional-requirements">Appendix D: Non Functional Requirements</a></h2>
 <div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
@@ -2407,7 +2466,7 @@ for <code>RemarkCommandParser</code>.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="glossary"><a class="link" href="#glossary">Appendix F: Glossary</a></h2>
+<h2 id="glossary"><a class="link" href="#glossary">Appendix E: Glossary</a></h2>
 <div class="sectionbody">
 <div class="dlist">
 <dl>
@@ -2460,7 +2519,7 @@ for <code>RemarkCommandParser</code>.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="product-survey"><a class="link" href="#product-survey">Appendix G: Product Survey</a></h2>
+<h2 id="product-survey"><a class="link" href="#product-survey">Appendix F: Product Survey</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><strong>Guestday</strong></p>
@@ -2546,7 +2605,7 @@ for <code>RemarkCommandParser</code>.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="instructions-for-manual-testing"><a class="link" href="#instructions-for-manual-testing">Appendix H: Instructions for Manual Testing</a></h2>
+<h2 id="instructions-for-manual-testing"><a class="link" href="#instructions-for-manual-testing">Appendix G: Instructions for Manual Testing</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Given below are instructions to test the app manually.</p>
@@ -2564,7 +2623,7 @@ These instructions only provide a starting point for testers to work on; testers
 </table>
 </div>
 <div class="sect2">
-<h3 id="launch-and-shutdown"><a class="link" href="#launch-and-shutdown">H.1. Launch and Shutdown</a></h3>
+<h3 id="launch-and-shutdown"><a class="link" href="#launch-and-shutdown">G.1. Launch and Shutdown</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2602,7 +2661,7 @@ Expected: The most recent window size and location is retained.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-a-person"><a class="link" href="#deleting-a-person">H.2. Deleting a person</a></h3>
+<h3 id="deleting-a-person"><a class="link" href="#deleting-a-person">G.2. Deleting a person</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2634,7 +2693,7 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-data"><a class="link" href="#saving-data">H.3. Saving data</a></h3>
+<h3 id="saving-data"><a class="link" href="#saving-data">G.3. Saving data</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2658,7 +2717,7 @@ Expected: Similar to previous.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-03-19 00:02:30 UTC
+Last updated 2018-03-19 06:12:06 UTC
 </div>
 </div>
 </body>
