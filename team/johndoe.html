@@ -231,55 +231,64 @@ The <code>redo</code> command fails as there are no <code>undo</code> commands e
 <div class="sect2">
 <h3 id="marking-attendance-for-event-participant-code-mark-code-code-coming-in-v1-5-code"><a class="link" href="#marking-attendance-for-event-participant-code-mark-code-code-coming-in-v1-5-code">Marking attendance for event participant : <code>mark</code> <code>[coming in v1.5]</code></a></h3>
 <div class="paragraph">
-<p>Marks the attendance of a participant to an event.</p>
+<p>Marks the attendance of a participant to an event.<br>
+Format: <code>mark INDEX EVENT_NAME</code></p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="unmarking-attendance-for-event-participant-code-unmark-code-code-coming-in-v1-5-code"><a class="link" href="#unmarking-attendance-for-event-participant-code-unmark-code-code-coming-in-v1-5-code">Unmarking attendance for event participant : <code>unmark</code> <code>[coming in v1.5]</code></a></h3>
 <div class="paragraph">
-<p>Unmarks the attendance of a participant to an event.</p>
+<p>Unmarks the attendance of a participant to an event.<br>
+Format: <code>unmark INDEX EVENT_NAME</code></p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="exporting-contact-information-to-a-csv-file-code-export-code-code-coming-in-v1-5-code"><a class="link" href="#exporting-contact-information-to-a-csv-file-code-export-code-code-coming-in-v1-5-code">Exporting contact information to a csv file : <code>export</code> <code>[coming in v1.5]</code></a></h3>
 <div class="paragraph">
-<p>Exports the list of all persons in the event planner to a csv file.</p>
+<p>Exports the list of all persons in the event planner to a csv file.<br>
+Format: <code>export FILE_NAME</code></p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="importing-contact-information-from-a-csv-file-code-import-code-code-coming-in-v1-5-code"><a class="link" href="#importing-contact-information-from-a-csv-file-code-import-code-code-coming-in-v1-5-code">Importing contact information from a csv file : <code>import</code> <code>[coming in v1.5]</code></a></h3>
 <div class="paragraph">
-<p>Imports a list of persons from a csv file and adds them to the event planner.</p>
+<p>Imports a list of persons from a csv file and adds them to the event planner.<br>
+Format: <code>import FILE_NAME</code></p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="adding-feedback-for-an-event-from-a-participant-code-add-feedback-code-code-coming-in-v2-0-code"><a class="link" href="#adding-feedback-for-an-event-from-a-participant-code-add-feedback-code-code-coming-in-v2-0-code">Adding feedback for an event from a participant : <code>add-feedback</code> <code>[coming in v2.0]</code></a></h3>
 <div class="paragraph">
-<p>Adds feedback for an event from a participant of the event.</p>
+<p>Adds feedback for an event from a participant of the event.<br>
+Format: <code>add-feedback INDEX EVENT-NAME FEEDBACK</code></p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="exporting-event-details-to-a-csv-file-code-export-event-code-code-coming-in-v2-0-code"><a class="link" href="#exporting-event-details-to-a-csv-file-code-export-event-code-code-coming-in-v2-0-code">Exporting event details to a csv file : <code>export-event</code> <code>[coming in v2.0]</code></a></h3>
 <div class="paragraph">
-<p>Exports event details for a single event into a csv file.</p>
+<p>Exports event details for a single event into a csv file.<br>
+Format: <code>export-event EVENT_NAME FILE_NAME</code></p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="registering-all-persons-with-a-particular-tag-to-an-event-code-register-by-tag-code-code-coming-in-v2-0-code"><a class="link" href="#registering-all-persons-with-a-particular-tag-to-an-event-code-register-by-tag-code-code-coming-in-v2-0-code">Registering all persons with a particular tag to an event : <code>register-by-tag</code> <code>[coming in v2.0]</code></a></h3>
 <div class="paragraph">
-<p>Registers all persons with a particular tag to an event in the event planner.</p>
+<p>Registers all persons with a particular tag to an event in the event planner.<br>
+Format: <code>register-by-tag TAG EVENT_NAME</code></p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="adding-automatic-email-reminder-to-event-participants-code-add-reminder-code-code-coming-in-v2-0-code"><a class="link" href="#adding-automatic-email-reminder-to-event-participants-code-add-reminder-code-code-coming-in-v2-0-code">Adding automatic email reminder to event participants : <code>add-reminder</code> <code>[coming in v2.0]</code></a></h3>
 <div class="paragraph">
-<p>Adds an automatic email reminder at the stipulated time to all event participants.</p>
+<p>Adds an automatic email reminder at the stipulated time to all event participants.<br>
+Format: <code>add-reminder DAYS_OFFSET EVENT_NAME</code></p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="adding-hotkeys-for-commands-code-add-hotkey-code-code-coming-in-v2-0-code"><a class="link" href="#adding-hotkeys-for-commands-code-add-hotkey-code-code-coming-in-v2-0-code">Adding hotkeys for commands : <code>add-hotkey</code> <code>[coming in v2.0]</code></a></h3>
 <div class="paragraph">
-<p>Adds a hotkey for a command.</p>
+<p>Adds a hotkey for a command.<br>
+Format: <code>add-hotkey HOTKEY COMMAND_NAME</code></p>
 </div>
 </div>
 </div>
@@ -348,6 +357,9 @@ e.g. <code>find James Jake</code></p>
 </li>
 <li>
 <p><strong>List Persons</strong> : <code>list</code></p>
+</li>
+<li>
+<p><strong>List Registered Persons</strong> : <code>list-registered</code></p>
 </li>
 <li>
 <p><strong>Redo</strong> : <code>redo</code></p>
@@ -686,7 +698,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-03-19 06:12:06 UTC
+Last updated 2018-03-19 06:19:54 UTC
 </div>
 </div>
 </body>
