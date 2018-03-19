@@ -46,9 +46,10 @@
 <li><a href="#implementation">4. Implementation</a>
 <ul class="sectlevel2">
 <li><a href="#undo-redo-feature">4.1. Undo/Redo feature</a></li>
-<li><a href="#proposed-data-encryption">4.2. [Proposed] Data Encryption</a></li>
-<li><a href="#logging">4.3. Logging</a></li>
-<li><a href="#Implementation-Configuration">4.4. Configuration</a></li>
+<li><a href="#proposed-marking-unmarking-attendance">4.2. [Proposed] Marking/Unmarking Attendance</a></li>
+<li><a href="#proposed-mass-registration">4.3. [Proposed] Mass Registration</a></li>
+<li><a href="#logging">4.4. Logging</a></li>
+<li><a href="#Implementation-Configuration">4.5. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">5. Documentation</a>
@@ -886,20 +887,37 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">4.2. [Proposed] Data Encryption</a></h3>
+<h3 id="proposed-marking-unmarking-attendance"><a class="link" href="#proposed-marking-unmarking-attendance">4.2. [Proposed] Marking/Unmarking Attendance</a></h3>
 <div class="paragraph">
-<p><em>{Explain here how the data encryption feature will be implemented}</em></p>
+<p>The proposed implementation is to use an association class called <code>Attendance</code>.
+An instance of <code>Attendance</code> is created every time a person that registers to an event and
+it is stored inside the <code>EpicEvent</code>. The instance stores the corresponding <code>Person</code>
+and stores a <code>boolean</code> representing whether the person has attended the event.
+This reduces coupling between the <code>Person</code> and <code>EpicEvent</code> class and allows the event
+to have access to all its attendees so that adding, removing and listing attendees is
+easy to implement.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">4.3. Logging</a></h3>
+<h3 id="proposed-mass-registration"><a class="link" href="#proposed-mass-registration">4.3. [Proposed] Mass Registration</a></h3>
+<div class="paragraph">
+<p>This feature is proposed to allow for mass registration of multiple persons to a single event.
+The proposed implementation is to make use of tags to select groups of persons to register for an event.
+It is proposed that the <code>Tag</code> class be split into <code>PersonTag</code> and <code>EpicEventTag</code> so as to differentiate
+the two. This allows for searching of persons by <code>PersonTag</code> and searching for events by <code>EpicEventTag</code>.
+By doing so, a group of persons can be identified by <code>PersonTag</code> and thus registered to an event
+by iteratively registering each person.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="logging"><a class="link" href="#logging">4.4. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 4.4</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 4.5</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -930,7 +948,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">4.4. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">4.5. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -2640,7 +2658,7 @@ Expected: Similar to previous.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-03-18 09:52:01 UTC
+Last updated 2018-03-19 00:02:30 UTC
 </div>
 </div>
 </body>
