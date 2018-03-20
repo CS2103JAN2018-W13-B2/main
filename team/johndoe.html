@@ -152,7 +152,7 @@
 </tbody>
 </table>
 <div class="sect2">
-<h3 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">Undoing previous command : <code>undo</code></a></h3>
+<h3 id="undoing-previous-command-code-undo-code-code-undergoing-revamp-currently-unavailable-code"><a class="link" href="#undoing-previous-command-code-undo-code-code-undergoing-revamp-currently-unavailable-code">Undoing previous command : <code>undo</code> <code>[Undergoing revamp, currently unavailable]</code></a></h3>
 <div class="paragraph">
 <p>Restores the event planner to the state before the previous <em>undoable</em> command was executed.<br>
 Format: <code>undo</code></p>
@@ -197,7 +197,7 @@ The <code>undo</code> command fails as there are no undoable commands executed p
 </div>
 </div>
 <div class="sect2">
-<h3 id="redoing-the-previously-undone-command-code-redo-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code">Redoing the previously undone command : <code>redo</code></a></h3>
+<h3 id="redoing-the-previously-undone-command-code-redo-code-code-undergoing-revamp-currently-unavailable-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code-code-undergoing-revamp-currently-unavailable-code">Redoing the previously undone command : <code>redo</code> <code>[Undergoing revamp, currently unavailable]</code></a></h3>
 <div class="paragraph">
 <p>Reverses the most recent <code>undo</code> command.<br>
 Format: <code>redo</code></p>
@@ -397,7 +397,7 @@ e.g.<code>select 2</code></p>
 <div class="sect3">
 <h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
 <div class="paragraph">
-<p>The undo/redo mechanism is facilitated by an <code>UndoRedoStack</code>, which resides inside <code>LogicManager</code>. It supports undoing and redoing of commands that modifies the state of the address book (e.g. <code>add</code>, <code>edit</code>). Such commands will inherit from <code>UndoableCommand</code>.</p>
+<p>The undo/redo mechanism is facilitated by an <code>UndoRedoStack</code>, which resides inside <code>LogicManager</code>. It supports undoing and redoing of commands that modifies the state of the event planner (e.g. <code>add</code>, <code>edit</code>). Such commands will inherit from <code>UndoableCommand</code>.</p>
 </div>
 <div class="paragraph">
 <p><code>UndoRedoStack</code> only deals with <code>UndoableCommands</code>. Commands that cannot be undone will inherit from <code>Command</code> instead. The following diagram shows the inheritance diagram for commands:</p>
@@ -408,7 +408,7 @@ e.g.<code>select 2</code></p>
 </div>
 </div>
 <div class="paragraph">
-<p>As you can see from the diagram, <code>UndoableCommand</code> adds an extra layer between the abstract <code>Command</code> class and concrete commands that can be undone, such as the <code>DeleteCommand</code>. Note that extra tasks need to be done when executing a command in an <em>undoable</em> way, such as saving the state of the address book before execution. <code>UndoableCommand</code> contains the high-level algorithm for those extra tasks while the child classes implements the details of how to execute the specific command. Note that this technique of putting the high-level algorithm in the parent class and lower-level steps of the algorithm in child classes is also known as the <a href="https://www.tutorialspoint.com/design_pattern/template_pattern.htm">template pattern</a>.</p>
+<p>As you can see from the diagram, <code>UndoableCommand</code> adds an extra layer between the abstract <code>Command</code> class and concrete commands that can be undone, such as the <code>DeleteCommand</code>. Note that extra tasks need to be done when executing a command in an <em>undoable</em> way, such as saving the state of the event planner before execution. <code>UndoableCommand</code> contains the high-level algorithm for those extra tasks while the child classes implements the details of how to execute the specific command. Note that this technique of putting the high-level algorithm in the parent class and lower-level steps of the algorithm in child classes is also known as the <a href="https://www.tutorialspoint.com/design_pattern/template_pattern.htm">template pattern</a>.</p>
 </div>
 <div class="paragraph">
 <p>Commands that are not undoable are implemented this way:</p>
@@ -449,7 +449,7 @@ e.g.<code>select 2</code></p>
 <p>Suppose that the user has just launched the application. The <code>UndoRedoStack</code> will be empty at the beginning.</p>
 </div>
 <div class="paragraph">
-<p>The user executes a new <code>UndoableCommand</code>, <code>delete 5</code>, to delete the 5th person in the address book. The current state of the address book is saved before the <code>delete 5</code> command executes. The <code>delete 5</code> command will then be pushed onto the <code>undoStack</code> (the current state is saved together with the command).</p>
+<p>The user executes a new <code>UndoableCommand</code>, <code>delete 5</code>, to delete the 5th person in the event planner. The current state of the event planner is saved before the <code>delete 5</code> command executes. The <code>delete 5</code> command will then be pushed onto the <code>undoStack</code> (the current state is saved together with the command).</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -480,7 +480,7 @@ If a command fails its execution, it will not be pushed to the <code>UndoRedoSta
 <p>The user now decides that adding the person was a mistake, and decides to undo that action using <code>undo</code>.</p>
 </div>
 <div class="paragraph">
-<p>We will pop the most recent command out of the <code>undoStack</code> and push it back to the <code>redoStack</code>. We will restore the address book to the state before the <code>add</code> command is executed.</p>
+<p>We will pop the most recent command out of the <code>undoStack</code> and push it back to the <code>redoStack</code>. We will restore the event planner to the state before the <code>add</code> command is executed.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -508,7 +508,7 @@ If the <code>undoStack</code> is empty, there are no other commands left to be u
 </div>
 </div>
 <div class="paragraph">
-<p>The redo does the exact opposite (pops from <code>redoStack</code>, push to <code>undoStack</code>, and restores the address book to the state after the command is executed).</p>
+<p>The redo does the exact opposite (pops from <code>redoStack</code>, push to <code>undoStack</code>, and restores the event planner to the state after the command is executed).</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -545,6 +545,41 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 <div class="content">
 <img src="../images/UndoRedoActivityDiagram.png" alt="UndoRedoActivityDiagram" width="650">
 </div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="changes-from-previous-implementation-major-enhancement-in-progress"><a class="link" href="#changes-from-previous-implementation-major-enhancement-in-progress">Changes from previous implementation [major enhancement, in progress]</a></h4>
+<div class="paragraph">
+<p>Instead of saving the entire event planner each time we execute an <code>UndoableCommand</code>, each <code>UndoableCommand</code> knows how to <code>undo/redo</code> itself.
+Each <code>UndoableCommand</code> has an <code>oppositeCommand</code> field, which is another <code>UndoableCommand</code> that, when executed, reverses the changes made by the original command.
+The sequence diagram for the new <code>undo()</code> implementation is shown below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UndoSequenceDiagram.png" alt="UndoSequenceDiagram" width="650">
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>oppositeCommand</code> is generated in the <code>execute()</code> method, after <code>preprocessUndoableCommand()</code>. This is because generating the <code>oppositeCommand</code>
+requires knowledge of the actual <code>Person/EpicEvent</code> objects to be modified. For example, the <code>oppositeCommand</code> for a <code>deletePersonCommand</code> is an <code>addPersonCommand</code>,
+but we only know the person to be deleted after the pre-processing step.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Each <code>UndoableCommand</code> now requires its individual <code>generateOppositeCommand()</code> implementation. Hence, this method is made abstract in
+the abstract class <code>UndoableCommand</code>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>There was no <code>Command</code> that could easily reverse the changes of a <code>ClearCommand</code>, hence a new <code>Command</code> <code>RestoreCommand</code> had to be created. Since the sole purpose
+of this command is be the <code>oppositeCommand</code> of a <code>ClearCommand</code>, our team decided to not make it directly accessible to the user.</p>
 </div>
 </div>
 <div class="sect3">
@@ -587,27 +622,27 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Saves the entire address book.</p>
+<p><strong>Alternative 1 (current choice):</strong> Individual command knows how to undo/redo itself.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Significantly less memory is used (e.g. for <code>delete</code>, just save the person being deleted). Compatible with mutable commands.</p>
+</li>
+<li>
+<p>Cons: Implementation is more complicated.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Saves the entire event planner.</p>
 <div class="ulist">
 <ul>
 <li>
 <p>Pros: Implementation is easy.</p>
 </li>
 <li>
-<p>Cons: Performance issues may result due to high memory usage.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Alternative 2:</strong> Individual command knows how to undo/redo by itself.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Significantly less memory is used (e.g. for <code>delete</code>, just save the person being deleted).</p>
-</li>
-<li>
-<p>Cons: Implementation is slightly more complicated.</p>
+<p>Cons: Performance issues may result due to high memory usage. Also, this is incompatible with the mutable <code>edit</code> and <code>edit-event</code> implementations.</p>
 </li>
 </ul>
 </div>
@@ -620,7 +655,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Only include commands that modifies the address book (<code>add</code>, <code>clear</code>, <code>edit</code>).</p>
+<p><strong>Alternative 1 (current choice):</strong> Only include commands that modifies the event planner (<code>add</code>, <code>clear</code>, <code>edit</code>).</p>
 <div class="ulist">
 <ul>
 <li>
@@ -641,7 +676,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </li>
 <li>
 <p>Cons: User has no way of skipping such commands if he or she just want to reset the state of the address * book and not the view.
-<strong>Additional Info:</strong> See our discussion  <a href="https://github.com/se-edu/addressbook-level4/issues/390#issuecomment-298936672">here</a>.</p>
+<strong>Additional Info:</strong> See the discussion  <a href="https://github.com/se-edu/addressbook-level4/issues/390#issuecomment-298936672">here</a>.</p>
 </li>
 </ul>
 </div>
@@ -698,7 +733,7 @@ If the <code>redoStack</code> is empty, then there are no other commands left to
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-03-20 08:19:12 UTC
+Last updated 2018-03-20 12:59:00 UTC
 </div>
 </div>
 </body>
