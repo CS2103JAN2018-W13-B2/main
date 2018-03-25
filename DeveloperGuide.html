@@ -601,13 +601,27 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <div class="sect3">
 <h4 id="previous-implementation"><a class="link" href="#previous-implementation">4.1.1. Previous Implementation</a></h4>
 <div class="paragraph">
-<p>In <a href="https://github.com/se-edu/addressbook-level4" class="bare">https://github.com/se-edu/addressbook-level4</a>[AddressBook-Level4, the <code>edit</code> command was performed by creating a new <code>Person</code> and passing it to a <code>UniquePersonList</code> in the model, which would then replace the to-be-edited <code>Person</code> with it.</p>
+<p>In <a href="https://github.com/se-edu/addressbook-level4">AddressBook-Level4</a>, the <code>edit</code> command was performed by creating a new <code>Person</code> and passing it to a <code>UniquePersonList</code> in the model, which would then replace the to-be-edited <code>Person</code> with it.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">    <span class="type">int</span> index = internalList.indexOf(personToEdit);
+    Person editedPerson = <span class="keyword">new</span> Person(name, ...);
+    internalList.set(index, editedPerson);</code></pre>
+</div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="current-implementation"><a class="link" href="#current-implementation">4.1.2. Current Implementation</a></h4>
 <div class="paragraph">
 <p>In EPIC, the <code>edit</code> and <code>edit-event</code> commands are now implemented in a mutable manner - instead of replacing the to-be-edited <code>Person/EpicEvent</code> with the new one, we edit the details of the to-be-edited <code>Person/EpicEvent</code> directly.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">    <span class="type">int</span> index = internalList.indexOf(personToEdit);
+    Person editedPerson = <span class="keyword">new</span> Person(name, ...);
+    internalList.get(index).setPerson(editedPerson); <span class="comment">// setPerson edits internal details using those of the supplied Person</span></code></pre>
+</div>
 </div>
 </div>
 <div class="sect3">
@@ -663,7 +677,9 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 </div>
 </div>
 <div class="paragraph">
-<p>As you can see from the diagram, <code>UndoableCommand</code> adds an extra layer between the abstract <code>Command</code> class and concrete commands that can be undone, such as the <code>DeleteCommand</code>. Note that extra tasks need to be done when executing a command in an <em>undoable</em> way, such as saving the state of the event planner before execution. <code>UndoableCommand</code> contains the high-level algorithm for those extra tasks while the child classes implements the details of how to execute the specific command. Note that this technique of putting the high-level algorithm in the parent class and lower-level steps of the algorithm in child classes is also known as the <a href="https://www.tutorialspoint.com/design_pattern/template_pattern.htm">template pattern</a>.</p>
+<p>As you can see from the diagram, <code>UndoableCommand</code> adds an extra layer between the abstract <code>Command</code> class and concrete commands that can be undone, such as the <code>DeleteCommand</code>. Note that extra tasks need to be done when executing a command in an <em>undoable</em> way, such
+as generating the opposite command before execution. <code>UndoableCommand</code> contains the high-level algorithm for those extra tasks while the child classes implements the details of how to execute the specific command. Note that this technique of putting the high-level algorithm
+in the parent class and lower-level steps of the algorithm in child classes is also known as the <a href="https://www.tutorialspoint.com/design_pattern/template_pattern.htm">template pattern</a>.</p>
 </div>
 <div class="paragraph">
 <p>Commands that are not undoable are implemented this way:</p>
@@ -704,7 +720,9 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <p>Suppose that the user has just launched the application. The <code>UndoRedoStack</code> will be empty at the beginning.</p>
 </div>
 <div class="paragraph">
-<p>The user executes a new <code>UndoableCommand</code>, <code>delete 5</code>, to delete the 5th person in the event planner. The current state of the event planner is saved before the <code>delete 5</code> command executes. The <code>delete 5</code> command will then be pushed onto the <code>undoStack</code> (the current state is saved together with the command).</p>
+<p>The user executes a new <code>UndoableCommand</code>, <code>delete 5</code>, to delete the 5th person in the event planner.
+The current state of the event planner is saved before the <code>delete 5</code> command executes.
+The <code>delete 5</code> command will then be pushed onto the <code>undoStack</code> (the current state is saved together with the command).</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -712,7 +730,8 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 </div>
 </div>
 <div class="paragraph">
-<p>As the user continues to use the program, more commands are added into the <code>undoStack</code>. For example, the user may execute <code>add n/David &#8230;&#8203;</code> to add a new person.</p>
+<p>As the user continues to use the program, more commands are added into the <code>undoStack</code>. For example, the user may execute
+<code>add n/David &#8230;&#8203;</code> to add a new person.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -727,6 +746,19 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 </td>
 <td class="content">
 If a command fails its execution, it will not be pushed to the <code>UndoRedoStack</code> at all.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <code>oppositeCommands</code> for the <code>AddPersonCommand</code> and <code>DeletePersonCommand</code> above are different! The former is a <code>DeletePersonCommand</code>
+while the latter is an <code>AddPersonCommand</code>.
 </td>
 </tr>
 </table>
@@ -763,7 +795,7 @@ If the <code>undoStack</code> is empty, there are no other commands left to be u
 </div>
 </div>
 <div class="paragraph">
-<p>The redo does the exact opposite (pops from <code>redoStack</code>, push to <code>undoStack</code>, and restores the event planner to the state after the command is executed).</p>
+<p>The redo does the exact opposite (pops from <code>redoStack</code>, push to <code>undoStack</code>, and performs the intention of the original command).</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -773,6 +805,19 @@ If the <code>undoStack</code> is empty, there are no other commands left to be u
 </td>
 <td class="content">
 If the <code>redoStack</code> is empty, then there are no other commands left to be redone, and an <code>Exception</code> will be thrown when popping the <code>redoStack</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+redo() does not simply execute the <code>Command</code> with the previous parameters! This would cause indexing issues with
+commands like <code>delete</code> if <code>filteredPersons</code> had been altered by a <code>find</code> or other view command.
 </td>
 </tr>
 </table>
@@ -834,7 +879,8 @@ the abstract class <code>UndoableCommand</code>
 </div>
 <div class="paragraph">
 <p>There was no <code>Command</code> that could easily reverse the changes of a <code>ClearCommand</code>, hence a new <code>Command</code> <code>RestoreCommand</code> had to be created. Since the sole purpose
-of this command is be the <code>oppositeCommand</code> of a <code>ClearCommand</code>, our team decided to not make it directly accessible to the user.</p>
+of this command is be the <code>oppositeCommand</code> of a <code>ClearCommand</code>. This command is not directly accessible to the user, and can only be executed when
+the user undoes a <code>ClearCommand</code>.</p>
 </div>
 </div>
 <div class="sect3">
@@ -930,7 +976,7 @@ of this command is be the <code>oppositeCommand</code> of a <code>ClearCommand</
 <p>Pros: Might be more intuitive for the user.</p>
 </li>
 <li>
-<p>Cons: User has no way of skipping such commands if he or she just want to reset the state of the address * book and not the view.
+<p>Cons: User has no way of skipping such commands if he or she just want to reset the state of the event planner and not the view.
 <strong>Additional Info:</strong> See the discussion  <a href="https://github.com/se-edu/addressbook-level4/issues/390#issuecomment-298936672">here</a>.</p>
 </li>
 </ul>
@@ -2245,7 +2291,7 @@ Expected: Similar to previous.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-03-21 02:29:57 UTC
+Last updated 2018-03-25 10:26:28 UTC
 </div>
 </div>
 </body>
