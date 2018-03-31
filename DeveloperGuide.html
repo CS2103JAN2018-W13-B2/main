@@ -49,7 +49,7 @@
 <li><a href="#undo-redo-feature">4.2. Undo/Redo feature</a></li>
 <li><a href="#register-deregister-persons-for-from-events">4.3. Register/Deregister persons for/from events</a></li>
 <li><a href="#list-registered-persons-for-an-event">4.4. List registered persons for an event</a></li>
-<li><a href="#proposed-marking-unmarking-attendance">4.5. [Proposed] Marking/Unmarking Attendance</a></li>
+<li><a href="#marking-unmarking-attendance">4.5. Marking/Unmarking Attendance</a></li>
 <li><a href="#proposed-mass-registration">4.6. [Proposed] Mass Registration</a></li>
 <li><a href="#proposed-3-pane-ui">4.7. [Proposed] 3 Pane UI</a></li>
 <li><a href="#proposed-export-an-event">4.8. [proposed] Export an Event</a></li>
@@ -1038,10 +1038,12 @@ since all commands v2.0 supports will not require the backward association.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-marking-unmarking-attendance"><a class="link" href="#proposed-marking-unmarking-attendance">4.5. [Proposed] Marking/Unmarking Attendance</a></h3>
+<h3 id="marking-unmarking-attendance"><a class="link" href="#marking-unmarking-attendance">4.5. Marking/Unmarking Attendance</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">4.5.1. Current Implementation</a></h4>
 <div class="paragraph">
-<p>The proposed implementation is to use an association class called <code>Attendance</code>.
-An instance of <code>Attendance</code> is created every time a person that registers to an event and
+<p>The proposed implementation is to use a class called <code>Attendance</code>.
+An instance of <code>Attendance</code> is created every time a person registers to an event and
 it is stored inside the <code>EpicEvent</code>. The instance stores the corresponding <code>Person</code>
 and stores a <code>boolean</code> representing whether the person has attended the event.
 This reduces coupling between the <code>Person</code> and <code>EpicEvent</code> class and allows the event
@@ -1049,8 +1051,51 @@ to have access to all its attendees so that adding, removing and listing attende
 easy to implement.</p>
 </div>
 </div>
+<div class="sect3">
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">4.5.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-location-of-instances-of-code-attendance-code-objects"><a class="link" href="#aspect-location-of-instances-of-code-attendance-code-objects">Aspect: Location of instances of <code>Attendance</code> objects</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Store in <code>EpicEvent</code> object</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Reduces coupling between <code>Person</code> and `EpicEvent and makes it easy for event to keep track of attendance list and easy
+for UI to display the attendance list.</p>
+</li>
+<li>
+<p>Cons: Makes it difficult for <code>EventPlanner</code> to track which events a person is registered for so deleting a person requires
+checking through all the events to delete a person properly.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Store in <code>EventPlanner</code> object</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Makes it easy <code>EventPlanner</code> to track which events a person is registered to and thus making
+some person commands such as delete persons easier.</p>
+</li>
+<li>
+<p>Cons: Requires <code>EpicEvent</code> to search through entire list of <code>Attendance</code> of objects in <code>EventPlanner</code> to find out
+which persons are registered to itself. This can be very slow if the number of <code>Attendance</code> objects is very large.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
 <div class="sect2">
 <h3 id="proposed-mass-registration"><a class="link" href="#proposed-mass-registration">4.6. [Proposed] Mass Registration</a></h3>
+<div class="sect3">
+<h4 id="proposed-implementation"><a class="link" href="#proposed-implementation">4.6.1. Proposed Implementation</a></h4>
 <div class="paragraph">
 <p>This feature is proposed to allow for mass registration of multiple persons to a single event.
 The proposed implementation is to make use of tags to select groups of persons to register for an event.
@@ -1060,13 +1105,14 @@ By doing so, a group of persons can be identified by <code>PersonTag</code> and 
 by iteratively registering each person.</p>
 </div>
 </div>
+</div>
 <div class="sect2">
 <h3 id="proposed-3-pane-ui"><a class="link" href="#proposed-3-pane-ui">4.7. [Proposed] 3 Pane UI</a></h3>
 <div class="paragraph">
 <p>The proposed new UI is a 3 pane UI consisting of list of persons, events, and attendees for the selected event. Being able to view all three panes will allow the user to read off the desired command parameters without having to switch between lists.</p>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">4.7.1. Current Implementation</a></h4>
+<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">4.7.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The UI consists of a <code>MainWindow</code> that is made up of parts e.g. <code>CommandBox</code>, <code>ResultDisplay</code>, <code>PersonListPanel</code>, <code>EpicEventListPanel</code> and <code>AttendeeListPanel</code>. The <code>ListPanel</code> s forms the bulk of the UI.</p>
 </div>
@@ -1098,7 +1144,7 @@ If no  <code>EpicEvent</code> has been selected, <code>AttendeeList</code> will 
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">4.7.2. Design Considerations</a></h4>
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">4.7.2. Design Considerations</a></h4>
 <div class="paragraph">
 <p>When deciding on the UI, the following aspects of user experience were considered.</p>
 </div>
@@ -1156,7 +1202,7 @@ If no  <code>EpicEvent</code> has been selected, <code>AttendeeList</code> will 
 <p>The proposed export command exports the name of the attendees, their phone number, their email address, their home address and their attendance information of a particular event to a csv file into a file path specified by the user. Having the attendance of a particular event in a csv file would enable the users to analyse the data with other platforms.</p>
 </div>
 <div class="sect3">
-<h4 id="proposed-implementation"><a class="link" href="#proposed-implementation">4.8.1. [proposed] Implementation</a></h4>
+<h4 id="proposed-implementation-2"><a class="link" href="#proposed-implementation-2">4.8.1. [proposed] Implementation</a></h4>
 <div class="paragraph">
 <p>The <code>export-event</code> command input is first parsed in <code>EventPlannerParser</code> to create an <code>ExportEventCommand</code>. The execution of it then calls the respective storage components. The subsequent export mechanism is handled by a <code>CsvEventPlannerStorage</code> which is a kind of <code>EventPlannerStorage</code>. The event data is parsed by <code>CsvUtil</code> and then exported as file through <code>CsvFileStorage</code> using the file path specified by the user.</p>
 </div>
@@ -1170,7 +1216,7 @@ If no  <code>EpicEvent</code> has been selected, <code>AttendeeList</code> will 
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">4.8.2. Design Considerations</a></h4>
+<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">4.8.2. Design Considerations</a></h4>
 <div class="paragraph">
 <p>When deciding on the export option, the following aspects of user experience are considered.</p>
 </div>
@@ -2291,7 +2337,7 @@ Expected: Similar to previous.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-03-26 00:48:07 UTC
+Last updated 2018-03-31 17:24:41 UTC
 </div>
 </div>
 </body>
