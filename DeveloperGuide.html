@@ -49,7 +49,7 @@
 <li><a href="#undo-redo-feature">4.2. Undo/Redo feature</a></li>
 <li><a href="#register-deregister-persons-for-from-events">4.3. Register/Deregister persons for/from events</a></li>
 <li><a href="#list-registered-persons-for-an-event">4.4. List registered persons for an event</a></li>
-<li><a href="#marking-unmarking-attendance">4.5. Marking/Unmarking Attendance</a></li>
+<li><a href="#toggling-attendance">4.5. Toggling Attendance</a></li>
 <li><a href="#proposed-mass-registration">4.6. [Proposed] Mass Registration</a></li>
 <li><a href="#proposed-3-pane-ui">4.7. [Proposed] 3 Pane UI</a></li>
 <li><a href="#proposed-export-an-event">4.8. [proposed] Export an Event</a></li>
@@ -552,6 +552,9 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <p>exposes an unmodifiable <code>ObservableList&lt;EpicEvent&gt;</code> that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.</p>
 </li>
 <li>
+<p>exposes an unmodifiable <code>ObservableList&lt;Attendance&gt;</code> that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.</p>
+</li>
+<li>
 <p>does not depend on any of the other three components.</p>
 </li>
 </ul>
@@ -1038,13 +1041,13 @@ since all commands v2.0 supports will not require the backward association.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="marking-unmarking-attendance"><a class="link" href="#marking-unmarking-attendance">4.5. Marking/Unmarking Attendance</a></h3>
+<h3 id="toggling-attendance"><a class="link" href="#toggling-attendance">4.5. Toggling Attendance</a></h3>
 <div class="sect3">
 <h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">4.5.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The proposed implementation is to use a class called <code>Attendance</code>.
 An instance of <code>Attendance</code> is created every time a person registers to an event and
-it is stored inside the <code>EpicEvent</code>. The instance stores the corresponding <code>Person</code>
+it is stored inside the <code>EpicEvent</code>. The instance stores the corresponding <code>EpicEvent</code> and <code>Person</code>
 and stores a <code>boolean</code> representing whether the person has attended the event.
 This reduces coupling between the <code>Person</code> and <code>EpicEvent</code> class and allows the event
 to have access to all its attendees so that adding, removing and listing attendees is
@@ -2337,7 +2340,7 @@ Expected: Similar to previous.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-03-31 17:24:41 UTC
+Last updated 2018-04-02 02:58:05 UTC
 </div>
 </div>
 </body>
