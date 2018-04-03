@@ -1120,6 +1120,81 @@ which persons are registered to itself. This can be very slow if the number of <
 </div>
 </div>
 </div>
+<div class="sect3">
+<h4 id="aspect-mutability-of-code-attendance-code-objects-specifically-when-marking-attendance"><a class="link" href="#aspect-mutability-of-code-attendance-code-objects-specifically-when-marking-attendance">4.5.3. Aspect: Mutability of <code>Attendance</code> objects, specifically when marking attendance</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Make <code>Attendance</code> objects immutable</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Makes it easier to track changes in <code>Attendance</code> objects as changes can be detected by a replacement of the
+<code>Attendance</code> object in the attendance list.</p>
+</li>
+<li>
+<p>Cons: Makes it more difficult to implement since the entire object has to be replaced whenever
+a change needs to be made, such as when marking attendance.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Make <code>Attendance</code> objects mutable</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Makes it easier to implement marking of attendance since the <code>hasAttended</code> property
+inside the object can be directly mutated.</p>
+</li>
+<li>
+<p>Cons: Makes it more difficult to track the changes since mutating the object does not directly
+trigger any events.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="aspect-method-of-marking-attendance"><a class="link" href="#aspect-method-of-marking-attendance">4.5.4. Aspect: Method of marking attendance</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Have one command to toggle attendance from attended to not attended and vice versa</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Makes it easier to undo the command since toggling is always valid while marking a participant
+has attended may not always be valid since that person may have already been marked as attended so undoing
+the command has to account for that.</p>
+</li>
+<li>
+<p>Cons: Makes it less intuitive for the user since the result of toggling
+depends on the current state of the attendance.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Have two separate commands: one for marking participant as attended and one for marking
+as not attended</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Makes it more intuitive for the user since marking as attended and not attended is a direct action.</p>
+</li>
+<li>
+<p>Cons: Makes it harder to undo the command since the command may not be successful if for example the participant
+has already been marked as attended when the user tries to mark the participant as attended.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="proposed-mass-registration"><a class="link" href="#proposed-mass-registration">4.6. [Proposed] Mass Registration</a></h3>
@@ -2368,7 +2443,7 @@ Expected: Similar to previous.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-03 01:13:32 UTC
+Last updated 2018-04-03 06:21:09 UTC
 </div>
 </div>
 </body>
