@@ -28,7 +28,7 @@
 <li><a href="#setting-up">2. Setting up</a>
 <ul class="sectlevel2">
 <li><a href="#prerequisites">2.1. Prerequisites</a></li>
-<li><a href="#setting-up-the-project-in-your-computer">2.2. Setting up the project in your computer</a></li>
+<li><a href="#setting-up-the-project-on-your-computer">2.2. Setting up the project on your computer</a></li>
 <li><a href="#verifying-the-setup">2.3. Verifying the setup</a></li>
 <li><a href="#configurations-to-do-before-writing-code">2.4. Configurations to do before writing code</a></li>
 </ul>
@@ -101,13 +101,17 @@
 <h2 id="introduction"><a class="link" href="#introduction">1. Introduction</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>EPIC is an event planning tool for large organisations hosting many large-scale events (e.g. schools which host competitions, award and graduation ceremonies, seminars and talks). {more to be added}</p>
+<p>EPIC is an event planning tool for large organisations hosting many large-scale events (e.g. schools which host competitions,
+award and graduation ceremonies, seminars and talks). It is targeted at and optimised for event planners who are comfortable with using a Command Line Interface (CLI).</p>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="setting-up"><a class="link" href="#setting-up">2. Setting up</a></h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>This section details the set-up process for working on the codebase on your computer.</p>
+</div>
 <div class="sect2">
 <h3 id="prerequisites"><a class="link" href="#prerequisites">2.1. Prerequisites</a></h3>
 <div class="paragraph">
@@ -151,9 +155,9 @@ Do not disable them. If you have disabled them, go to <code>File</code> &gt; <co
 </div>
 </div>
 <div class="sect2">
-<h3 id="setting-up-the-project-in-your-computer"><a class="link" href="#setting-up-the-project-in-your-computer">2.2. Setting up the project in your computer</a></h3>
+<h3 id="setting-up-the-project-on-your-computer"><a class="link" href="#setting-up-the-project-on-your-computer">2.2. Setting up the project on your computer</a></h3>
 <div class="paragraph">
-<p>Please follow these steps to set up the project in your computer:</p>
+<p>Please follow these steps to set up the project on your computer:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -333,20 +337,20 @@ The <code>.pptx</code> files used to create diagrams in this document can be fou
 </table>
 </div>
 <div class="paragraph">
-<p><code>Main</code> has only one class called <a href="https://github.com/CS2103JAN2018-W13-B2/main/blob/master/src/main/java/seedu/address/MainApp.java"><code>MainApp</code></a>. It is responsible for,</p>
+<p><code>Main</code> has only one class called <a href="https://github.com/CS2103JAN2018-W13-B2/main/blob/master/src/main/java/seedu/address/MainApp.java"><code>MainApp</code></a>. This class has two main responsibilities:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>At app launch: Initializing the components in the correct sequence, and connecting them up with each other.</p>
+<p>At app launch, it initialises the components in the correct sequence, and connects them up with each other.</p>
 </li>
 <li>
-<p>At shut down: Shutting down the components and invoking cleanup method where necessary.</p>
+<p>Upon exit, it shuts down the components and invokes cleanup method where necessary.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p><a href="#Design-Commons"><strong><code>Commons</code></strong></a> represents a collection of classes used by multiple other components. Two of those classes play important roles at the architecture level.</p>
+<p><a href="#Design-Commons"><strong><code>Commons</code></strong></a> represents a collection of classes used by multiple other components. Two of these classes play important roles at the architecture level.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -364,34 +368,36 @@ The <code>.pptx</code> files used to create diagrams in this document can be fou
 <div class="ulist">
 <ul>
 <li>
-<p><a href="#Design-Ui"><strong><code>UI</code></strong></a>: Interfaces with the user</p>
+<p><a href="#Design-Ui"><strong><code>UI</code></strong></a>: The UI component is responsible for interfacing with the user.</p>
 </li>
 <li>
-<p><a href="#Design-Logic"><strong><code>Logic</code></strong></a>: Executes commands</p>
+<p><a href="#Design-Logic"><strong><code>Logic</code></strong></a>: The Logic component is responsible for the parsing and execution of commands.</p>
 </li>
 <li>
-<p><a href="#Design-Model"><strong><code>Model</code></strong></a>: Holds the data of the App in-memory</p>
+<p><a href="#Design-Model"><strong><code>Model</code></strong></a>: The Model component is responsible for holding application data in-memory.</p>
 </li>
 <li>
-<p><a href="#Design-Storage"><strong><code>Storage</code></strong></a>: Reads data from, and writes data to, the hard disk</p>
+<p><a href="#Design-Storage"><strong><code>Storage</code></strong></a>: The Storage component is responsible for persisting application data on the hard disk.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Each of the four components</p>
+<p>Each of the four components:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Defines its <em>API</em> in an <code>interface</code> with the same name as the Component.</p>
+<p>Defines its <em>API</em> in an <code>interface</code> with the same name as the component.</p>
 </li>
 <li>
-<p>Exposes its functionality using a <code>{Component Name}Manager</code> class.</p>
+<p>Exposes its functionality using a <code>{COMPONENT NAME}Manager</code> class.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>For example, the <code>Logic</code> component (see the class diagram given below) defines it&#8217;s API in the <code>Logic.java</code> interface and exposes its functionality using the <code>LogicManager.java</code> class.</p>
+<p>For example, the <code>Logic</code> component (see the class diagram given below)
+defines its API in the <code>Logic.java</code> interface and exposes its functionality
+using the <code>LogicManager.java</code> class.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -400,7 +406,7 @@ The <code>.pptx</code> files used to create diagrams in this document can be fou
 <div class="title">Figure 2. Class Diagram of the Logic Component</div>
 </div>
 <div class="paragraph">
-<p>The <em>Sequence Diagram</em> below shows how the components interact for the scenario where the user issues the command <code>delete 1</code>.</p>
+<p>The <em>Sequence Diagram</em> below shows how the interaction between the components after the user issues the command <code>delete 1</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -421,7 +427,9 @@ Note how the <code>Model</code> simply raises a <code>EventPlannerChangedEvent</
 </table>
 </div>
 <div class="paragraph">
-<p>The diagram below shows how the <code>EventsCenter</code> reacts to that event, which eventually results in the updates being saved to the hard disk and the status bar of the UI being updated to reflect the 'Last Updated' time.</p>
+<p>The diagram below shows how the <code>EventsCenter</code> reacts to that event,
+which eventually results in the updates being saved to the hard disk and the
+status bar of the UI reflecting the 'Last Updated' time.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -460,10 +468,12 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <p>The UI consists of a <code>MainWindow</code> that is made up of parts e.g.<code>CommandBox</code>, <code>ResultDisplay</code>, <code>PersonListPanel</code>, <code>StatusBarFooter</code>, <code>BrowserPanel</code> etc. All these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.</p>
 </div>
 <div class="paragraph">
-<p>The <code>UI</code> component uses JavaFx UI framework. The layout of these UI parts are defined in matching <code>.fxml</code> files that are in the <code>src/main/resources/view</code> folder. For example, the layout of the <a href="https://github.com/CS2103JAN2018-W13-B2/main/blob/master/src/main/java/seedu/address/ui/MainWindow.java"><code>MainWindow</code></a> is specified in <a href="https://github.com/CS2103JAN2018-W13-B2/main/blob/master/src/main/resources/view/MainWindow.fxml"><code>MainWindow.fxml</code></a></p>
+<p>The <code>UI</code> component uses JavaFx UI framework.
+The layout of these UI parts are defined in matching <code>.fxml</code> files that are in the <code>src/main/resources/view</code> folder.
+For example, the layout of the <a href="https://github.com/CS2103JAN2018-W13-B2/main/blob/master/src/main/java/seedu/address/ui/MainWindow.java"><code>MainWindow</code></a> is specified in <a href="https://github.com/CS2103JAN2018-W13-B2/main/blob/master/src/main/resources/view/MainWindow.fxml"><code>MainWindow.fxml</code></a></p>
 </div>
 <div class="paragraph">
-<p>The <code>UI</code> component,</p>
+<p>The <code>UI</code> component:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -497,24 +507,27 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <p><strong>API</strong> :
 <a href="https://github.com/CS2103JAN2018-W13-B2/main/blob/master/src/main/java/seedu/address/logic/Logic.java"><code>Logic.java</code></a></p>
 </div>
+<div class="paragraph">
+<p>When a command is entered into the command box, the following steps take place:</p>
+</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
 <p><code>Logic</code> uses the <code>EventPlannerParser</code> class to parse the user command.</p>
 </li>
 <li>
-<p>This results in a <code>Command</code> object which is executed by the <code>LogicManager</code>.</p>
+<p>A <code>Command</code> object is returned by the parser, which is passed to the <code>LogicManager</code> to execute.</p>
 </li>
 <li>
-<p>The command execution can affect the <code>Model</code> (e.g. adding a person) and/or raise events.</p>
+<p>The command execution may affect the <code>Model</code> (e.g. adding a person) and/or raise events.</p>
 </li>
 <li>
-<p>The result of the command execution is encapsulated as a <code>CommandResult</code> object which is passed back to the <code>Ui</code>.</p>
+<p>The result of the command execution is encapsulated as a <code>CommandResult</code> object which is passed back to the <code>UI</code>.</p>
 </li>
 </ol>
 </div>
 <div class="paragraph">
-<p>Given below is the Sequence Diagram for interactions within the <code>Logic</code> component for the <code>execute("delete 1")</code> API call.</p>
+<p>The Sequence Diagram for interactions within the <code>Logic</code> component for the <code>execute("delete 1")</code> API call is shown below.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -546,18 +559,22 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <p>stores the Event Planner data.</p>
 </li>
 <li>
-<p>exposes an unmodifiable <code>ObservableList&lt;Person&gt;</code> that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.</p>
-</li>
-<li>
-<p>exposes an unmodifiable <code>ObservableList&lt;EpicEvent&gt;</code> that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.</p>
-</li>
-<li>
-<p>exposes an unmodifiable <code>ObservableList&lt;Attendance&gt;</code> that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.</p>
-</li>
-<li>
-<p>does not depend on any of the other three components.</p>
+<p>exposes three unmodifiable <code>ObservableLists</code>, one each for <code>Person</code>, <code>EpicEvent</code> and <code>Attendance</code>.
+The UI can be bound to any of these lists so that it automatically updates when the data in the list changes.</p>
 </li>
 </ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The Model does not depend on any of the other three components. This reduces coupling between components.
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect2">
@@ -577,10 +594,10 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <div class="ulist">
 <ul>
 <li>
-<p>can save <code>UserPref</code> objects in json format and read it back.</p>
+<p>can save <code>UserPref</code> objects in json format and reconstruct the Model from a file of this format.</p>
 </li>
 <li>
-<p>can save the Event Planner data in xml format and read it back.</p>
+<p>can save the Event Planner data in xml format and reconstruct the Model from a file of this format.</p>
 </li>
 </ul>
 </div>
@@ -672,12 +689,14 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <p>The undo/redo mechanism is facilitated by an <code>UndoRedoStack</code>, which resides inside <code>LogicManager</code>. It supports undoing and redoing of commands that modifies the state of the event planner (e.g. <code>add</code>, <code>edit</code>). Such commands will inherit from <code>UndoableCommand</code>.</p>
 </div>
 <div class="paragraph">
-<p><code>UndoRedoStack</code> only deals with <code>UndoableCommands</code>. Commands that cannot be undone will inherit from <code>Command</code> instead. The following diagram shows the inheritance diagram for commands:</p>
+<p><code>UndoRedoStack</code> only deals with <code>UndoableCommands</code>. Commands that cannot be undone will inherit from <code>Command</code> instead.
+The following diagram shows the class diagram for commands:</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/LogicCommandClassDiagram.png" alt="LogicCommandClassDiagram" width="800">
 </div>
+<div class="title">Figure 11. Class Diagram for the Logic Component</div>
 </div>
 <div class="paragraph">
 <p>As you can see from the diagram, <code>UndoableCommand</code> adds an extra layer between the abstract <code>Command</code> class and concrete commands that can be undone, such as the <code>DeleteCommand</code>. Note that extra tasks need to be done when executing a command in an <em>undoable</em> way, such
@@ -731,6 +750,7 @@ The <code>delete 5</code> command will then be pushed onto the <code>undoStack</
 <div class="content">
 <img src="images/UndoRedoStartingStackDiagram.png" alt="UndoRedoStartingStackDiagram" width="800">
 </div>
+<div class="title">Figure 12. How a delete command modifies the UndoRedoStack</div>
 </div>
 <div class="paragraph">
 <p>As the user continues to use the program, more commands are added into the <code>undoStack</code>. For example, the user may execute
@@ -740,6 +760,7 @@ The <code>delete 5</code> command will then be pushed onto the <code>undoStack</
 <div class="content">
 <img src="images/UndoRedoNewCommand1StackDiagram.png" alt="UndoRedoNewCommand1StackDiagram" width="800">
 </div>
+<div class="title">Figure 13. How an add command modifies the UndoRedoStack</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -776,6 +797,7 @@ while the latter is an <code>AddPersonCommand</code>.
 <div class="content">
 <img src="images/UndoRedoExecuteUndoStackDiagram.png" alt="UndoRedoExecuteUndoStackDiagram" width="800">
 </div>
+<div class="title">Figure 14. How an undo command utilises the UndoRedoStack</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -796,6 +818,7 @@ If the <code>undoStack</code> is empty, there are no other commands left to be u
 <div class="content">
 <img src="images/UndoRedoSequenceDiagram.png" alt="UndoRedoSequenceDiagram" width="800">
 </div>
+<div class="title">Figure 15. Sequence Diagram for the undo command</div>
 </div>
 <div class="paragraph">
 <p>The redo does the exact opposite (pops from <code>redoStack</code>, push to <code>undoStack</code>, and performs the intention of the original command).</p>
@@ -832,6 +855,7 @@ commands like <code>delete</code> if <code>filteredPersons</code> had been alter
 <div class="content">
 <img src="images/UndoRedoNewCommand2StackDiagram.png" alt="UndoRedoNewCommand2StackDiagram" width="800">
 </div>
+<div class="title">Figure 16. How a clear command modifies the UndoRedoStack</div>
 </div>
 <div class="paragraph">
 <p>Commands that are not undoable are not added into the <code>undoStack</code>. For example, <code>list</code>, which inherits from <code>Command</code> rather than <code>UndoableCommand</code>, will not be added after execution:</p>
@@ -840,6 +864,7 @@ commands like <code>delete</code> if <code>filteredPersons</code> had been alter
 <div class="content">
 <img src="images/UndoRedoNewCommand3StackDiagram.png" alt="UndoRedoNewCommand3StackDiagram" width="800">
 </div>
+<div class="title">Figure 17. A list command does not modify the UndoRedoStack</div>
 </div>
 <div class="paragraph">
 <p>The following activity diagram summarizes what happens inside the <code>UndoRedoStack</code> when a user executes a new command:</p>
@@ -848,6 +873,7 @@ commands like <code>delete</code> if <code>filteredPersons</code> had been alter
 <div class="content">
 <img src="images/UndoRedoActivityDiagram.png" alt="UndoRedoActivityDiagram" width="650">
 </div>
+<div class="title">Figure 18. Activity Diagram for command execution</div>
 </div>
 </div>
 <div class="sect3">
@@ -906,7 +932,7 @@ the user undoes a <code>ClearCommand</code>.</p>
 </div>
 </li>
 <li>
-<p><strong>Alternative 2:</strong> Just override <code>execute()</code></p>
+<p><strong>Alternative 2:</strong> Override <code>execute()</code></p>
 <div class="ulist">
 <ul>
 <li>
@@ -926,7 +952,7 @@ the user undoes a <code>ClearCommand</code>.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Individual command knows how to undo/redo itself.</p>
+<p><strong>Alternative 1 (current choice):</strong> Store the minimal knowledge required to undo each command inside itself.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -939,7 +965,7 @@ the user undoes a <code>ClearCommand</code>.</p>
 </div>
 </li>
 <li>
-<p><strong>Alternative 2:</strong> Saves the entire event planner.</p>
+<p><strong>Alternative 2:</strong> Save the entire event planner after every undoable command.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -959,7 +985,7 @@ the user undoes a <code>ClearCommand</code>.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Only include commands that modifies the event planner (<code>add</code>, <code>clear</code>, <code>edit</code>).</p>
+<p><strong>Alternative 1 (current choice):</strong> Only include commands that modify the event planner (<code>add</code>, <code>clear</code>, <code>edit</code>).</p>
 <div class="ulist">
 <ul>
 <li>
@@ -1132,6 +1158,7 @@ by iteratively registering each person.</p>
 <div class="content">
 <img src="images/CreatePersonListPanelSequenceDiagram.png" alt="CreatePersonListPanelSequenceDiagram" width="650">
 </div>
+<div class="title">Figure 19. Sequence Diagram for Panel initialisation</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1216,6 +1243,7 @@ If no  <code>EpicEvent</code> has been selected, <code>AttendeeList</code> will 
 <div class="content">
 <img src="images/ExportEventSequenceDiagram.png" alt="ExportEventSequenceDiagram" width="650">
 </div>
+<div class="title">Figure 20. Sequence Diagram for csv export</div>
 </div>
 </div>
 <div class="sect3">
@@ -1363,7 +1391,7 @@ Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows y
 <div class="content">
 <img src="images/chrome_save_as_pdf.png" alt="chrome save as pdf" width="300">
 </div>
-<div class="title">Figure 11. Saving documentation as PDF files in Chrome</div>
+<div class="title">Figure 21. Saving documentation as PDF files in Chrome</div>
 </div>
 </div>
 </div>
@@ -2340,7 +2368,7 @@ Expected: Similar to previous.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-02 03:07:47 UTC
+Last updated 2018-04-03 01:13:21 UTC
 </div>
 </div>
 </body>

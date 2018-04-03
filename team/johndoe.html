@@ -254,12 +254,14 @@ The <code>redo</code> command fails as there are no <code>undo</code> commands e
 <p>The undo/redo mechanism is facilitated by an <code>UndoRedoStack</code>, which resides inside <code>LogicManager</code>. It supports undoing and redoing of commands that modifies the state of the event planner (e.g. <code>add</code>, <code>edit</code>). Such commands will inherit from <code>UndoableCommand</code>.</p>
 </div>
 <div class="paragraph">
-<p><code>UndoRedoStack</code> only deals with <code>UndoableCommands</code>. Commands that cannot be undone will inherit from <code>Command</code> instead. The following diagram shows the inheritance diagram for commands:</p>
+<p><code>UndoRedoStack</code> only deals with <code>UndoableCommands</code>. Commands that cannot be undone will inherit from <code>Command</code> instead.
+The following diagram shows the class diagram for commands:</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="../images/LogicCommandClassDiagram.png" alt="LogicCommandClassDiagram" width="800">
 </div>
+<div class="title">Figure 1. Class Diagram for the Logic Component</div>
 </div>
 <div class="paragraph">
 <p>As you can see from the diagram, <code>UndoableCommand</code> adds an extra layer between the abstract <code>Command</code> class and concrete commands that can be undone, such as the <code>DeleteCommand</code>. Note that extra tasks need to be done when executing a command in an <em>undoable</em> way, such
@@ -313,6 +315,7 @@ The <code>delete 5</code> command will then be pushed onto the <code>undoStack</
 <div class="content">
 <img src="../images/UndoRedoStartingStackDiagram.png" alt="UndoRedoStartingStackDiagram" width="800">
 </div>
+<div class="title">Figure 2. How a delete command modifies the UndoRedoStack</div>
 </div>
 <div class="paragraph">
 <p>As the user continues to use the program, more commands are added into the <code>undoStack</code>. For example, the user may execute
@@ -322,6 +325,7 @@ The <code>delete 5</code> command will then be pushed onto the <code>undoStack</
 <div class="content">
 <img src="../images/UndoRedoNewCommand1StackDiagram.png" alt="UndoRedoNewCommand1StackDiagram" width="800">
 </div>
+<div class="title">Figure 3. How an add command modifies the UndoRedoStack</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -358,6 +362,7 @@ while the latter is an <code>AddPersonCommand</code>.
 <div class="content">
 <img src="../images/UndoRedoExecuteUndoStackDiagram.png" alt="UndoRedoExecuteUndoStackDiagram" width="800">
 </div>
+<div class="title">Figure 4. How an undo command utilises the UndoRedoStack</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -378,6 +383,7 @@ If the <code>undoStack</code> is empty, there are no other commands left to be u
 <div class="content">
 <img src="../images/UndoRedoSequenceDiagram.png" alt="UndoRedoSequenceDiagram" width="800">
 </div>
+<div class="title">Figure 5. Sequence Diagram for the undo command</div>
 </div>
 <div class="paragraph">
 <p>The redo does the exact opposite (pops from <code>redoStack</code>, push to <code>undoStack</code>, and performs the intention of the original command).</p>
@@ -414,6 +420,7 @@ commands like <code>delete</code> if <code>filteredPersons</code> had been alter
 <div class="content">
 <img src="../images/UndoRedoNewCommand2StackDiagram.png" alt="UndoRedoNewCommand2StackDiagram" width="800">
 </div>
+<div class="title">Figure 6. How a clear command modifies the UndoRedoStack</div>
 </div>
 <div class="paragraph">
 <p>Commands that are not undoable are not added into the <code>undoStack</code>. For example, <code>list</code>, which inherits from <code>Command</code> rather than <code>UndoableCommand</code>, will not be added after execution:</p>
@@ -422,6 +429,7 @@ commands like <code>delete</code> if <code>filteredPersons</code> had been alter
 <div class="content">
 <img src="../images/UndoRedoNewCommand3StackDiagram.png" alt="UndoRedoNewCommand3StackDiagram" width="800">
 </div>
+<div class="title">Figure 7. A list command does not modify the UndoRedoStack</div>
 </div>
 <div class="paragraph">
 <p>The following activity diagram summarizes what happens inside the <code>UndoRedoStack</code> when a user executes a new command:</p>
@@ -430,6 +438,7 @@ commands like <code>delete</code> if <code>filteredPersons</code> had been alter
 <div class="content">
 <img src="../images/UndoRedoActivityDiagram.png" alt="UndoRedoActivityDiagram" width="650">
 </div>
+<div class="title">Figure 8. Activity Diagram for command execution</div>
 </div>
 </div>
 <div class="sect3">
@@ -488,7 +497,7 @@ the user undoes a <code>ClearCommand</code>.</p>
 </div>
 </li>
 <li>
-<p><strong>Alternative 2:</strong> Just override <code>execute()</code></p>
+<p><strong>Alternative 2:</strong> Override <code>execute()</code></p>
 <div class="ulist">
 <ul>
 <li>
@@ -508,7 +517,7 @@ the user undoes a <code>ClearCommand</code>.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Individual command knows how to undo/redo itself.</p>
+<p><strong>Alternative 1 (current choice):</strong> Store the minimal knowledge required to undo each command inside itself.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -521,7 +530,7 @@ the user undoes a <code>ClearCommand</code>.</p>
 </div>
 </li>
 <li>
-<p><strong>Alternative 2:</strong> Saves the entire event planner.</p>
+<p><strong>Alternative 2:</strong> Save the entire event planner after every undoable command.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -541,7 +550,7 @@ the user undoes a <code>ClearCommand</code>.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Only include commands that modifies the event planner (<code>add</code>, <code>clear</code>, <code>edit</code>).</p>
+<p><strong>Alternative 1 (current choice):</strong> Only include commands that modify the event planner (<code>add</code>, <code>clear</code>, <code>edit</code>).</p>
 <div class="ulist">
 <ul>
 <li>
@@ -619,7 +628,7 @@ the user undoes a <code>ClearCommand</code>.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-02 03:07:47 UTC
+Last updated 2018-04-03 01:13:21 UTC
 </div>
 </div>
 </body>
