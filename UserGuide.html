@@ -5,14 +5,14 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.6.1">
-<title>Event Planning isn’t Complicated (EPIC) - User Guide</title>
+<title>Event Planning isn’t Complicated (EPIC) - User guide</title>
 <link rel="stylesheet" href="stylesheets/gh-pages.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 <link rel="stylesheet" href="stylesheets/coderay-asciidoctor.css">
 </head>
 <body class="article">
 <div id="header">
-<h1>Event Planning isn’t Complicated (EPIC) - User Guide</h1>
+<h1>Event Planning isn’t Complicated (EPIC) - User guide</h1>
 </div>
 <div id="content">
 <div id="preamble">
@@ -20,13 +20,21 @@
 <div class="paragraph">
 <p>By: <code>Team W13-B2</code>      Since: <code>Mar 2018</code>      Licence: <code>MIT</code></p>
 </div>
+<div class="paragraph">
+<p>Table of Contents:</p>
+</div>
 </div>
 <div id="toc" class="toc">
 <div id="toctitle"></div>
 <ul class="sectlevel1">
 <li><a href="#introduction">1. Introduction</a></li>
 <li><a href="#quick-start">2. Quick Start</a></li>
-<li><a href="#Layout">3. Layout</a></li>
+<li><a href="#Layout">3. How to use the GUI</a>
+<ul class="sectlevel2">
+<li><a href="#layout">3.1. Layout</a></li>
+<li><a href="#interacting-with-the-gui">3.2. Interacting with the GUI</a></li>
+</ul>
+</li>
 <li><a href="#Features">4. Features</a>
 <ul class="sectlevel2">
 <li><a href="#viewing-help-code-help-code">4.1. Viewing help : <code>help</code></a></li>
@@ -35,21 +43,21 @@
 <li><a href="#editing-a-person-code-edit-code">4.4. Editing a person : <code>edit</code></a></li>
 <li><a href="#locating-persons-by-name-code-find-code">4.5. Locating persons by name: <code>find</code></a></li>
 <li><a href="#deleting-a-person-code-delete-code">4.6. Deleting a person : <code>delete</code></a></li>
-<li><a href="#selecting-a-person-code-select-code-deprecated">4.7. Selecting a person : <code>select</code> [Deprecated]</a></li>
-<li><a href="#adding-an-event-code-add-event-code-since-v1-2">4.8. Adding an event: <code>add-event</code> [Since v1.2]</a></li>
-<li><a href="#listing-all-events-code-list-events-code-since-v1-2">4.9. Listing all events: <code>list-events</code> [Since v1.2]</a></li>
-<li><a href="#selecting-an-event-code-select-event-code-since-v1-4">4.10. Selecting an event: <code>select-event</code> [Since v1.4]</a></li>
-<li><a href="#editing-an-event-code-edit-event-code-since-v1-2">4.11. Editing an event : <code>edit-event</code> [Since v1.2]</a></li>
+<li><a href="#selecting-a-person-code-select-code">4.7. Selecting a person : <code>select</code></a></li>
+<li><a href="#adding-an-event-code-add-event-code">4.8. Adding an event: <code>add-event</code></a></li>
+<li><a href="#listing-all-events-code-list-events-code">4.9. Listing all events: <code>list-events</code></a></li>
+<li><a href="#selecting-an-event-code-select-event-code">4.10. Selecting an event: <code>select-event</code></a></li>
+<li><a href="#editing-an-event-code-edit-event-code">4.11. Editing an event : <code>edit-event</code></a></li>
 <li><a href="#locating-events-by-name-code-find-event-code-since-v1-2">4.12. Locating events by name: <code>find-event</code> [Since v1.2]</a></li>
 <li><a href="#deleting-an-event-code-delete-event-code-since-v1-2">4.13. Deleting an event : <code>delete-event</code> [Since v1.2]</a></li>
-<li><a href="#registering-a-person-to-an-event-code-register-code-since-v1-2">4.14. Registering a person to an event: <code>register</code> [Since v1.2]</a></li>
+<li><a href="#registering-a-person-for-an-event-code-register-code-since-v1-2">4.14. Registering a person for an event: <code>register</code> [Since v1.2]</a></li>
 <li><a href="#deregistering-a-person-from-an-event-code-deregister-code-since-v1-2">4.15. Deregistering a person from an event: <code>deregister</code> [Since v1.2]</a></li>
-<li><a href="#listing-all-persons-registered-in-an-event-code-list-registered-code-since-v1-2">4.16. Listing all persons registered in an event: <code>list-registered</code> [Since v1.2]</a></li>
-<li><a href="#toggle-attendance-for-event-participant-code-toggle-code-since-v1-4">4.17. Toggle attendance for event participant : <code>toggle</code> [Since v1.4]</a></li>
+<li><a href="#listing-all-event-participants-code-list-registered-code">4.16. Listing all event participants: <code>list-registered</code></a></li>
+<li><a href="#toggle-attendance-for-event-participant-code-toggle-code">4.17. Toggle attendance for event participant : <code>toggle</code></a></li>
 <li><a href="#listing-entered-commands-code-history-code">4.18. Listing entered commands : <code>history</code></a></li>
-<li><a href="#undoing-previous-command-code-undo-code">4.19. Undoing previous command : <code>undo</code></a></li>
-<li><a href="#redoing-the-previously-undone-command-code-redo-code">4.20. Redoing the previously undone command : <code>redo</code></a></li>
-<li><a href="#clearing-all-entries-code-clear-code">4.21. Clearing all entries : <code>clear</code></a></li>
+<li><a href="#clearing-all-entries-code-clear-code">4.19. Clearing all entries : <code>clear</code></a></li>
+<li><a href="#undoing-commands-code-undo-code">4.20. Undoing commands : <code>undo</code></a></li>
+<li><a href="#redoing-commands-code-redo-code">4.21. Redoing commands : <code>redo</code></a></li>
 <li><a href="#exiting-the-program-code-exit-code">4.22. Exiting the program : <code>exit</code></a></li>
 <li><a href="#saving-the-data">4.23. Saving the data</a></li>
 <li><a href="#exporting-contact-information-to-a-csv-file-code-export-code-coming-in-v2-0">4.24. Exporting contact information to a csv file : <code>export</code> [coming in v2.0]</a></li>
@@ -71,10 +79,16 @@
 <h2 id="introduction"><a class="link" href="#introduction">1. Introduction</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Event Planning isn’t Complicated (EPIC) is a desktop application used for <strong>event planning and registration for large organisations</strong>.
-EPIC is <strong>optimized for event planners who prefer to work with a Command Line Interface</strong> (CLI) while still having the benefits of a Graphical User Interface (GUI).
-If you can type fast, EPIC can get your event planning tasks and registration processes for events done faster than traditional GUI apps or pen and paper registration.
-Interested? Jump to the <a href="#quick-start">Section 2, &#8220;Quick Start&#8221;</a> to get started. Enjoy!</p>
+<p>Event Planning isn’t Complicated (EPIC) is a desktop application used for <strong>event planning
+and registration for large organisations</strong>.
+EPIC is optimized for event planners who prefer typing to using the mouse.
+If you can type fast, EPIC can get your event planning tasks and registration processes for
+events done faster than traditional (Graphical User Interface) GUI applications
+or pen and paper registration.</p>
+</div>
+<div class="paragraph">
+<p>This user guide will walk you through setting up EPIC on your computer, navigating within the
+GUI, using the various features EPIC has.</p>
 </div>
 </div>
 </div>
@@ -114,14 +128,18 @@ This app will not work with earlier versions of Java 8.
 <div class="content">
 <img src="images/Ui.png" alt="Ui" width="790">
 </div>
+<div class="title">Figure 1. GUI of EPIC</div>
 </div>
 </li>
 <li>
 <p>Type the command in the command box and press <kbd>Enter</kbd> to execute it.<br>
 e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> will open the help window.</p>
 </li>
-<li>
+</ol>
+</div>
+<div class="paragraph">
 <p>Some example commands you can try:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
@@ -138,24 +156,24 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 </li>
 </ul>
 </div>
-</li>
-<li>
+<div class="paragraph">
 <p>Refer to <a href="#Features">Section 4, &#8220;Features&#8221;</a> for details of each command.</p>
-</li>
-</ol>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="Layout"><a class="link" href="#Layout">3. Layout</a></h2>
+<h2 id="Layout"><a class="link" href="#Layout">3. How to use the GUI</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This section details the layout of the GUI, and common ways to interact with it.</p>
+<p>This section describes the components of the GUI, and common ways to interact with it.</p>
 </div>
+<div class="sect2">
+<h3 id="layout"><a class="link" href="#layout">3.1. Layout</a></h3>
 <div class="imageblock">
 <div class="content">
 <img src="images/Ui.png" alt="Ui" width="790">
 </div>
+<div class="title">Figure 2. Components of the GUI</div>
 </div>
 <div class="ulist">
 <ul>
@@ -167,13 +185,13 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="ulist">
 <ul>
 <li>
-<p>In the leftmost pane, a list of persons in your organisation is displayed.</p>
+<p>The leftmost pane is the Persons Pane. It displays the list of persons stored in EPIC.</p>
 </li>
 <li>
-<p>In the middle pane, a list of events is displayed.</p>
+<p>The middle pane is the Events Pane. It displays the list of events stored in EPIC.</p>
 </li>
 <li>
-<p>In the rightmost pane, a list of registered persons for the selected event is displayed.</p>
+<p>The rightmost pane is the Attendees Pane. It displays the list of registered persons in the selected event.</p>
 </li>
 </ul>
 </div>
@@ -192,17 +210,23 @@ The lists displayed in the panes can be filtered using the <code>find</code> or 
 </tr>
 </table>
 </div>
+</div>
+<div class="sect2">
+<h3 id="interacting-with-the-gui"><a class="link" href="#interacting-with-the-gui">3.2. Interacting with the GUI</a></h3>
 <div class="ulist">
 <ul>
 <li>
-<p>Clicking on an event in the middle pane selects that event, allowing you to see all persons registered for that event in the rightmost pane,
-as well as perform actions such as toggling attendance. This can also be done with the <code>select</code> command in the command box.</p>
+<p>Clicking on an event in the Events Pane selects that event, allowing you to see all persons registered for that event in the Attendees Pane,
+as well as perform actions such as toggling attendance.
+Selecting an event can also be done with the <code>select</code> command in the command box.</p>
 </li>
 <li>
-<p>Clicking on the tick/cross symbol next to a person&#8217;s details in the rightmost pane allows you to toggle the attendance of the person for the currently selected event.
-This can also be done with the <code>toggle</code> command.</p>
+<p>Clicking on the tick/cross symbol next to a person&#8217;s details in the Attendees Pane allows you to toggle
+that person&#8217;s attendance for the currently selected event.
+Toggling the attendance can also be done with the <code>toggle</code> command.</p>
 </li>
 </ul>
+</div>
 </div>
 </div>
 </div>
@@ -238,16 +262,14 @@ This can also be done with the <code>toggle</code> command.</p>
 <div class="sect2">
 <h3 id="viewing-help-code-help-code"><a class="link" href="#viewing-help-code-help-code">4.1. Viewing help : <code>help</code></a></h3>
 <div class="paragraph">
-<p>Format: <code>help</code></p>
-</div>
-<div class="paragraph">
-<p>This command opens the help screen in a separate window.</p>
+<p>Opens the help screen in a separate window.
+Format: <code>help</code></p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="adding-a-person-code-add-code"><a class="link" href="#adding-a-person-code-add-code">4.2. Adding a person: <code>add</code></a></h3>
 <div class="paragraph">
-<p>Adds a person to the event planner<br>
+<p>Adds a person to EPIC.<br>
 Format: <code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]&#8230;&#8203;</code></p>
 </div>
 <div class="admonitionblock tip">
@@ -257,7 +279,7 @@ Format: <code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]&#8230;&#8203;<
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-A person can have any number of tags (including 0)
+A person can have any number of tags (including 0).
 </td>
 </tr>
 </table>
@@ -268,10 +290,12 @@ A person can have any number of tags (including 0)
 <div class="ulist">
 <ul>
 <li>
-<p><code>add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01</code></p>
+<p><code>add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01</code><br>
+Adds the person John Doe to EPIC.</p>
 </li>
 <li>
-<p><code>add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal</code></p>
+<p><code>add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal</code><br>
+Adds the person Betsy Crowe to EPIC.</p>
 </li>
 </ul>
 </div>
@@ -279,7 +303,7 @@ A person can have any number of tags (including 0)
 <div class="sect2">
 <h3 id="listing-all-persons-code-list-code"><a class="link" href="#listing-all-persons-code-list-code">4.3. Listing all persons : <code>list</code></a></h3>
 <div class="paragraph">
-<p>Shows a list of all persons in the event planner on the left pane.<br>
+<p>Shows a list of all persons in EPIC on the Persons Pane.<br>
 Format: <code>list</code></p>
 </div>
 </div>
@@ -295,10 +319,10 @@ Format: <code>edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]&#8230;
 <ul>
 <li>
 <p>Edits the person at the specified <code>INDEX</code>.
-The index refers to the index number shown in the leftmost pane.</p>
+The index refers to the index number shown in the Persons Pane.</p>
 </li>
 <li>
-<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+<p>The index <strong>must be a positive integer</strong>: 1, 2, 3, &#8230;&#8203;</p>
 </li>
 <li>
 <p>At least one of the optional fields must be provided.</p>
@@ -335,7 +359,7 @@ Edits the name of the 2nd person to be <code>Betsy Crower</code> and clears all 
 <div class="sect2">
 <h3 id="locating-persons-by-name-code-find-code"><a class="link" href="#locating-persons-by-name-code-find-code">4.5. Locating persons by name: <code>find</code></a></h3>
 <div class="paragraph">
-<p>Finds persons in your organisation whose names contain any of the given keywords.<br>
+<p>Finds persons whose names contain any of the given keywords.<br>
 Format: <code>find KEYWORD [MORE_KEYWORDS]</code></p>
 </div>
 <div class="sidebarblock">
@@ -343,19 +367,16 @@ Format: <code>find KEYWORD [MORE_KEYWORDS]</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>The search is case insensitive. e.g <code>hans</code> will match <code>Hans</code></p>
-</li>
-<li>
-<p>The order of the keywords does not matter. e.g. <code>Hans Bo</code> will match <code>Bo Hans</code></p>
+<p>The search is case insensitive. e.g <code>hans</code> will match <code>Hans</code>.</p>
 </li>
 <li>
 <p>Only the name is searched.</p>
 </li>
 <li>
-<p>Only full words will be matched e.g. <code>Han</code> will not match <code>Hans</code></p>
+<p>Only full words will be matched. e.g. <code>Han</code> will not match <code>Hans</code>.</p>
 </li>
 <li>
-<p>Persons matching <strong>at least</strong> one keyword will be returned (i.e. <code>OR</code> search). e.g. <code>Hans Bo</code> will return <code>Hans Gruber</code>, <code>Bo Yang</code></p>
+<p>Persons matching <strong>at least</strong> one keyword will be returned (i.e. <code>OR</code> search). e.g. <code>Hans Bo</code> will return <code>Hans Gruber</code> and <code>Bo Yang</code>.</p>
 </li>
 </ul>
 </div>
@@ -368,11 +389,11 @@ Format: <code>find KEYWORD [MORE_KEYWORDS]</code></p>
 <ul>
 <li>
 <p><code>find John</code><br>
-Returns <code>john</code> and <code>John Doe</code></p>
+Returns <code>john</code> and <code>John Doe</code>.</p>
 </li>
 <li>
 <p><code>find Betsy Tim John</code><br>
-Returns any person having names <code>Betsy</code>, <code>Tim</code>, or <code>John</code></p>
+Returns any person having names <code>Betsy</code>, <code>Tim</code>, or <code>John</code>.</p>
 </li>
 </ul>
 </div>
@@ -380,7 +401,7 @@ Returns any person having names <code>Betsy</code>, <code>Tim</code>, or <code>J
 <div class="sect2">
 <h3 id="deleting-a-person-code-delete-code"><a class="link" href="#deleting-a-person-code-delete-code">4.6. Deleting a person : <code>delete</code></a></h3>
 <div class="paragraph">
-<p>Deletes the specified person from the event planner.<br>
+<p>Deletes the specified person from EPIC.<br>
 Format: <code>delete INDEX</code></p>
 </div>
 <div class="sidebarblock">
@@ -389,10 +410,10 @@ Format: <code>delete INDEX</code></p>
 <ul>
 <li>
 <p>Deletes the person at the specified <code>INDEX</code> shown.
-The index refers to the index number shown in the leftmost pane.</p>
+The index refers to the index number shown in the Persons Pane.</p>
 </li>
 <li>
-<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+<p>The index <strong>must be a positive integer</strong>: 1, 2, 3, &#8230;&#8203;</p>
 </li>
 </ul>
 </div>
@@ -406,7 +427,7 @@ The index refers to the index number shown in the leftmost pane.</p>
 <li>
 <p><code>list</code><br>
 <code>delete 2</code><br>
-Deletes the 2nd person in the event planner.</p>
+Deletes the 2nd person in EPIC.</p>
 </li>
 <li>
 <p><code>find Betsy</code><br>
@@ -417,9 +438,9 @@ Deletes the 1st person in the results of the <code>find</code> command.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="selecting-a-person-code-select-code-deprecated"><a class="link" href="#selecting-a-person-code-select-code-deprecated">4.7. Selecting a person : <code>select</code> [Deprecated]</a></h3>
+<h3 id="selecting-a-person-code-select-code"><a class="link" href="#selecting-a-person-code-select-code">4.7. Selecting a person : <code>select</code></a></h3>
 <div class="paragraph">
-<p>Selects the person identified by the index number used in the last person listing.<br>
+<p>Selects the person identified by the index number used in the Persons Pane.<br>
 Format: <code>select INDEX</code></p>
 </div>
 <div class="sidebarblock">
@@ -427,11 +448,7 @@ Format: <code>select INDEX</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>Selects the person.</p>
-</li>
-<li>
-<p>The index refers to the index number shown in the most recent listing.
-The index refers to the index number shown in the leftmost pane.</p>
+<p>The index refers to the index number shown in the Persons pane.</p>
 </li>
 <li>
 <p>The index <strong>must be a positive integer</strong> <code>1, 2, 3, &#8230;&#8203;</code></p>
@@ -448,7 +465,7 @@ The index refers to the index number shown in the leftmost pane.</p>
 <li>
 <p><code>list</code><br>
 <code>select 2</code><br>
-Selects the 2nd person in the event planner.</p>
+Selects the 2nd person.</p>
 </li>
 <li>
 <p><code>find Betsy</code><br>
@@ -459,9 +476,9 @@ Selects the 1st person in the results of the <code>find</code> command.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="adding-an-event-code-add-event-code-since-v1-2"><a class="link" href="#adding-an-event-code-add-event-code-since-v1-2">4.8. Adding an event: <code>add-event</code> [Since v1.2]</a></h3>
+<h3 id="adding-an-event-code-add-event-code"><a class="link" href="#adding-an-event-code-add-event-code">4.8. Adding an event: <code>add-event</code></a></h3>
 <div class="paragraph">
-<p>Adds an event to the event planner.<br>
+<p>Adds an event to EPIC.<br>
 Format: <code>add-event n/NAME [t/TAG]&#8230;&#8203;</code></p>
 </div>
 <div class="admonitionblock tip">
@@ -471,7 +488,7 @@ Format: <code>add-event n/NAME [t/TAG]&#8230;&#8203;</code></p>
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-An event can have any number of tags (including 0)
+An event can have any number of tags (including 0).
 </td>
 </tr>
 </table>
@@ -482,25 +499,27 @@ An event can have any number of tags (including 0)
 <div class="ulist">
 <ul>
 <li>
-<p><code>add-event n/AY201718 Graduation t/Graduation</code></p>
+<p><code>add-event n/AY201718 Graduation t/Graduation</code>
+Adds the event AY201718 Graduation to EPIC.</p>
 </li>
 <li>
-<p><code>add-event n/Computing Seminar</code></p>
+<p><code>add-event n/Computing Seminar</code>
+Adds the event Computing Seminar to EPIC.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="listing-all-events-code-list-events-code-since-v1-2"><a class="link" href="#listing-all-events-code-list-events-code-since-v1-2">4.9. Listing all events: <code>list-events</code> [Since v1.2]</a></h3>
+<h3 id="listing-all-events-code-list-events-code"><a class="link" href="#listing-all-events-code-list-events-code">4.9. Listing all events: <code>list-events</code></a></h3>
 <div class="paragraph">
-<p>Shows a list of all events in the event planner in the middle pane.<br>
+<p>Shows a list of all events in the Events Pane.<br>
 Format: <code>list-events</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="selecting-an-event-code-select-event-code-since-v1-4"><a class="link" href="#selecting-an-event-code-select-event-code-since-v1-4">4.10. Selecting an event: <code>select-event</code> [Since v1.4]</a></h3>
+<h3 id="selecting-an-event-code-select-event-code"><a class="link" href="#selecting-an-event-code-select-event-code">4.10. Selecting an event: <code>select-event</code></a></h3>
 <div class="paragraph">
-<p>Selects the event identified by the index number used in the last event listing.
+<p>Selects the event identified by the index number used in the Events Pane.
 Attendance panel will show person registered for the selected event.</p>
 </div>
 <div class="paragraph">
@@ -508,7 +527,7 @@ Attendance panel will show person registered for the selected event.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="editing-an-event-code-edit-event-code-since-v1-2"><a class="link" href="#editing-an-event-code-edit-event-code-since-v1-2">4.11. Editing an event : <code>edit-event</code> [Since v1.2]</a></h3>
+<h3 id="editing-an-event-code-edit-event-code"><a class="link" href="#editing-an-event-code-edit-event-code">4.11. Editing an event : <code>edit-event</code></a></h3>
 <div class="paragraph">
 <p>Edits an existing event in the event planner.<br>
 Format: <code>edit-event INDEX [n/NAME] [t/TAG]&#8230;&#8203;</code></p>
@@ -518,7 +537,7 @@ Format: <code>edit-event INDEX [n/NAME] [t/TAG]&#8230;&#8203;</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>Edits the event at the specified <code>INDEX</code>. The index refers to the index number shown in middle pane.
+<p>Edits the event at the specified <code>INDEX</code>. The index refers to the index number shown in the Events Pane.
 The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
 </li>
 <li>
@@ -638,9 +657,9 @@ Deletes the 1st event in the results of the <code>find-event</code> command.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="registering-a-person-to-an-event-code-register-code-since-v1-2"><a class="link" href="#registering-a-person-to-an-event-code-register-code-since-v1-2">4.14. Registering a person to an event: <code>register</code> [Since v1.2]</a></h3>
+<h3 id="registering-a-person-for-an-event-code-register-code-since-v1-2"><a class="link" href="#registering-a-person-for-an-event-code-register-code-since-v1-2">4.14. Registering a person for an event: <code>register</code> [Since v1.2]</a></h3>
 <div class="paragraph">
-<p>Registers the specified person to an event in the event planner.<br>
+<p>Registers the specified person for an event in the event planner.<br>
 Format: <code>register INDEX EVENT_NAME</code></p>
 </div>
 <div class="sidebarblock">
@@ -649,13 +668,13 @@ Format: <code>register INDEX EVENT_NAME</code></p>
 <ul>
 <li>
 <p>Registers the person at the specified <code>INDEX</code>.
-The index refers to the index number shown in the leftmost pane.</p>
+The index refers to the index number shown in the Persons Pane.</p>
 </li>
 <li>
-<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+<p>The index <strong>must be a positive integer</strong>: 1, 2, 3, &#8230;&#8203;</p>
 </li>
 <li>
-<p><code>EVENT_NAME</code> must match the name of an event in the EventPlanner exactly.</p>
+<p><code>EVENT_NAME</code> must match the name of an event in EPIC exactly.</p>
 </li>
 </ul>
 </div>
@@ -669,12 +688,12 @@ The index refers to the index number shown in the leftmost pane.</p>
 <li>
 <p><code>list</code><br>
 <code>register 2 AY201718 Graduation</code><br>
-Registers the 2nd person in the event planner to AY201718 Graduation.</p>
+Registers the 2nd person in the event planner for AY201718 Graduation.</p>
 </li>
 <li>
 <p><code>find Betsy</code><br>
 <code>register 1 Computing Seminar</code><br>
-Registers the 1st person in the results of the <code>find</code> command to Computing Seminar.</p>
+Registers the 1st person in the results of the <code>find</code> command for Computing Seminar.</p>
 </li>
 </ul>
 </div>
@@ -691,13 +710,13 @@ Format: <code>deregister INDEX EVENT_NAME</code></p>
 <ul>
 <li>
 <p>Deregisters the person at the specified <code>INDEX</code>.
-The index refers to the index number shown in the leftmost pane.</p>
+The index refers to the index number shown in the Persons Pane.</p>
 </li>
 <li>
-<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+<p>The index <strong>must be a positive integer</strong>: 1, 2, 3, &#8230;&#8203;</p>
 </li>
 <li>
-<p><code>EVENT_NAME</code> must match the name of an event in the EventPlanner exactly.</p>
+<p><code>EVENT_NAME</code> must match the name of an event in EPIC exactly.</p>
 </li>
 <li>
 <p>The person to be deregistered must be already in the event.</p>
@@ -719,20 +738,31 @@ Deregisters the 2nd person in the event planner from AY201718 Graduation.</p>
 <li>
 <p><code>find Betsy</code><br>
 <code>deregister 1 Computing Seminar</code><br>
-Deregisters the 1st person in the results of the <code>find</code> command to Computing Seminar.</p>
+Deregisters the 1st person in the results of the <code>find</code> command from Computing Seminar.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="listing-all-persons-registered-in-an-event-code-list-registered-code-since-v1-2"><a class="link" href="#listing-all-persons-registered-in-an-event-code-list-registered-code-since-v1-2">4.16. Listing all persons registered in an event: <code>list-registered</code> [Since v1.2]</a></h3>
+<h3 id="listing-all-event-participants-code-list-registered-code"><a class="link" href="#listing-all-event-participants-code-list-registered-code">4.16. Listing all event participants: <code>list-registered</code></a></h3>
 <div class="paragraph">
-<p>Lists all persons registered for the specified event.<br>
+<p>Lists all participants for the specified event.<br>
 Format: <code>list-registered EVENT_NAME</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><code>EVENT_NAME</code> must match the name of an event in EPIC exactly.</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="toggle-attendance-for-event-participant-code-toggle-code-since-v1-4"><a class="link" href="#toggle-attendance-for-event-participant-code-toggle-code-since-v1-4">4.17. Toggle attendance for event participant : <code>toggle</code> [Since v1.4]</a></h3>
+<h3 id="toggle-attendance-for-event-participant-code-toggle-code"><a class="link" href="#toggle-attendance-for-event-participant-code-toggle-code">4.17. Toggle attendance for event participant : <code>toggle</code></a></h3>
 <div class="paragraph">
 <p>Toggles the attendance of a participant to an event from attended to not attended and vice versa.<br>
 Format: <code>toggle INDEX</code></p>
@@ -789,7 +819,14 @@ Format: <code>history</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">4.19. Undoing previous command : <code>undo</code></a></h3>
+<h3 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">4.19. Clearing all entries : <code>clear</code></a></h3>
+<div class="paragraph">
+<p>Clears all entries from EPIC.<br>
+Format: <code>clear</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="undoing-commands-code-undo-code"><a class="link" href="#undoing-commands-code-undo-code">4.20. Undoing commands : <code>undo</code></a></h3>
 <div class="paragraph">
 <p>Restores the event planner to the state before the previous <em>undoable</em> command was executed.<br>
 There is no guarantee that relative ordering of persons/events will be maintained after the undoing
@@ -819,7 +856,8 @@ To see the full list of undoable commands, refer to <a href="#list-of-undoable-c
 <li>
 <p><code>delete 1</code><br>
 <code>list</code><br>
-<code>undo</code> (reverses the <code>delete 1</code> command)<br></p>
+<code>undo</code><br>
+Undoes the <code>delete 1</code> command. Note that <code>list</code> is not an undoable command.</p>
 </li>
 <li>
 <p><code>select 1</code><br>
@@ -830,14 +868,15 @@ The <code>undo</code> command fails as there are no undoable commands executed p
 <li>
 <p><code>delete 1</code><br>
 <code>clear</code><br>
-<code>undo</code> (reverses the <code>clear</code> command)<br>
-<code>undo</code> (reverses the <code>delete 1</code> command)<br></p>
+<code>undo</code><br>
+<code>undo</code><br>
+Undoes the <code>clear</code> command, followed by the <code>delete 1</code> command.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="redoing-the-previously-undone-command-code-redo-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code">4.20. Redoing the previously undone command : <code>redo</code></a></h3>
+<h3 id="redoing-commands-code-redo-code"><a class="link" href="#redoing-commands-code-redo-code">4.21. Redoing commands : <code>redo</code></a></h3>
 <div class="paragraph">
 <p>Reverses the most recent <code>undo</code> command.<br>
 Format: <code>redo</code></p>
@@ -849,8 +888,9 @@ Format: <code>redo</code></p>
 <ul>
 <li>
 <p><code>delete 1</code><br>
-<code>undo</code> (reverses the <code>delete 1</code> command)<br>
-<code>redo</code> (reapplies the <code>delete 1</code> command)<br></p>
+<code>undo</code><br>
+<code>redo</code><br>
+Redoes the <code>delete 1</code> command.</p>
 </li>
 <li>
 <p><code>delete 1</code><br>
@@ -860,19 +900,13 @@ The <code>redo</code> command fails as there are no <code>undo</code> commands e
 <li>
 <p><code>delete 1</code><br>
 <code>clear</code><br>
-<code>undo</code> (reverses the <code>clear</code> command)<br>
-<code>undo</code> (reverses the <code>delete 1</code> command)<br>
-<code>redo</code> (reapplies the <code>delete 1</code> command)<br>
-<code>redo</code> (reapplies the <code>clear</code> command)<br></p>
+<code>undo</code><br>
+<code>undo</code><br>
+<code>redo</code><br>
+<code>redo</code><br>
+Redoes the <code>delete 1</code> command, followed by the <code>clear</code> command.</p>
 </li>
 </ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">4.21. Clearing all entries : <code>clear</code></a></h3>
-<div class="paragraph">
-<p>Clears all entries from the event planner.<br>
-Format: <code>clear</code></p>
 </div>
 </div>
 <div class="sect2">
@@ -885,7 +919,7 @@ Format: <code>exit</code></p>
 <div class="sect2">
 <h3 id="saving-the-data"><a class="link" href="#saving-the-data">4.23. Saving the data</a></h3>
 <div class="paragraph">
-<p>Event planner data are saved in the hard disk automatically after any command that changes the data.<br>
+<p>EPIC data is saved in the hard disk automatically after any command that changes the data.<br>
 There is no need to save manually.</p>
 </div>
 </div>
@@ -944,8 +978,8 @@ Format: <code>add-hotkey HOTKEY COMMAND_NAME</code></p>
 <h2 id="faq"><a class="link" href="#faq">5. FAQ</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong>Q</strong>: How do I transfer my data to another Computer?<br>
-<strong>A</strong>: Install the app in the other computer and overwrite the empty data file it creates with the data file of your previous Event Planner.
+<p><strong>Q</strong>: How do I transfer my data to another computer?<br>
+<strong>A</strong>: Install EPIC on the other computer and overwrite the empty data file it creates with your data file.
 By default, this file is in data/addressbook.xml.</p>
 </div>
 </div>
@@ -1073,7 +1107,7 @@ e.g. <code>toggle 1</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-08 06:32:14 UTC
+Last updated 2018-04-08 13:58:51 UTC
 </div>
 </div>
 </body>

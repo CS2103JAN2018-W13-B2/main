@@ -152,7 +152,7 @@
 </tbody>
 </table>
 <div class="sect2">
-<h3 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">Undoing previous command : <code>undo</code></a></h3>
+<h3 id="undoing-commands-code-undo-code"><a class="link" href="#undoing-commands-code-undo-code">Undoing commands : <code>undo</code></a></h3>
 <div class="paragraph">
 <p>Restores the event planner to the state before the previous <em>undoable</em> command was executed.<br>
 There is no guarantee that relative ordering of persons/events will be maintained after the undoing
@@ -182,7 +182,8 @@ To see the full list of undoable commands, refer to <a href="#List of undoable c
 <li>
 <p><code>delete 1</code><br>
 <code>list</code><br>
-<code>undo</code> (reverses the <code>delete 1</code> command)<br></p>
+<code>undo</code><br>
+Undoes the <code>delete 1</code> command. Note that <code>list</code> is not an undoable command.</p>
 </li>
 <li>
 <p><code>select 1</code><br>
@@ -193,14 +194,15 @@ The <code>undo</code> command fails as there are no undoable commands executed p
 <li>
 <p><code>delete 1</code><br>
 <code>clear</code><br>
-<code>undo</code> (reverses the <code>clear</code> command)<br>
-<code>undo</code> (reverses the <code>delete 1</code> command)<br></p>
+<code>undo</code><br>
+<code>undo</code><br>
+Undoes the <code>clear</code> command, followed by the <code>delete 1</code> command.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="redoing-the-previously-undone-command-code-redo-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code">Redoing the previously undone command : <code>redo</code></a></h3>
+<h3 id="redoing-commands-code-redo-code"><a class="link" href="#redoing-commands-code-redo-code">Redoing commands : <code>redo</code></a></h3>
 <div class="paragraph">
 <p>Reverses the most recent <code>undo</code> command.<br>
 Format: <code>redo</code></p>
@@ -212,8 +214,9 @@ Format: <code>redo</code></p>
 <ul>
 <li>
 <p><code>delete 1</code><br>
-<code>undo</code> (reverses the <code>delete 1</code> command)<br>
-<code>redo</code> (reapplies the <code>delete 1</code> command)<br></p>
+<code>undo</code><br>
+<code>redo</code><br>
+Redoes the <code>delete 1</code> command.</p>
 </li>
 <li>
 <p><code>delete 1</code><br>
@@ -223,10 +226,11 @@ The <code>redo</code> command fails as there are no <code>undo</code> commands e
 <li>
 <p><code>delete 1</code><br>
 <code>clear</code><br>
-<code>undo</code> (reverses the <code>clear</code> command)<br>
-<code>undo</code> (reverses the <code>delete 1</code> command)<br>
-<code>redo</code> (reapplies the <code>delete 1</code> command)<br>
-<code>redo</code> (reapplies the <code>clear</code> command)<br></p>
+<code>undo</code><br>
+<code>undo</code><br>
+<code>redo</code><br>
+<code>redo</code><br>
+Redoes the <code>delete 1</code> command, followed by the <code>clear</code> command.</p>
 </li>
 </ul>
 </div>
@@ -251,17 +255,18 @@ The <code>redo</code> command fails as there are no <code>undo</code> commands e
 <div class="sect3">
 <h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
 <div class="paragraph">
-<p>The undo/redo mechanism is facilitated by an <code>UndoRedoStack</code>, which resides inside <code>LogicManager</code>. It supports undoing and redoing of commands that modifies the state of the event planner (e.g. <code>add</code>, <code>edit</code>). Such commands will inherit from <code>UndoableCommand</code>.</p>
+<p>The undo/redo mechanism is facilitated by an <code>UndoRedoStack</code>, which resides inside <code>LogicManager</code>. It supports
+undoing and redoing of commands that
+modify the state of the event planner (e.g. <code>add</code>, <code>edit</code>). Such commands will inherit from <code>UndoableCommand</code>.</p>
 </div>
 <div class="paragraph">
-<p><code>UndoRedoStack</code> only deals with <code>UndoableCommands</code>. Commands that cannot be undone will inherit from <code>Command</code> instead.
-The following diagram shows the class diagram for commands:</p>
+<p><code>UndoRedoStack</code> only deals with <code>UndoableCommands</code>. Commands that cannot be undone will inherit from <code>Command</code> instead. <a href="#UCCD">Class Diagram for commands</a> shows the class diagram for commands:</p>
 </div>
-<div class="imageblock">
+<div id="UCCD" class="imageblock">
 <div class="content">
 <img src="../images/LogicCommandClassDiagram.png" alt="LogicCommandClassDiagram" width="800">
 </div>
-<div class="title">Figure 1. Class Diagram for the Logic Component</div>
+<div class="title">Figure 1. Class Diagram for commands</div>
 </div>
 <div class="paragraph">
 <p>As you can see from the diagram, <code>UndoableCommand</code> adds an extra layer between the abstract <code>Command</code> class and concrete commands that can be undone, such as the <code>DeleteCommand</code>. Note that extra tasks need to be done when executing a command in an <em>undoable</em> way, such
@@ -442,16 +447,17 @@ commands like <code>delete</code> if <code>filteredPersons</code> had been alter
 </div>
 </div>
 <div class="sect3">
-<h4 id="changes-from-previous-implementation-major-enhancement-in-progress"><a class="link" href="#changes-from-previous-implementation-major-enhancement-in-progress">Changes from previous implementation [major enhancement, in progress]</a></h4>
+<h4 id="changes-from-previous-implementation"><a class="link" href="#changes-from-previous-implementation">Changes from previous implementation</a></h4>
 <div class="paragraph">
 <p>Instead of saving the entire event planner each time we execute an <code>UndoableCommand</code>, each <code>UndoableCommand</code> knows how to <code>undo/redo</code> itself.
 Each <code>UndoableCommand</code> has an <code>oppositeCommand</code> field, which is another <code>UndoableCommand</code> that, when executed, reverses the changes made by the original command.
-The sequence diagram for the new <code>undo()</code> implementation is shown below.</p>
+The sequence diagram for the new <code>undo()</code> implementation is shown in <a href="#SDUndo">Sequence Diagram for new undo implementation</a>.</p>
 </div>
-<div class="imageblock">
+<div id="SDUndo" class="imageblock">
 <div class="content">
 <img src="../images/UndoSequenceDiagram.png" alt="UndoSequenceDiagram" width="650">
 </div>
+<div class="title">Figure 9. Sequence Diagram for new undo implementation</div>
 </div>
 <div class="paragraph">
 <p>The <code>oppositeCommand</code> is generated in the <code>execute()</code> method, after <code>preprocessUndoableCommand()</code>. This is because generating the <code>oppositeCommand</code>
@@ -473,7 +479,7 @@ the abstract class <code>UndoableCommand</code>
 </div>
 <div class="paragraph">
 <p>There was no <code>Command</code> that could easily reverse the changes of a <code>ClearCommand</code>, hence a new <code>Command</code> <code>RestoreCommand</code> had to be created. Since the sole purpose
-of this command is be the <code>oppositeCommand</code> of a <code>ClearCommand</code>. This command is not directly accessible to the user, and can only be executed when
+of this command is to serve as the <code>oppositeCommand</code> of a <code>ClearCommand</code>, this command is not directly accessible to the user, and can only be executed when
 the user undoes a <code>ClearCommand</code>.</p>
 </div>
 </div>
@@ -488,7 +494,7 @@ the user undoes a <code>ClearCommand</code>.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Undo/redo functionality will now be part of the default behaviour. Classes that deal with <code>Command</code> will not have to know that <code>executeUndoableCommand()</code> exist.</p>
+<p>Pros: Undo/redo functionality will now be part of the default behaviour. Classes that deal with <code>Command</code> will not have to know that <code>executeUndoableCommand()</code> exists.</p>
 </li>
 <li>
 <p>Cons: New developers will find the template pattern difficult to understand.</p>
@@ -628,7 +634,7 @@ the user undoes a <code>ClearCommand</code>.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-08 06:32:14 UTC
+Last updated 2018-04-08 13:58:51 UTC
 </div>
 </div>
 </body>

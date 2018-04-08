@@ -20,6 +20,9 @@
 <div class="paragraph">
 <p>By: <code>Team W13-B2</code>      Since: <code>Mar 2018</code>      Licence: <code>MIT</code></p>
 </div>
+<div class="paragraph">
+<p>Table of Contents:</p>
+</div>
 </div>
 <div id="toc" class="toc">
 <div id="toctitle"></div>
@@ -36,11 +39,6 @@
 <li><a href="#design">3. Design</a>
 <ul class="sectlevel2">
 <li><a href="#Design-Architecture">3.1. Architecture</a></li>
-<li><a href="#Design-Ui">3.2. UI component</a></li>
-<li><a href="#Design-Logic">3.3. Logic component</a></li>
-<li><a href="#Design-Model">3.4. Model component</a></li>
-<li><a href="#Design-Storage">3.5. Storage component</a></li>
-<li><a href="#Design-Commons">3.6. Common classes</a></li>
 </ul>
 </li>
 <li><a href="#implementation">4. Implementation</a>
@@ -53,7 +51,6 @@
 <li><a href="#proposed-3-pane-ui">4.6. [Proposed] 3 Pane UI</a></li>
 <li><a href="#proposed-export-an-event">4.7. [proposed] Export an Event</a></li>
 <li><a href="#logging">4.8. Logging</a></li>
-<li><a href="#Implementation-Configuration">4.9. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">5. Documentation</a>
@@ -100,8 +97,13 @@
 <h2 id="introduction"><a class="link" href="#introduction">1. Introduction</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>EPIC is an event planning tool for large organisations hosting many large-scale events (e.g. schools which host competitions,
-award and graduation ceremonies, seminars and talks). It is targeted at and optimised for event planners who are comfortable with using a Command Line Interface (CLI).</p>
+<p>EPIC is an event planning tool for large organisations hosting many large-scale events
+(e.g. schools which host competitions, award and graduation ceremonies, and seminars and talks).
+It is targeted at and optimised for event planners who are comfortable with using a Command Line Interface (CLI).</p>
+</div>
+<div class="paragraph">
+<p>This Developer Guide will walk you through the software architecture EPIC adopts, the implementation
+of several interesting features EPIC has, as well as prepare you to modify the codebase of EPIC yourself.</p>
 </div>
 </div>
 </div>
@@ -114,7 +116,7 @@ award and graduation ceremonies, seminars and talks). It is targeted at and opti
 <div class="sect2">
 <h3 id="prerequisites"><a class="link" href="#prerequisites">2.1. Prerequisites</a></h3>
 <div class="paragraph">
-<p>Please ensure that you have the following installed on your machine:</p>
+<p>Please ensure that you have the following installed on your computer:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -200,6 +202,9 @@ This will generate all resources required by the application and tests.</p>
 </div>
 <div class="sect2">
 <h3 id="verifying-the-setup"><a class="link" href="#verifying-the-setup">2.3. Verifying the setup</a></h3>
+<div class="paragraph">
+<p>To ensure that EPIC has been set up correctly:</p>
+</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -227,14 +232,31 @@ This will generate all resources required by the application and tests.</p>
 <p>Select <code>Editor</code> &gt; <code>Code Style</code> &gt; <code>Java</code>.</p>
 </li>
 <li>
-<p>Click on the <code>Imports</code> tab to set the order.</p>
+<p>Click on the <code>Imports</code> tab. Then,</p>
 <div class="ulist">
 <ul>
 <li>
-<p>For <code>Class count to use import with '*'</code> and <code>Names count to use static import with '*'</code>: Set to <code>999</code> to prevent IntelliJ from contracting the import statements.</p>
+<p>For <code>Class count to use import with '*'</code> and <code>Names count to use static import with '*'</code>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Set to <code>999</code> to prevent IntelliJ from contracting the import statements.</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
-<p>For <code>Import Layout</code>: The order is <code>import static all other imports</code>, <code>import java.*</code>, <code>import javax.*</code>, <code>import org.*</code>, <code>import com.*</code>, <code>import all other imports</code>. Add a <code>&lt;blank line&gt;</code> between each <code>import</code>.</p>
+<p>For <code>Import Layout</code>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The order should be <code>import static all other imports</code>, <code>import java.*</code>, <code>import javax.*</code>, <code>import org.*</code>, <code>import com.*</code>, <code>import all other imports</code>.</p>
+</li>
+<li>
+<p>Check the checkbox: <code>Add a blank line between each import</code>.</p>
+</li>
+</ul>
+</div>
 </li>
 </ul>
 </div>
@@ -287,22 +309,6 @@ Having both Travis and AppVeyor ensures your App works on both Unix-based platfo
 </table>
 </div>
 </div>
-<div class="sect3">
-<h4 id="getting-started-with-coding"><a class="link" href="#getting-started-with-coding">2.4.4. Getting started with coding</a></h4>
-<div class="paragraph">
-<p>When you are ready to start coding,</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Get some sense of the overall design by reading <a href="#Design-Architecture">Section 3.1</a>.</p>
-</li>
-<li>
-<p>Take a look at <a href="#GetStartedProgramming">[GetStartedProgramming]</a>.</p>
-</li>
-</ol>
-</div>
-</div>
 </div>
 </div>
 </div>
@@ -312,7 +318,7 @@ Having both Travis and AppVeyor ensures your App works on both Unix-based platfo
 <div class="sect2">
 <h3 id="Design-Architecture"><a class="link" href="#Design-Architecture">3.1. Architecture</a></h3>
 <div class="paragraph">
-<p>The <strong><em>Architecture Diagram</em></strong> given below explains the high-level design of the App.</p>
+<p>The <strong><em>Architecture Diagram</em></strong> (<a href="#architecture-diagram">Figure 1</a>) given below explains the high-level design of the App.</p>
 </div>
 <div id="architecture-diagram" class="imageblock">
 <div class="content">
@@ -321,144 +327,55 @@ Having both Travis and AppVeyor ensures your App works on both Unix-based platfo
 <div class="title">Figure 1. Architecture Diagram</div>
 </div>
 <div class="paragraph">
-<p>Below is a quick overview of each component.</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-The <code>.pptx</code> files used to create diagrams in this document can be found in the <a href="https://github.com/CS2103JAN2018-W13-B2/main/blob/master/docs/diagrams/">diagrams</a> folder. To update a diagram, modify the diagram in the pptx file, select the objects of the diagram, and choose <code>Save as picture</code>.
-</td>
-</tr>
-</table>
+<p>The application consists of the Main, Commons, Logic, UI, Model and Storage components. The UI, Logic, Model and Storage
+components form the <strong>core</strong> of the application, with Main and Commons facilitating their initialisation and inter-communication.</p>
 </div>
 <div class="paragraph">
-<p><code>Main</code> has only one class called <a href="https://github.com/CS2103JAN2018-W13-B2/main/blob/master/src/main/java/seedu/address/MainApp.java"><code>MainApp</code></a>. This class has two main responsibilities:</p>
+<p>Below is a quick overview of each component:</p>
+</div>
+<div class="sect3">
+<h4 id="main"><a class="link" href="#main">3.1.1. Main</a></h4>
+<div class="paragraph">
+<p>The Main component only has one class - <a href="https://github.com/CS2103JAN2018-W13-B2/main/blob/master/src/main/java/seedu/address/MainApp.java"><code>MainApp</code></a>. This class has two main responsibilities:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>At app launch, it initialises the components in the correct sequence, and connects them up with each other.</p>
+<p>At app launch, it initialises the other components in the correct sequence, and connects them up with each other.</p>
 </li>
 <li>
-<p>Upon exit, it shuts down the components and invokes cleanup method where necessary.</p>
+<p>Upon exit, it shuts down the other components and invokes cleanup methods where necessary.</p>
 </li>
 </ul>
 </div>
+</div>
+<div class="sect3">
+<h4 id="commons"><a class="link" href="#commons">3.1.2. Commons</a></h4>
 <div class="paragraph">
-<p><a href="#Design-Commons"><strong><code>Commons</code></strong></a> represents a collection of classes used by multiple other components. Two of these classes play important roles at the architecture level.</p>
+<p>Commons represents a collection of classes used by multiple other components. Two of these classes play important roles at the architecture level.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>EventsCenter</code> : This class (written using <a href="https://github.com/google/guava/wiki/EventBusExplained">Google&#8217;s Event Bus library</a>) is used by components to communicate with other components using events (i.e. a form of <em>Event Driven</em> design).</p>
+<p><code>EventsCenter</code> : This class (written using <a href="https://github.com/google/guava/wiki/EventBusExplained">Google&#8217;s Event Bus library</a>)
+is used by components to communicate with other components using events (i.e. a form of <em>Event Driven Design</em>).</p>
 </li>
 <li>
-<p><code>LogsCenter</code> : This class is used by many classes to write log messages to the App&#8217;s log file.</p>
+<p><code>LogsCenter</code> : This class is used by many classes to write log messages to the application&#8217;s log file.</p>
 </li>
 </ul>
 </div>
+</div>
+<div class="sect3">
+<h4 id="Design-Ui"><a class="link" href="#Design-Ui">3.1.3. UI component</a></h4>
 <div class="paragraph">
-<p>The rest of the App consists of four components.</p>
+<p>The UI component(<a href="#UiClassDiagram">Figure 2</a>) is responsible for interfacing with the user.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="#Design-Ui"><strong><code>UI</code></strong></a>: The UI component is responsible for interfacing with the user.</p>
-</li>
-<li>
-<p><a href="#Design-Logic"><strong><code>Logic</code></strong></a>: The Logic component is responsible for the parsing and execution of commands.</p>
-</li>
-<li>
-<p><a href="#Design-Model"><strong><code>Model</code></strong></a>: The Model component is responsible for holding application data in-memory.</p>
-</li>
-<li>
-<p><a href="#Design-Storage"><strong><code>Storage</code></strong></a>: The Storage component is responsible for persisting application data on the hard disk.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Each of the four components:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Defines its <em>API</em> in an <code>interface</code> with the same name as the component.</p>
-</li>
-<li>
-<p>Exposes its functionality using a <code>{COMPONENT NAME}Manager</code> class.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>For example, the <code>Logic</code> component (see the class diagram given below)
-defines its API in the <code>Logic.java</code> interface and exposes its functionality
-using the <code>LogicManager.java</code> class.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/LogicClassDiagram.png" alt="LogicClassDiagram" width="800">
-</div>
-<div class="title">Figure 2. Class Diagram of the Logic Component</div>
-</div>
-<div class="paragraph">
-<p>The <em>Sequence Diagram</em> below shows how the interaction between the components after the user issues the command <code>delete 1</code>.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/SDforDeletePerson.png" alt="SDforDeletePerson" width="800">
-</div>
-<div class="title">Figure 3. Component interactions for <code>delete 1</code> command (part 1)</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Note how the <code>Model</code> simply raises a <code>EventPlannerChangedEvent</code> when the Event Planner data is changed, instead of asking the <code>Storage</code> to save the updates to the hard disk.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>The diagram below shows how the <code>EventsCenter</code> reacts to that event,
-which eventually results in the updates being saved to the hard disk and the
-status bar of the UI reflecting the 'Last Updated' time.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/SDforDeletePersonEventHandling.png" alt="SDforDeletePersonEventHandling" width="800">
-</div>
-<div class="title">Figure 4. Component interactions for <code>delete 1</code> command (part 2)</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Note how the event is propagated through the <code>EventsCenter</code> to the <code>Storage</code> and <code>UI</code> without <code>Model</code> having to be coupled to either of them. This is an example of how this Event Driven approach helps us reduce direct coupling between components.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>The sections below give more details of each component.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="Design-Ui"><a class="link" href="#Design-Ui">3.2. UI component</a></h3>
-<div class="imageblock">
+<div id="UiClassDiagram" class="imageblock">
 <div class="content">
 <img src="images/UiClassDiagram.png" alt="UiClassDiagram" width="800">
 </div>
-<div class="title">Figure 5. Structure of the UI Component</div>
+<div class="title">Figure 2. Structure of the UI Component</div>
 </div>
 <div class="paragraph">
 <p><strong>API</strong> : <a href="https://github.com/CS2103JAN2018-W13-B2/main/blob/master/src/main/java/seedu/address/ui/Ui.java"><code>Ui.java</code></a></p>
@@ -467,20 +384,20 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <p>The UI consists of a <code>MainWindow</code> that is made up of parts e.g.<code>CommandBox</code>, <code>ResultDisplay</code>, <code>PersonListPanel</code>, <code>StatusBarFooter</code>, <code>BrowserPanel</code> etc. All these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.</p>
 </div>
 <div class="paragraph">
-<p>The <code>UI</code> component uses JavaFx UI framework.
+<p>The UI component uses JavaFx UI framework.
 The layout of these UI parts are defined in matching <code>.fxml</code> files that are in the <code>src/main/resources/view</code> folder.
 For example, the layout of the <a href="https://github.com/CS2103JAN2018-W13-B2/main/blob/master/src/main/java/seedu/address/ui/MainWindow.java"><code>MainWindow</code></a> is specified in <a href="https://github.com/CS2103JAN2018-W13-B2/main/blob/master/src/main/resources/view/MainWindow.fxml"><code>MainWindow.fxml</code></a></p>
 </div>
 <div class="paragraph">
-<p>The <code>UI</code> component:</p>
+<p>The UI component:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Executes user commands using the <code>Logic</code> component.</p>
+<p>Executes user commands using the Logic component.</p>
 </li>
 <li>
-<p>Binds itself to some data in the <code>Model</code> so that the UI can auto-update when data in the <code>Model</code> change.</p>
+<p>Binds itself to some data in the Model component so that the UI can auto-update when data in the Model component changes.</p>
 </li>
 <li>
 <p>Responds to events raised from various parts of the App and updates the UI accordingly.</p>
@@ -488,19 +405,22 @@ For example, the layout of the <a href="https://github.com/CS2103JAN2018-W13-B2/
 </ul>
 </div>
 </div>
-<div class="sect2">
-<h3 id="Design-Logic"><a class="link" href="#Design-Logic">3.3. Logic component</a></h3>
-<div id="fig-LogicClassDiagram" class="imageblock">
+<div class="sect3">
+<h4 id="Design-Logic"><a class="link" href="#Design-Logic">3.1.4. Logic component</a></h4>
+<div class="paragraph">
+<p>The Logic component (<a href="#LGC">Figure 3</a>) is responsible for the parsing and execution of commands.</p>
+</div>
+<div id="LGC" class="imageblock">
 <div class="content">
 <img src="images/LogicClassDiagram.png" alt="LogicClassDiagram" width="800">
 </div>
-<div class="title">Figure 6. Structure of the Logic Component</div>
+<div class="title">Figure 3. Structure of the Logic Component</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/LogicCommandClassDiagram.png" alt="LogicCommandClassDiagram" width="800">
 </div>
-<div class="title">Figure 7. Structure of Commands in the Logic Component. This diagram shows finer details concerning <code>XYZCommand</code> and <code>Command</code> in <a href="#fig-LogicClassDiagram">Figure 6</a></div>
+<div class="title">Figure 4. Structure of Commands in the Logic Component. This diagram shows finer details concerning <code>XYZCommand</code> and <code>Command</code> in <a href="#LGC">Figure 3</a></div>
 </div>
 <div class="paragraph">
 <p><strong>API</strong> :
@@ -512,42 +432,45 @@ For example, the layout of the <a href="https://github.com/CS2103JAN2018-W13-B2/
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><code>Logic</code> uses the <code>EventPlannerParser</code> class to parse the user command.</p>
+<p>The Logic component uses the <code>EventPlannerParser</code> class to parse the user command.</p>
 </li>
 <li>
 <p>A <code>Command</code> object is returned by the parser, which is passed to the <code>LogicManager</code> to execute.</p>
 </li>
 <li>
-<p>The command execution may affect the <code>Model</code> (e.g. adding a person) and/or raise events.</p>
+<p>The command execution may affect the Model component (e.g. adding a person) and/or raise events.</p>
 </li>
 <li>
-<p>The result of the command execution is encapsulated as a <code>CommandResult</code> object which is passed back to the <code>UI</code>.</p>
+<p>The result of the command execution is encapsulated as a <code>CommandResult</code> object which is passed back to the UI component.</p>
 </li>
 </ol>
 </div>
 <div class="paragraph">
-<p>The Sequence Diagram for interactions within the <code>Logic</code> component for the <code>execute("delete 1")</code> API call is shown below.</p>
+<p>The Sequence Diagram for interactions within the Logic component for the <code>execute("delete 1")</code> API call is shown below.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/DeletePersonSdForLogic.png" alt="DeletePersonSdForLogic" width="800">
 </div>
-<div class="title">Figure 8. Interactions Inside the Logic Component for the <code>delete 1</code> Command</div>
+<div class="title">Figure 5. Interactions Inside the Logic Component for the <code>delete 1</code> Command</div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="Design-Model"><a class="link" href="#Design-Model">3.4. Model component</a></h3>
-<div class="imageblock">
+<div class="sect3">
+<h4 id="Design-Model"><a class="link" href="#Design-Model">3.1.5. Model component</a></h4>
+<div class="paragraph">
+<p>The Model component (<a href="#MCD">Figure 6</a>) is responsible for holding application data in-memory.</p>
+</div>
+<div id="MCD" class="imageblock">
 <div class="content">
 <img src="images/ModelClassDiagram.png" alt="ModelClassDiagram" width="800">
 </div>
-<div class="title">Figure 9. Structure of the Model Component</div>
+<div class="title">Figure 6. Structure of the Model Component</div>
 </div>
 <div class="paragraph">
 <p><strong>API</strong> : <a href="https://github.com/CS2103JAN2018-W13-B2/main/blob/master/src/main/java/seedu/address/model/Model.java"><code>Model.java</code></a></p>
 </div>
 <div class="paragraph">
-<p>The <code>Model</code>,</p>
+<p>The Model component:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -576,22 +499,22 @@ The Model does not depend on any of the other three components. This reduces cou
 </table>
 </div>
 </div>
-<div class="sect2">
-<h3 id="Design-Storage"><a class="link" href="#Design-Storage">3.5. Storage component</a></h3>
+<div class="sect3">
+<h4 id="Design-Storage"><a class="link" href="#Design-Storage">3.1.6. Storage component</a></h4>
 <div class="paragraph">
-<p>The figure below depicts the classes used for storage.</p>
+<p>The Storage component (<a href="#SCD">Figure 7</a>) is responsible for persisting application data on the hard disk.</p>
 </div>
-<div class="imageblock">
+<div id="SCD" class="imageblock">
 <div class="content">
 <img src="images/StorageClassDiagram.png" alt="StorageClassDiagram" width="800">
 </div>
-<div class="title">Figure 10. Structure of the Storage Component</div>
+<div class="title">Figure 7. Structure of the Storage Component</div>
 </div>
 <div class="paragraph">
 <p><strong>API</strong> : <a href="https://github.com/CS2103JAN2018-W13-B2/main/blob/master/src/main/java/seedu/address/storage/Storage.java"><code>Storage.java</code></a></p>
 </div>
 <div class="paragraph">
-<p>The <code>Storage</code> component,</p>
+<p>The Storage component:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -604,10 +527,81 @@ The Model does not depend on any of the other three components. This reduces cou
 </ul>
 </div>
 </div>
-<div class="sect2">
-<h3 id="Design-Commons"><a class="link" href="#Design-Commons">3.6. Common classes</a></h3>
+<div class="sect3">
+<h4 id="how-components-interact"><a class="link" href="#how-components-interact">3.1.7. How components interact</a></h4>
 <div class="paragraph">
-<p>Classes used by multiple components are in the <code>seedu.addressbook.commons</code> package.</p>
+<p>Finally, we will conclude the Architecture section with several examples on how the components interact.</p>
+</div>
+<div class="paragraph">
+<p>Each of the core components (UI, Logic, Model, Storage):</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Defines its <em>API</em> in an <code>interface</code> with the same name as the component.</p>
+</li>
+<li>
+<p>Exposes its functionality using a <code>{COMPONENT NAME}Manager</code> class.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For example, the Logic component (<a href="#LgicClassDiagram">Figure 8</a>)
+defines its API in the <code>Logic.java</code> interface and exposes its functionality
+using the <code>LogicManager.java</code> class.</p>
+</div>
+<div id="LgicClassDiagram" class="imageblock">
+<div class="content">
+<img src="images/LogicClassDiagram.png" alt="LogicClassDiagram" width="800">
+</div>
+<div class="title">Figure 8. Class Diagram of the Logic Component</div>
+</div>
+<div class="paragraph">
+<p>The <em>Sequence Diagram</em> below shows how the interaction between the components after the user issues the command <code>delete 1</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SDforDeletePerson.png" alt="SDforDeletePerson" width="800">
+</div>
+<div class="title">Figure 9. Component interactions for <code>delete 1</code> command (part 1)</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Note how the Model component simply raises a <code>EventPlannerChangedEvent</code> when the data in EPIC is changed,
+instead of asking the Storage component to save the updates to the hard disk.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The diagram below shows how the <code>EventsCenter</code> reacts to that event,
+which eventually results in the updates being saved to the hard disk and the
+status bar of the UI reflecting the 'Last Updated' time.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/SDforDeletePersonEventHandling.png" alt="SDforDeletePersonEventHandling" width="800">
+</div>
+<div class="title">Figure 10. Component interactions for <code>delete 1</code> command (part 2)</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Note how the event is propagated through the <code>EventsCenter</code> to the Storage and UI components without
+the Model component having to be coupled to either of them. This is an example of how the <em>Event Driven Design</em> helps us reduce direct coupling between components.
+</td>
+</tr>
+</table>
+</div>
 </div>
 </div>
 </div>
@@ -688,17 +682,18 @@ The Model does not depend on any of the other three components. This reduces cou
 <div class="sect3">
 <h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">4.2.1. Current Implementation</a></h4>
 <div class="paragraph">
-<p>The undo/redo mechanism is facilitated by an <code>UndoRedoStack</code>, which resides inside <code>LogicManager</code>. It supports undoing and redoing of commands that modifies the state of the event planner (e.g. <code>add</code>, <code>edit</code>). Such commands will inherit from <code>UndoableCommand</code>.</p>
+<p>The undo/redo mechanism is facilitated by an <code>UndoRedoStack</code>, which resides inside <code>LogicManager</code>. It supports
+undoing and redoing of commands that
+modify the state of the event planner (e.g. <code>add</code>, <code>edit</code>). Such commands will inherit from <code>UndoableCommand</code>.</p>
 </div>
 <div class="paragraph">
-<p><code>UndoRedoStack</code> only deals with <code>UndoableCommands</code>. Commands that cannot be undone will inherit from <code>Command</code> instead.
-The following diagram shows the class diagram for commands:</p>
+<p><code>UndoRedoStack</code> only deals with <code>UndoableCommands</code>. Commands that cannot be undone will inherit from <code>Command</code> instead. <a href="#UCCD">Figure 11</a> shows the class diagram for commands:</p>
 </div>
-<div class="imageblock">
+<div id="UCCD" class="imageblock">
 <div class="content">
 <img src="images/LogicCommandClassDiagram.png" alt="LogicCommandClassDiagram" width="800">
 </div>
-<div class="title">Figure 11. Class Diagram for the Logic Component</div>
+<div class="title">Figure 11. Class Diagram for commands</div>
 </div>
 <div class="paragraph">
 <p>As you can see from the diagram, <code>UndoableCommand</code> adds an extra layer between the abstract <code>Command</code> class and concrete commands that can be undone, such as the <code>DeleteCommand</code>. Note that extra tasks need to be done when executing a command in an <em>undoable</em> way, such
@@ -879,16 +874,17 @@ commands like <code>delete</code> if <code>filteredPersons</code> had been alter
 </div>
 </div>
 <div class="sect3">
-<h4 id="changes-from-previous-implementation-major-enhancement-in-progress"><a class="link" href="#changes-from-previous-implementation-major-enhancement-in-progress">4.2.2. Changes from previous implementation [major enhancement, in progress]</a></h4>
+<h4 id="changes-from-previous-implementation"><a class="link" href="#changes-from-previous-implementation">4.2.2. Changes from previous implementation</a></h4>
 <div class="paragraph">
 <p>Instead of saving the entire event planner each time we execute an <code>UndoableCommand</code>, each <code>UndoableCommand</code> knows how to <code>undo/redo</code> itself.
 Each <code>UndoableCommand</code> has an <code>oppositeCommand</code> field, which is another <code>UndoableCommand</code> that, when executed, reverses the changes made by the original command.
-The sequence diagram for the new <code>undo()</code> implementation is shown below.</p>
+The sequence diagram for the new <code>undo()</code> implementation is shown in <a href="#SDUndo">Figure 19</a>.</p>
 </div>
-<div class="imageblock">
+<div id="SDUndo" class="imageblock">
 <div class="content">
 <img src="images/UndoSequenceDiagram.png" alt="UndoSequenceDiagram" width="650">
 </div>
+<div class="title">Figure 19. Sequence Diagram for new undo implementation</div>
 </div>
 <div class="paragraph">
 <p>The <code>oppositeCommand</code> is generated in the <code>execute()</code> method, after <code>preprocessUndoableCommand()</code>. This is because generating the <code>oppositeCommand</code>
@@ -910,7 +906,7 @@ the abstract class <code>UndoableCommand</code>
 </div>
 <div class="paragraph">
 <p>There was no <code>Command</code> that could easily reverse the changes of a <code>ClearCommand</code>, hence a new <code>Command</code> <code>RestoreCommand</code> had to be created. Since the sole purpose
-of this command is be the <code>oppositeCommand</code> of a <code>ClearCommand</code>. This command is not directly accessible to the user, and can only be executed when
+of this command is to serve as the <code>oppositeCommand</code> of a <code>ClearCommand</code>, this command is not directly accessible to the user, and can only be executed when
 the user undoes a <code>ClearCommand</code>.</p>
 </div>
 </div>
@@ -925,7 +921,7 @@ the user undoes a <code>ClearCommand</code>.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Undo/redo functionality will now be part of the default behaviour. Classes that deal with <code>Command</code> will not have to know that <code>executeUndoableCommand()</code> exist.</p>
+<p>Pros: Undo/redo functionality will now be part of the default behaviour. Classes that deal with <code>Command</code> will not have to know that <code>executeUndoableCommand()</code> exists.</p>
 </li>
 <li>
 <p>Cons: New developers will find the template pattern difficult to understand.</p>
@@ -1221,7 +1217,7 @@ has already been marked as attended when the user tries to mark the participant 
 <div class="content">
 <img src="images/CreatePersonListPanelSequenceDiagram.png" alt="CreatePersonListPanelSequenceDiagram" width="650">
 </div>
-<div class="title">Figure 19. Sequence Diagram for Panel initialisation</div>
+<div class="title">Figure 20. Sequence Diagram for Panel initialisation</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1259,7 +1255,7 @@ If no  <code>EpicEvent</code> has been selected, <code>AttendeeList</code> will 
 </div>
 </li>
 <li>
-<p><strong>Alternative 2 (previous choice)</strong>: 2 pane UI where the left pane is a 2 tab pane consistings of list of persons and events, and the right pane is the list of attendees.</p>
+<p><strong>Alternative 2 (previous choice)</strong>: 2 pane UI where the left pane is a 2 tab pane consisting of list of persons and events, and the right pane is the list of attendees.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -1292,21 +1288,25 @@ If no  <code>EpicEvent</code> has been selected, <code>AttendeeList</code> will 
 <div class="sect2">
 <h3 id="proposed-export-an-event"><a class="link" href="#proposed-export-an-event">4.7. [proposed] Export an Event</a></h3>
 <div class="paragraph">
-<p>The proposed export command exports the name of the attendees, their phone number, their email address, their home address and their attendance information of a particular event to a csv file into a file path specified by the user. Having the attendance of a particular event in a csv file would enable the users to analyse the data with other platforms.</p>
+<p>The proposed export command exports the name of the attendees, their phone number,
+their email address, their home address and their attendance information of a particular
+event to a csv file into a file path specified by the user. Having the attendance of a
+particular event in a csv file would enable the users to analyse the data using other tools.</p>
 </div>
 <div class="sect3">
 <h4 id="proposed-implementation"><a class="link" href="#proposed-implementation">4.7.1. [proposed] Implementation</a></h4>
 <div class="paragraph">
-<p>The <code>export-event</code> command input is first parsed in <code>EventPlannerParser</code> to create an <code>ExportEventCommand</code>. The execution of it then calls the respective storage components. The subsequent export mechanism is handled by a <code>CsvEventPlannerStorage</code> which is a kind of <code>EventPlannerStorage</code>. The event data is parsed by <code>CsvUtil</code> and then exported as file through <code>CsvFileStorage</code> using the file path specified by the user.</p>
+<p>The <code>export-event</code> command input is first parsed in <code>EventPlannerParser</code> to create an <code>ExportEventCommand</code>.
+The execution of it then calls the respective storage components. The subsequent export mechanism is handled by a <code>CsvEventPlannerStorage</code> which is a kind of <code>EventPlannerStorage</code>. The event data is parsed by <code>CsvUtil</code> and then exported as a file through <code>CsvFileStorage</code> using the file path specified by the user.</p>
 </div>
 <div class="paragraph">
-<p>The sequence diagram below shows how the csv event export is processed in the storage component.</p>
+<p><a href="#SDCSV">Figure 21</a> below shows how the csv event export is processed in the storage component.</p>
 </div>
-<div class="imageblock">
+<div id="SDCSV" class="imageblock">
 <div class="content">
 <img src="images/ExportEventSequenceDiagram.png" alt="ExportEventSequenceDiagram" width="650">
 </div>
-<div class="title">Figure 20. Sequence Diagram for csv export</div>
+<div class="title">Figure 21. Sequence Diagram for csv export</div>
 </div>
 </div>
 <div class="sect3">
@@ -1357,7 +1357,7 @@ If no  <code>EpicEvent</code> has been selected, <code>AttendeeList</code> will 
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 4.9</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">[Implementation-Configuration]</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -1386,11 +1386,17 @@ If no  <code>EpicEvent</code> has been selected, <code>AttendeeList</code> will 
 </li>
 </ul>
 </div>
-</div>
-<div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">4.9. Configuration</a></h3>
-<div class="paragraph">
-<p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -1454,7 +1460,7 @@ Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows y
 <div class="content">
 <img src="images/chrome_save_as_pdf.png" alt="chrome save as pdf" width="300">
 </div>
-<div class="title">Figure 21. Saving documentation as PDF files in Chrome</div>
+<div class="title">Figure 22. Saving documentation as PDF files in Chrome</div>
 </div>
 </div>
 </div>
@@ -2431,7 +2437,7 @@ Expected: Similar to previous.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-08 06:32:14 UTC
+Last updated 2018-04-08 13:58:51 UTC
 </div>
 </div>
 </body>
