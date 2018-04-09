@@ -204,7 +204,8 @@ Undoes the <code>clear</code> command, followed by the <code>delete 1</code> com
 <div class="sect2">
 <h3 id="redoing-commands-code-redo-code"><a class="link" href="#redoing-commands-code-redo-code">Redoing Commands : <code>redo</code></a></h3>
 <div class="paragraph">
-<p>Reverses the most recent <code>undo</code> command.<br>
+<p>Reverses the most recent <code>undo</code> command. This will <strong>fail</strong> if the most recent command
+was neither <code>undo</code> nor <code>redo</code> (See last example below)<br>
 Format: <code>redo</code></p>
 </div>
 <div class="paragraph">
@@ -231,6 +232,14 @@ The <code>redo</code> command fails as there are no <code>undo</code> commands e
 <code>redo</code><br>
 <code>redo</code><br>
 Redoes the <code>delete 1</code> command, followed by the <code>clear</code> command.</p>
+</li>
+<li>
+<p><code>add-event n/MyEvent</code><br>
+<code>undo</code><br>
+<code>add-event n/MyEvent</code><br>
+<code>redo</code><br>
+The <code>redo</code> command fails as the most recent command was not an <code>undo/redo</code> command. This
+prevents ill-defined behavior like trying to add back an event that already exists.</p>
 </li>
 </ul>
 </div>
@@ -634,7 +643,7 @@ the user undoes a <code>ClearCommand</code>.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-09 04:51:06 UTC
+Last updated 2018-04-09 06:55:40 UTC
 </div>
 </div>
 </body>
