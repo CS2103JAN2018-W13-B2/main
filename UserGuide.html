@@ -5,14 +5,14 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.6.1">
-<title>Event Planning isn’t Complicated (EPIC) - User guide</title>
+<title>Event Planning isn’t Complicated (EPIC) - User Guide</title>
 <link rel="stylesheet" href="stylesheets/gh-pages.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 <link rel="stylesheet" href="stylesheets/coderay-asciidoctor.css">
 </head>
 <body class="article">
 <div id="header">
-<h1>Event Planning isn’t Complicated (EPIC) - User guide</h1>
+<h1>Event Planning isn’t Complicated (EPIC) - User Guide</h1>
 </div>
 <div id="content">
 <div id="preamble">
@@ -29,7 +29,7 @@
 <ul class="sectlevel1">
 <li><a href="#introduction">1. Introduction</a></li>
 <li><a href="#quick-start">2. Quick Start</a></li>
-<li><a href="#Layout">3. How to use the GUI</a>
+<li><a href="#Layout">3. How to Use the GUI</a>
 <ul class="sectlevel2">
 <li><a href="#layout">3.1. Layout</a></li>
 <li><a href="#interacting-with-the-gui">3.2. Interacting with the GUI</a></li>
@@ -37,41 +37,41 @@
 </li>
 <li><a href="#Features">4. Features</a>
 <ul class="sectlevel2">
-<li><a href="#viewing-help-code-help-code">4.1. Viewing help : <code>help</code></a></li>
-<li><a href="#adding-a-person-code-add-code">4.2. Adding a person: <code>add</code></a></li>
-<li><a href="#listing-all-persons-code-list-code">4.3. Listing all persons : <code>list</code></a></li>
-<li><a href="#editing-a-person-code-edit-code">4.4. Editing a person : <code>edit</code></a></li>
-<li><a href="#locating-persons-by-name-code-find-code">4.5. Locating persons by name: <code>find</code></a></li>
-<li><a href="#deleting-a-person-code-delete-code">4.6. Deleting a person : <code>delete</code></a></li>
-<li><a href="#selecting-a-person-code-select-code">4.7. Selecting a person : <code>select</code></a></li>
-<li><a href="#adding-an-event-code-add-event-code">4.8. Adding an event: <code>add-event</code></a></li>
-<li><a href="#listing-all-events-code-list-events-code">4.9. Listing all events: <code>list-events</code></a></li>
-<li><a href="#selecting-an-event-code-select-event-code">4.10. Selecting an event: <code>select-event</code></a></li>
-<li><a href="#editing-an-event-code-edit-event-code">4.11. Editing an event : <code>edit-event</code></a></li>
-<li><a href="#locating-events-by-name-code-find-event-code-since-v1-2">4.12. Locating events by name: <code>find-event</code> [Since v1.2]</a></li>
-<li><a href="#deleting-an-event-code-delete-event-code-since-v1-2">4.13. Deleting an event : <code>delete-event</code> [Since v1.2]</a></li>
-<li><a href="#registering-a-person-for-an-event-code-register-code-since-v1-2">4.14. Registering a person for an event: <code>register</code> [Since v1.2]</a></li>
-<li><a href="#deregistering-a-person-from-an-event-code-deregister-code-since-v1-2">4.15. Deregistering a person from an event: <code>deregister</code> [Since v1.2]</a></li>
-<li><a href="#listing-all-event-participants-code-list-registered-code">4.16. Listing all event participants: <code>list-registered</code></a></li>
-<li><a href="#toggle-attendance-for-event-participant-code-toggle-code">4.17. Toggle attendance for event participant : <code>toggle</code></a></li>
-<li><a href="#listing-entered-commands-code-history-code">4.18. Listing entered commands : <code>history</code></a></li>
-<li><a href="#clearing-all-entries-code-clear-code">4.19. Clearing all entries : <code>clear</code></a></li>
-<li><a href="#undoing-commands-code-undo-code">4.20. Undoing commands : <code>undo</code></a></li>
-<li><a href="#redoing-commands-code-redo-code">4.21. Redoing commands : <code>redo</code></a></li>
-<li><a href="#exiting-the-program-code-exit-code">4.22. Exiting the program : <code>exit</code></a></li>
-<li><a href="#saving-the-data">4.23. Saving the data</a></li>
-<li><a href="#exporting-contact-information-to-a-csv-file-code-export-code-coming-in-v2-0">4.24. Exporting contact information to a csv file : <code>export</code> [coming in v2.0]</a></li>
-<li><a href="#importing-contact-information-from-a-csv-file-code-import-code-coming-in-v2-0">4.25. Importing contact information from a csv file : <code>import</code> [coming in v2.0]</a></li>
-<li><a href="#adding-feedback-for-an-event-from-a-participant-code-add-feedback-code-coming-in-v2-0">4.26. Adding feedback for an event from a participant : <code>add-feedback</code> [coming in v2.0]</a></li>
-<li><a href="#exporting-event-details-to-a-csv-file-code-export-event-code-coming-in-v2-0">4.27. Exporting event details to a csv file : <code>export-event</code> [coming in v2.0]</a></li>
-<li><a href="#registering-all-persons-with-a-particular-tag-to-an-event-code-register-by-tag-code-coming-in-v2-0">4.28. Registering all persons with a particular tag to an event : <code>register-by-tag</code> [coming in v2.0]</a></li>
-<li><a href="#adding-automatic-email-reminder-to-event-participants-code-add-reminder-code-coming-in-v2-0">4.29. Adding automatic email reminder to event participants : <code>add-reminder</code> [coming in v2.0]</a></li>
-<li><a href="#adding-hotkeys-for-commands-code-add-hotkey-code-coming-in-v2-0">4.30. Adding hotkeys for commands : <code>add-hotkey</code> [coming in v2.0]</a></li>
+<li><a href="#viewing-help-code-help-code">4.1. Viewing Help : <code>help</code></a></li>
+<li><a href="#adding-a-person-code-add-code">4.2. Adding a Person: <code>add</code></a></li>
+<li><a href="#listing-all-persons-code-list-code">4.3. Listing all Persons : <code>list</code></a></li>
+<li><a href="#editing-a-person-code-edit-code">4.4. Editing a Person : <code>edit</code></a></li>
+<li><a href="#locating-persons-by-name-code-find-code">4.5. Locating Persons by Name: <code>find</code></a></li>
+<li><a href="#deleting-a-person-code-delete-code">4.6. Deleting a Person : <code>delete</code></a></li>
+<li><a href="#selecting-a-person-code-select-code">4.7. Selecting a Person : <code>select</code></a></li>
+<li><a href="#adding-an-event-code-add-event-code">4.8. Adding an Event: <code>add-event</code></a></li>
+<li><a href="#listing-all-events-code-list-events-code">4.9. Listing all Events: <code>list-events</code></a></li>
+<li><a href="#selecting-an-event-code-select-event-code">4.10. Selecting an Event: <code>select-event</code></a></li>
+<li><a href="#editing-an-event-code-edit-event-code">4.11. Editing an Event : <code>edit-event</code></a></li>
+<li><a href="#locating-events-by-name-code-find-event-code-since-v1-2">4.12. Locating Events by Name: <code>find-event</code> [Since v1.2]</a></li>
+<li><a href="#deleting-an-event-code-delete-event-code-since-v1-2">4.13. Deleting an Event : <code>delete-event</code> [Since v1.2]</a></li>
+<li><a href="#registering-a-person-for-an-event-code-register-code-since-v1-2">4.14. Registering a Person for an Event: <code>register</code> [Since v1.2]</a></li>
+<li><a href="#deregistering-a-person-from-an-event-code-deregister-code-since-v1-2">4.15. Deregistering a Person from an Event: <code>deregister</code> [Since v1.2]</a></li>
+<li><a href="#listing-all-event-participants-code-list-registered-code">4.16. Listing all Event Participants: <code>list-registered</code></a></li>
+<li><a href="#toggle-attendance-for-event-participant-code-toggle-code">4.17. Toggle Attendance for Event Participant : <code>toggle</code></a></li>
+<li><a href="#listing-entered-commands-code-history-code">4.18. Listing Entered Commands : <code>history</code></a></li>
+<li><a href="#clearing-all-entries-code-clear-code">4.19. Clearing all Entries : <code>clear</code></a></li>
+<li><a href="#undoing-commands-code-undo-code">4.20. Undoing Commands : <code>undo</code></a></li>
+<li><a href="#redoing-commands-code-redo-code">4.21. Redoing Commands : <code>redo</code></a></li>
+<li><a href="#exiting-the-program-code-exit-code">4.22. Exiting the Program : <code>exit</code></a></li>
+<li><a href="#saving-the-data">4.23. Saving the Data</a></li>
+<li><a href="#exporting-contact-information-to-a-csv-file-code-export-code-coming-in-v2-0">4.24. Exporting Contact Information to a CSV File : <code>export</code> [coming in v2.0]</a></li>
+<li><a href="#importing-contact-information-from-a-csv-file-code-import-code-coming-in-v2-0">4.25. Importing Contact Information from a CSV File : <code>import</code> [coming in v2.0]</a></li>
+<li><a href="#adding-feedback-for-an-event-from-a-participant-code-add-feedback-code-coming-in-v2-0">4.26. Adding Feedback for an Event from a Participant : <code>add-feedback</code> [coming in v2.0]</a></li>
+<li><a href="#exporting-event-details-to-a-csv-file-code-export-event-code-coming-in-v2-0">4.27. Exporting Event Details to a CSV file : <code>export-event</code> [coming in v2.0]</a></li>
+<li><a href="#registering-all-persons-with-a-particular-tag-to-an-event-code-register-by-tag-code-coming-in-v2-0">4.28. Registering all Persons with a Particular Tag to an Event : <code>register-by-tag</code> [coming in v2.0]</a></li>
+<li><a href="#adding-automatic-email-reminder-to-event-participants-code-add-reminder-code-coming-in-v2-0">4.29. Adding Automatic Email Reminder to Event Participants : <code>add-reminder</code> [coming in v2.0]</a></li>
+<li><a href="#adding-hotkeys-for-commands-code-add-hotkey-code-coming-in-v2-0">4.30. Adding Hotkeys for Commands : <code>add-hotkey</code> [coming in v2.0]</a></li>
 </ul>
 </li>
 <li><a href="#faq">5. FAQ</a></li>
 <li><a href="#command-summary">6. Command Summary</a></li>
-<li><a href="#list-of-undoable-commands">Appendix A: List of undoable commands</a></li>
+<li><a href="#list-of-undoable-commands">Appendix A: List of Undoable Commands</a></li>
 </ul>
 </div>
 </div>
@@ -162,7 +162,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 </div>
 </div>
 <div class="sect1">
-<h2 id="Layout"><a class="link" href="#Layout">3. How to use the GUI</a></h2>
+<h2 id="Layout"><a class="link" href="#Layout">3. How to Use the GUI</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>This section describes the components of the GUI, and common ways to interact with it.</p>
@@ -260,14 +260,14 @@ Toggling the attendance can also be done with the <code>toggle</code> command.</
 </div>
 </div>
 <div class="sect2">
-<h3 id="viewing-help-code-help-code"><a class="link" href="#viewing-help-code-help-code">4.1. Viewing help : <code>help</code></a></h3>
+<h3 id="viewing-help-code-help-code"><a class="link" href="#viewing-help-code-help-code">4.1. Viewing Help : <code>help</code></a></h3>
 <div class="paragraph">
 <p>Opens the help screen in a separate window.
 Format: <code>help</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="adding-a-person-code-add-code"><a class="link" href="#adding-a-person-code-add-code">4.2. Adding a person: <code>add</code></a></h3>
+<h3 id="adding-a-person-code-add-code"><a class="link" href="#adding-a-person-code-add-code">4.2. Adding a Person: <code>add</code></a></h3>
 <div class="paragraph">
 <p>Adds a person to EPIC.<br>
 Format: <code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]&#8230;&#8203;</code></p>
@@ -301,14 +301,14 @@ Adds the person Betsy Crowe to EPIC.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="listing-all-persons-code-list-code"><a class="link" href="#listing-all-persons-code-list-code">4.3. Listing all persons : <code>list</code></a></h3>
+<h3 id="listing-all-persons-code-list-code"><a class="link" href="#listing-all-persons-code-list-code">4.3. Listing all Persons : <code>list</code></a></h3>
 <div class="paragraph">
 <p>Shows a list of all persons in EPIC on the Persons Pane.<br>
 Format: <code>list</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="editing-a-person-code-edit-code"><a class="link" href="#editing-a-person-code-edit-code">4.4. Editing a person : <code>edit</code></a></h3>
+<h3 id="editing-a-person-code-edit-code"><a class="link" href="#editing-a-person-code-edit-code">4.4. Editing a Person : <code>edit</code></a></h3>
 <div class="paragraph">
 <p>Edits an existing person in the event planner.<br>
 Format: <code>edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]&#8230;&#8203;</code></p>
@@ -357,7 +357,7 @@ Edits the name of the 2nd person to be <code>Betsy Crower</code> and clears all 
 </div>
 </div>
 <div class="sect2">
-<h3 id="locating-persons-by-name-code-find-code"><a class="link" href="#locating-persons-by-name-code-find-code">4.5. Locating persons by name: <code>find</code></a></h3>
+<h3 id="locating-persons-by-name-code-find-code"><a class="link" href="#locating-persons-by-name-code-find-code">4.5. Locating Persons by Name: <code>find</code></a></h3>
 <div class="paragraph">
 <p>Finds persons whose names contain any of the given keywords.<br>
 Format: <code>find KEYWORD [MORE_KEYWORDS]</code></p>
@@ -399,7 +399,7 @@ Returns any person having names <code>Betsy</code>, <code>Tim</code>, or <code>J
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-a-person-code-delete-code"><a class="link" href="#deleting-a-person-code-delete-code">4.6. Deleting a person : <code>delete</code></a></h3>
+<h3 id="deleting-a-person-code-delete-code"><a class="link" href="#deleting-a-person-code-delete-code">4.6. Deleting a Person : <code>delete</code></a></h3>
 <div class="paragraph">
 <p>Deletes the specified person from EPIC.<br>
 Format: <code>delete INDEX</code></p>
@@ -438,7 +438,7 @@ Deletes the 1st person in the results of the <code>find</code> command.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="selecting-a-person-code-select-code"><a class="link" href="#selecting-a-person-code-select-code">4.7. Selecting a person : <code>select</code></a></h3>
+<h3 id="selecting-a-person-code-select-code"><a class="link" href="#selecting-a-person-code-select-code">4.7. Selecting a Person : <code>select</code></a></h3>
 <div class="paragraph">
 <p>Selects the person identified by the index number used in the Persons Pane.<br>
 Format: <code>select INDEX</code></p>
@@ -476,7 +476,7 @@ Selects the 1st person in the results of the <code>find</code> command.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="adding-an-event-code-add-event-code"><a class="link" href="#adding-an-event-code-add-event-code">4.8. Adding an event: <code>add-event</code></a></h3>
+<h3 id="adding-an-event-code-add-event-code"><a class="link" href="#adding-an-event-code-add-event-code">4.8. Adding an Event: <code>add-event</code></a></h3>
 <div class="paragraph">
 <p>Adds an event to EPIC.<br>
 Format: <code>add-event n/NAME [t/TAG]&#8230;&#8203;</code></p>
@@ -510,14 +510,14 @@ Adds the event Computing Seminar to EPIC.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="listing-all-events-code-list-events-code"><a class="link" href="#listing-all-events-code-list-events-code">4.9. Listing all events: <code>list-events</code></a></h3>
+<h3 id="listing-all-events-code-list-events-code"><a class="link" href="#listing-all-events-code-list-events-code">4.9. Listing all Events: <code>list-events</code></a></h3>
 <div class="paragraph">
 <p>Shows a list of all events in the Events Pane.<br>
 Format: <code>list-events</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="selecting-an-event-code-select-event-code"><a class="link" href="#selecting-an-event-code-select-event-code">4.10. Selecting an event: <code>select-event</code></a></h3>
+<h3 id="selecting-an-event-code-select-event-code"><a class="link" href="#selecting-an-event-code-select-event-code">4.10. Selecting an Event: <code>select-event</code></a></h3>
 <div class="paragraph">
 <p>Selects the event identified by the index number used in the Events Pane.
 Attendance panel will show person registered for the selected event.</p>
@@ -527,7 +527,7 @@ Attendance panel will show person registered for the selected event.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="editing-an-event-code-edit-event-code"><a class="link" href="#editing-an-event-code-edit-event-code">4.11. Editing an event : <code>edit-event</code></a></h3>
+<h3 id="editing-an-event-code-edit-event-code"><a class="link" href="#editing-an-event-code-edit-event-code">4.11. Editing an Event : <code>edit-event</code></a></h3>
 <div class="paragraph">
 <p>Edits an existing event in the event planner.<br>
 Format: <code>edit-event INDEX [n/NAME] [t/TAG]&#8230;&#8203;</code></p>
@@ -573,7 +573,7 @@ Edits the name of the 2nd event to be <code>Graduation Day</code> and clears all
 </div>
 </div>
 <div class="sect2">
-<h3 id="locating-events-by-name-code-find-event-code-since-v1-2"><a class="link" href="#locating-events-by-name-code-find-event-code-since-v1-2">4.12. Locating events by name: <code>find-event</code> [Since v1.2]</a></h3>
+<h3 id="locating-events-by-name-code-find-event-code-since-v1-2"><a class="link" href="#locating-events-by-name-code-find-event-code-since-v1-2">4.12. Locating Events by Name: <code>find-event</code> [Since v1.2]</a></h3>
 <div class="paragraph">
 <p>Finds events whose names contain any of the given keywords.<br>
 Format: <code>find-event KEYWORD [MORE_KEYWORDS]</code></p>
@@ -618,7 +618,7 @@ Returns any event having name <code>Talk</code>, or <code>Competition</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-an-event-code-delete-event-code-since-v1-2"><a class="link" href="#deleting-an-event-code-delete-event-code-since-v1-2">4.13. Deleting an event : <code>delete-event</code> [Since v1.2]</a></h3>
+<h3 id="deleting-an-event-code-delete-event-code-since-v1-2"><a class="link" href="#deleting-an-event-code-delete-event-code-since-v1-2">4.13. Deleting an Event : <code>delete-event</code> [Since v1.2]</a></h3>
 <div class="paragraph">
 <p>Deletes the specified event from the event planner.<br>
 Format: <code>delete-event INDEX</code></p>
@@ -657,7 +657,7 @@ Deletes the 1st event in the results of the <code>find-event</code> command.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="registering-a-person-for-an-event-code-register-code-since-v1-2"><a class="link" href="#registering-a-person-for-an-event-code-register-code-since-v1-2">4.14. Registering a person for an event: <code>register</code> [Since v1.2]</a></h3>
+<h3 id="registering-a-person-for-an-event-code-register-code-since-v1-2"><a class="link" href="#registering-a-person-for-an-event-code-register-code-since-v1-2">4.14. Registering a Person for an Event: <code>register</code> [Since v1.2]</a></h3>
 <div class="paragraph">
 <p>Registers the specified person for an event in the event planner.<br>
 Format: <code>register INDEX EVENT_NAME</code></p>
@@ -699,7 +699,7 @@ Registers the 1st person in the results of the <code>find</code> command for Com
 </div>
 </div>
 <div class="sect2">
-<h3 id="deregistering-a-person-from-an-event-code-deregister-code-since-v1-2"><a class="link" href="#deregistering-a-person-from-an-event-code-deregister-code-since-v1-2">4.15. Deregistering a person from an event: <code>deregister</code> [Since v1.2]</a></h3>
+<h3 id="deregistering-a-person-from-an-event-code-deregister-code-since-v1-2"><a class="link" href="#deregistering-a-person-from-an-event-code-deregister-code-since-v1-2">4.15. Deregistering a Person from an Event: <code>deregister</code> [Since v1.2]</a></h3>
 <div class="paragraph">
 <p>Deregisters the specified person from an event in the event planner.<br>
 Format: <code>deregister INDEX EVENT_NAME</code></p>
@@ -744,7 +744,7 @@ Deregisters the 1st person in the results of the <code>find</code> command from 
 </div>
 </div>
 <div class="sect2">
-<h3 id="listing-all-event-participants-code-list-registered-code"><a class="link" href="#listing-all-event-participants-code-list-registered-code">4.16. Listing all event participants: <code>list-registered</code></a></h3>
+<h3 id="listing-all-event-participants-code-list-registered-code"><a class="link" href="#listing-all-event-participants-code-list-registered-code">4.16. Listing all Event Participants: <code>list-registered</code></a></h3>
 <div class="paragraph">
 <p>Lists all participants for the specified event.<br>
 Format: <code>list-registered EVENT_NAME</code></p>
@@ -762,7 +762,7 @@ Format: <code>list-registered EVENT_NAME</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="toggle-attendance-for-event-participant-code-toggle-code"><a class="link" href="#toggle-attendance-for-event-participant-code-toggle-code">4.17. Toggle attendance for event participant : <code>toggle</code></a></h3>
+<h3 id="toggle-attendance-for-event-participant-code-toggle-code"><a class="link" href="#toggle-attendance-for-event-participant-code-toggle-code">4.17. Toggle Attendance for Event Participant : <code>toggle</code></a></h3>
 <div class="paragraph">
 <p>Toggles the attendance of a participant to an event from attended to not attended and vice versa.<br>
 Format: <code>toggle INDEX</code></p>
@@ -798,7 +798,7 @@ AY201718 Graduation.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="listing-entered-commands-code-history-code"><a class="link" href="#listing-entered-commands-code-history-code">4.18. Listing entered commands : <code>history</code></a></h3>
+<h3 id="listing-entered-commands-code-history-code"><a class="link" href="#listing-entered-commands-code-history-code">4.18. Listing Entered Commands : <code>history</code></a></h3>
 <div class="paragraph">
 <p>Lists all the commands that you have entered in reverse chronological order.<br>
 Format: <code>history</code></p>
@@ -819,14 +819,14 @@ Format: <code>history</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">4.19. Clearing all entries : <code>clear</code></a></h3>
+<h3 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">4.19. Clearing all Entries : <code>clear</code></a></h3>
 <div class="paragraph">
 <p>Clears all entries from EPIC.<br>
 Format: <code>clear</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="undoing-commands-code-undo-code"><a class="link" href="#undoing-commands-code-undo-code">4.20. Undoing commands : <code>undo</code></a></h3>
+<h3 id="undoing-commands-code-undo-code"><a class="link" href="#undoing-commands-code-undo-code">4.20. Undoing Commands : <code>undo</code></a></h3>
 <div class="paragraph">
 <p>Restores the event planner to the state before the previous <em>undoable</em> command was executed.<br>
 There is no guarantee that relative ordering of persons/events will be maintained after the undoing
@@ -842,7 +842,7 @@ Format: <code>undo</code></p>
 <td class="content">
 <div class="paragraph">
 <p>Undoable commands: those commands that modify the event planner&#8217;s content.
-To see the full list of undoable commands, refer to <a href="#list-of-undoable-commands">Appendix A, <em>List of undoable commands</em></a></p>
+To see the full list of undoable commands, refer to <a href="#List of undoable commands">[List of undoable commands]</a></p>
 </div>
 </td>
 </tr>
@@ -876,7 +876,7 @@ Undoes the <code>clear</code> command, followed by the <code>delete 1</code> com
 </div>
 </div>
 <div class="sect2">
-<h3 id="redoing-commands-code-redo-code"><a class="link" href="#redoing-commands-code-redo-code">4.21. Redoing commands : <code>redo</code></a></h3>
+<h3 id="redoing-commands-code-redo-code"><a class="link" href="#redoing-commands-code-redo-code">4.21. Redoing Commands : <code>redo</code></a></h3>
 <div class="paragraph">
 <p>Reverses the most recent <code>undo</code> command.<br>
 Format: <code>redo</code></p>
@@ -910,63 +910,63 @@ Redoes the <code>delete 1</code> command, followed by the <code>clear</code> com
 </div>
 </div>
 <div class="sect2">
-<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">4.22. Exiting the program : <code>exit</code></a></h3>
+<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">4.22. Exiting the Program : <code>exit</code></a></h3>
 <div class="paragraph">
 <p>Exits the program.<br>
 Format: <code>exit</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-the-data"><a class="link" href="#saving-the-data">4.23. Saving the data</a></h3>
+<h3 id="saving-the-data"><a class="link" href="#saving-the-data">4.23. Saving the Data</a></h3>
 <div class="paragraph">
 <p>EPIC data is saved in the hard disk automatically after any command that changes the data.<br>
 There is no need to save manually.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="exporting-contact-information-to-a-csv-file-code-export-code-coming-in-v2-0"><a class="link" href="#exporting-contact-information-to-a-csv-file-code-export-code-coming-in-v2-0">4.24. Exporting contact information to a csv file : <code>export</code> [coming in v2.0]</a></h3>
+<h3 id="exporting-contact-information-to-a-csv-file-code-export-code-coming-in-v2-0"><a class="link" href="#exporting-contact-information-to-a-csv-file-code-export-code-coming-in-v2-0">4.24. Exporting Contact Information to a CSV File : <code>export</code> [coming in v2.0]</a></h3>
 <div class="paragraph">
 <p>Exports the list of all persons in the event planner to a csv file.<br>
 Format: <code>export FILE_NAME</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="importing-contact-information-from-a-csv-file-code-import-code-coming-in-v2-0"><a class="link" href="#importing-contact-information-from-a-csv-file-code-import-code-coming-in-v2-0">4.25. Importing contact information from a csv file : <code>import</code> [coming in v2.0]</a></h3>
+<h3 id="importing-contact-information-from-a-csv-file-code-import-code-coming-in-v2-0"><a class="link" href="#importing-contact-information-from-a-csv-file-code-import-code-coming-in-v2-0">4.25. Importing Contact Information from a CSV File : <code>import</code> [coming in v2.0]</a></h3>
 <div class="paragraph">
 <p>Imports a list of persons from a csv file and adds them to the event planner.<br>
 Format: <code>import FILE_NAME</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="adding-feedback-for-an-event-from-a-participant-code-add-feedback-code-coming-in-v2-0"><a class="link" href="#adding-feedback-for-an-event-from-a-participant-code-add-feedback-code-coming-in-v2-0">4.26. Adding feedback for an event from a participant : <code>add-feedback</code> [coming in v2.0]</a></h3>
+<h3 id="adding-feedback-for-an-event-from-a-participant-code-add-feedback-code-coming-in-v2-0"><a class="link" href="#adding-feedback-for-an-event-from-a-participant-code-add-feedback-code-coming-in-v2-0">4.26. Adding Feedback for an Event from a Participant : <code>add-feedback</code> [coming in v2.0]</a></h3>
 <div class="paragraph">
 <p>Adds feedback for an event from a participant of the event.<br>
 Format: <code>add-feedback INDEX EVENT-NAME FEEDBACK</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="exporting-event-details-to-a-csv-file-code-export-event-code-coming-in-v2-0"><a class="link" href="#exporting-event-details-to-a-csv-file-code-export-event-code-coming-in-v2-0">4.27. Exporting event details to a csv file : <code>export-event</code> [coming in v2.0]</a></h3>
+<h3 id="exporting-event-details-to-a-csv-file-code-export-event-code-coming-in-v2-0"><a class="link" href="#exporting-event-details-to-a-csv-file-code-export-event-code-coming-in-v2-0">4.27. Exporting Event Details to a CSV file : <code>export-event</code> [coming in v2.0]</a></h3>
 <div class="paragraph">
 <p>Exports event details for a single event into a csv file.<br>
 Format: <code>export-event EVENT_NAME FILE_NAME</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="registering-all-persons-with-a-particular-tag-to-an-event-code-register-by-tag-code-coming-in-v2-0"><a class="link" href="#registering-all-persons-with-a-particular-tag-to-an-event-code-register-by-tag-code-coming-in-v2-0">4.28. Registering all persons with a particular tag to an event : <code>register-by-tag</code> [coming in v2.0]</a></h3>
+<h3 id="registering-all-persons-with-a-particular-tag-to-an-event-code-register-by-tag-code-coming-in-v2-0"><a class="link" href="#registering-all-persons-with-a-particular-tag-to-an-event-code-register-by-tag-code-coming-in-v2-0">4.28. Registering all Persons with a Particular Tag to an Event : <code>register-by-tag</code> [coming in v2.0]</a></h3>
 <div class="paragraph">
 <p>Registers all persons with a particular tag to an event in the event planner.<br>
 Format: <code>register-by-tag TAG EVENT_NAME</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="adding-automatic-email-reminder-to-event-participants-code-add-reminder-code-coming-in-v2-0"><a class="link" href="#adding-automatic-email-reminder-to-event-participants-code-add-reminder-code-coming-in-v2-0">4.29. Adding automatic email reminder to event participants : <code>add-reminder</code> [coming in v2.0]</a></h3>
+<h3 id="adding-automatic-email-reminder-to-event-participants-code-add-reminder-code-coming-in-v2-0"><a class="link" href="#adding-automatic-email-reminder-to-event-participants-code-add-reminder-code-coming-in-v2-0">4.29. Adding Automatic Email Reminder to Event Participants : <code>add-reminder</code> [coming in v2.0]</a></h3>
 <div class="paragraph">
 <p>Adds an automatic email reminder at the stipulated time to all event participants.<br>
 Format: <code>add-reminder DAYS_OFFSET EVENT_NAME</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="adding-hotkeys-for-commands-code-add-hotkey-code-coming-in-v2-0"><a class="link" href="#adding-hotkeys-for-commands-code-add-hotkey-code-coming-in-v2-0">4.30. Adding hotkeys for commands : <code>add-hotkey</code> [coming in v2.0]</a></h3>
+<h3 id="adding-hotkeys-for-commands-code-add-hotkey-code-coming-in-v2-0"><a class="link" href="#adding-hotkeys-for-commands-code-add-hotkey-code-coming-in-v2-0">4.30. Adding Hotkeys for Commands : <code>add-hotkey</code> [coming in v2.0]</a></h3>
 <div class="paragraph">
 <p>Adds a hotkey for a command.<br>
 Format: <code>add-hotkey HOTKEY COMMAND_NAME</code></p>
@@ -1066,7 +1066,7 @@ e.g. <code>toggle 1</code></p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="list-of-undoable-commands"><a class="link" href="#list-of-undoable-commands">Appendix A: List of undoable commands</a></h2>
+<h2 id="list-of-undoable-commands"><a class="link" href="#list-of-undoable-commands">Appendix A: List of Undoable Commands</a></h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
@@ -1107,7 +1107,7 @@ e.g. <code>toggle 1</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-08 18:30:55 UTC
+Last updated 2018-04-09 04:51:06 UTC
 </div>
 </div>
 </body>

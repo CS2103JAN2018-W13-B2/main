@@ -152,7 +152,7 @@
 </tbody>
 </table>
 <div class="sect2">
-<h3 id="undoing-commands-code-undo-code"><a class="link" href="#undoing-commands-code-undo-code">Undoing commands : <code>undo</code></a></h3>
+<h3 id="undoing-commands-code-undo-code"><a class="link" href="#undoing-commands-code-undo-code">Undoing Commands : <code>undo</code></a></h3>
 <div class="paragraph">
 <p>Restores the event planner to the state before the previous <em>undoable</em> command was executed.<br>
 There is no guarantee that relative ordering of persons/events will be maintained after the undoing
@@ -202,7 +202,7 @@ Undoes the <code>clear</code> command, followed by the <code>delete 1</code> com
 </div>
 </div>
 <div class="sect2">
-<h3 id="redoing-commands-code-redo-code"><a class="link" href="#redoing-commands-code-redo-code">Redoing commands : <code>redo</code></a></h3>
+<h3 id="redoing-commands-code-redo-code"><a class="link" href="#redoing-commands-code-redo-code">Redoing Commands : <code>redo</code></a></h3>
 <div class="paragraph">
 <p>Reverses the most recent <code>undo</code> command.<br>
 Format: <code>redo</code></p>
@@ -251,7 +251,7 @@ Redoes the <code>delete 1</code> command, followed by the <code>clear</code> com
 </tbody>
 </table>
 <div class="sect2">
-<h3 id="undo-redo-feature"><a class="link" href="#undo-redo-feature">Undo/Redo feature</a></h3>
+<h3 id="undo-redo-feature"><a class="link" href="#undo-redo-feature">Undo/Redo Feature</a></h3>
 <div class="sect3">
 <h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
 <div class="paragraph">
@@ -447,7 +447,7 @@ commands like <code>delete</code> if <code>filteredPersons</code> had been alter
 </div>
 </div>
 <div class="sect3">
-<h4 id="changes-from-previous-implementation"><a class="link" href="#changes-from-previous-implementation">Changes from previous implementation</a></h4>
+<h4 id="changes-from-previous-implementation"><a class="link" href="#changes-from-previous-implementation">Changes from Previous Implementation</a></h4>
 <div class="paragraph">
 <p>Instead of saving the entire event planner each time we execute an <code>UndoableCommand</code>, each <code>UndoableCommand</code> knows how to <code>undo/redo</code> itself.
 Each <code>UndoableCommand</code> has an <code>oppositeCommand</code> field, which is another <code>UndoableCommand</code> that, when executed, reverses the changes made by the original command.
@@ -519,7 +519,7 @@ the user undoes a <code>ClearCommand</code>.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="aspect-how-undo-redo-executes"><a class="link" href="#aspect-how-undo-redo-executes">Aspect: How undo &amp; redo executes</a></h5>
+<h5 id="aspect-how-undo-and-redo-executes"><a class="link" href="#aspect-how-undo-and-redo-executes">Aspect: How Undo and Redo Executes</a></h5>
 <div class="ulist">
 <ul>
 <li>
@@ -552,7 +552,7 @@ the user undoes a <code>ClearCommand</code>.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="aspect-type-of-commands-that-can-be-undone-redone"><a class="link" href="#aspect-type-of-commands-that-can-be-undone-redone">Aspect: Type of commands that can be undone/redone</a></h5>
+<h5 id="aspect-type-of-commands-that-can-be-undone-redone"><a class="link" href="#aspect-type-of-commands-that-can-be-undone-redone">Aspect: Type of Commands that Can be Undone/Redone</a></h5>
 <div class="ulist">
 <ul>
 <li>
@@ -586,7 +586,7 @@ the user undoes a <code>ClearCommand</code>.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="aspect-data-structure-to-support-the-undo-redo-commands"><a class="link" href="#aspect-data-structure-to-support-the-undo-redo-commands">Aspect: Data structure to support the undo/redo commands</a></h5>
+<h5 id="aspect-data-structure-to-support-the-undo-redo-commands"><a class="link" href="#aspect-data-structure-to-support-the-undo-redo-commands">Aspect: Data Structure to Support the Undo/Redo Commands</a></h5>
 <div class="ulist">
 <ul>
 <li>
@@ -634,7 +634,7 @@ the user undoes a <code>ClearCommand</code>.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-08 18:30:55 UTC
+Last updated 2018-04-09 04:51:06 UTC
 </div>
 </div>
 </body>
