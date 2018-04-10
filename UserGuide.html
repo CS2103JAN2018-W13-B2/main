@@ -47,10 +47,10 @@
 <li><a href="#listing-all-events-code-list-events-code">4.9. Listing all Events: <code>list-events</code></a></li>
 <li><a href="#selecting-an-event-code-select-event-code">4.10. Selecting an Event: <code>select-event</code></a></li>
 <li><a href="#editing-an-event-code-edit-event-code">4.11. Editing an Event : <code>edit-event</code></a></li>
-<li><a href="#locating-events-by-name-code-find-event-code-since-v1-2">4.12. Locating Events by Name: <code>find-event</code> [Since v1.2]</a></li>
-<li><a href="#deleting-an-event-code-delete-event-code-since-v1-2">4.13. Deleting an Event : <code>delete-event</code> [Since v1.2]</a></li>
-<li><a href="#registering-a-person-for-an-event-code-register-code-since-v1-2">4.14. Registering a Person for an Event: <code>register</code> [Since v1.2]</a></li>
-<li><a href="#deregistering-a-person-from-an-event-code-deregister-code-since-v1-2">4.15. Deregistering a Person from an Event: <code>deregister</code> [Since v1.2]</a></li>
+<li><a href="#locating-events-by-name-code-find-event-code">4.12. Locating Events by Name: <code>find-event</code></a></li>
+<li><a href="#deleting-an-event-code-delete-event-code">4.13. Deleting an Event : <code>delete-event</code></a></li>
+<li><a href="#registering-a-person-for-an-event-code-register-code">4.14. Registering a Person for an Event: <code>register</code></a></li>
+<li><a href="#deregistering-a-person-from-an-event-code-deregister-code">4.15. Deregistering a Person from an Event: <code>deregister</code></a></li>
 <li><a href="#listing-all-event-participants-code-list-registered-code">4.16. Listing all Event Participants: <code>list-registered</code></a></li>
 <li><a href="#toggle-attendance-for-event-participant-code-toggle-code">4.17. Toggle Attendance for Event Participant : <code>toggle</code></a></li>
 <li><a href="#listing-entered-commands-code-history-code">4.18. Listing Entered Commands : <code>history</code></a></li>
@@ -583,7 +583,7 @@ Edits the name of the 2nd event to be <code>Graduation Day</code> and clears all
 </div>
 </div>
 <div class="sect2">
-<h3 id="locating-events-by-name-code-find-event-code-since-v1-2"><a class="link" href="#locating-events-by-name-code-find-event-code-since-v1-2">4.12. Locating Events by Name: <code>find-event</code> [Since v1.2]</a></h3>
+<h3 id="locating-events-by-name-code-find-event-code"><a class="link" href="#locating-events-by-name-code-find-event-code">4.12. Locating Events by Name: <code>find-event</code></a></h3>
 <div class="paragraph">
 <p>Finds events whose names contain any of the given keywords.<br>
 Format: <code>find-event KEYWORD [MORE_KEYWORDS]</code></p>
@@ -618,7 +618,7 @@ Format: <code>find-event KEYWORD [MORE_KEYWORDS]</code></p>
 <ul>
 <li>
 <p><code>find-event Talk</code><br>
-Returns <code>Talk</code> and <code>Food Talk</code></p>
+Returns <code>IoT Talk</code> and <code>Food Talk</code></p>
 </li>
 <li>
 <p><code>find-event Talk Competition</code><br>
@@ -628,7 +628,7 @@ Returns any event having name <code>Talk</code>, or <code>Competition</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-an-event-code-delete-event-code-since-v1-2"><a class="link" href="#deleting-an-event-code-delete-event-code-since-v1-2">4.13. Deleting an Event : <code>delete-event</code> [Since v1.2]</a></h3>
+<h3 id="deleting-an-event-code-delete-event-code"><a class="link" href="#deleting-an-event-code-delete-event-code">4.13. Deleting an Event : <code>delete-event</code></a></h3>
 <div class="paragraph">
 <p>Deletes the specified event from the event planner.<br>
 Format: <code>delete-event INDEX</code></p>
@@ -667,7 +667,7 @@ Deletes the 1st event in the results of the <code>find-event</code> command.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="registering-a-person-for-an-event-code-register-code-since-v1-2"><a class="link" href="#registering-a-person-for-an-event-code-register-code-since-v1-2">4.14. Registering a Person for an Event: <code>register</code> [Since v1.2]</a></h3>
+<h3 id="registering-a-person-for-an-event-code-register-code"><a class="link" href="#registering-a-person-for-an-event-code-register-code">4.14. Registering a Person for an Event: <code>register</code></a></h3>
 <div class="paragraph">
 <p>Registers the specified person for an event in the event planner.<br>
 Format: <code>register INDEX EVENT_NAME</code></p>
@@ -709,7 +709,7 @@ Registers the 1st person in the results of the <code>find</code> command for Com
 </div>
 </div>
 <div class="sect2">
-<h3 id="deregistering-a-person-from-an-event-code-deregister-code-since-v1-2"><a class="link" href="#deregistering-a-person-from-an-event-code-deregister-code-since-v1-2">4.15. Deregistering a Person from an Event: <code>deregister</code> [Since v1.2]</a></h3>
+<h3 id="deregistering-a-person-from-an-event-code-deregister-code"><a class="link" href="#deregistering-a-person-from-an-event-code-deregister-code">4.15. Deregistering a Person from an Event: <code>deregister</code></a></h3>
 <div class="paragraph">
 <p>Deregisters the specified person from an event in the event planner.<br>
 Format: <code>deregister INDEX EVENT_NAME</code></p>
@@ -1134,7 +1134,7 @@ e.g. <code>toggle 1</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-10 23:13:27 UTC
+Last updated 2018-04-10 23:13:54 UTC
 </div>
 </div>
 </body>
