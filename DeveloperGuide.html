@@ -39,11 +39,12 @@
 <li><a href="#Design-Architecture">3. Architecture</a>
 <ul class="sectlevel2">
 <li><a href="#main">3.1. Main</a></li>
-<li><a href="#Design-Ui">3.2. UI Component</a></li>
-<li><a href="#Design-Logic">3.3. Logic Component</a></li>
-<li><a href="#Design-Model">3.4. Model Component</a></li>
-<li><a href="#Design-Storage">3.5. Storage Component</a></li>
-<li><a href="#how-components-interact">3.6. How Components Interact</a></li>
+<li><a href="#commons">3.2. Commons</a></li>
+<li><a href="#Design-Ui">3.3. UI Component</a></li>
+<li><a href="#Design-Logic">3.4. Logic Component</a></li>
+<li><a href="#Design-Model">3.5. Model Component</a></li>
+<li><a href="#Design-Storage">3.6. Storage Component</a></li>
+<li><a href="#how-components-interact">3.7. How Components Interact</a></li>
 </ul>
 </li>
 <li><a href="#implementation">4. Implementation</a>
@@ -53,9 +54,10 @@
 <li><a href="#register-deregister-persons-for-from-events">4.3. Register/Deregister Persons for/from Events</a></li>
 <li><a href="#list-registered-persons-for-an-event">4.4. List Registered Persons for an Event</a></li>
 <li><a href="#toggling-attendance">4.5. Toggling Attendance</a></li>
-<li><a href="#three-pane-ui">4.6. Three Pane UI</a></li>
-<li><a href="#proposed-export-an-event">4.7. [proposed] Export an Event</a></li>
-<li><a href="#logging">4.8. Logging</a></li>
+<li><a href="#proposed-mass-registration">4.6. [Proposed] Mass Registration</a></li>
+<li><a href="#three-pane-ui">4.7. Three Pane UI</a></li>
+<li><a href="#proposed-export-an-event">4.8. [proposed] Export an Event</a></li>
+<li><a href="#logging">4.9. Logging</a></li>
 </ul>
 </li>
 <li><a href="#documentation">5. Documentation</a>
@@ -325,7 +327,7 @@ Having both Travis and AppVeyor ensures your App works on both Unix-based platfo
 <h2 id="Design-Architecture"><a class="link" href="#Design-Architecture">3. Architecture</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>EPIC incoporates the core architectural principles of object-oriented, Java-based applications. It consists of lossly coupled components written in Java. The <strong><em>Architecture Diagram</em></strong> (<a href="#architecture-diagram">Figure 1</a>) given below explains the high-level design of the App.</p>
+<p>EPIC incorporates the core architectural principles of object-oriented, Java-based applications. It consists of loosely coupled components written in Java. The <strong><em>Architecture Diagram</em></strong> (<a href="#architecture-diagram">Figure 1</a>) given below explains the high-level design of the App.</p>
 </div>
 <div id="architecture-diagram" class="imageblock">
 <div class="content">
@@ -355,8 +357,9 @@ components form the <strong>core</strong> of the application, with Main and Comm
 </li>
 </ul>
 </div>
-<div class="sect3">
-<h4 id="commons"><a class="link" href="#commons">3.1.1. Commons</a></h4>
+</div>
+<div class="sect2">
+<h3 id="commons"><a class="link" href="#commons">3.2. Commons</a></h3>
 <div class="paragraph">
 <p>Commons represents a collection of classes used by multiple other components. Two of these classes play important roles at the architecture level.</p>
 </div>
@@ -372,27 +375,26 @@ is used by components to communicate with other components using events (i.e. a 
 </ul>
 </div>
 </div>
-</div>
 <div class="sect2">
-<h3 id="Design-Ui"><a class="link" href="#Design-Ui">3.2. UI Component</a></h3>
+<h3 id="Design-Ui"><a class="link" href="#Design-Ui">3.3. UI Component</a></h3>
 <div class="paragraph">
-<p>The UI component is responsible for interfacing with the user. The UI component:</p>
+<p>The UI component is responsible for interfacing with the user. The UI component has three main responsibilities:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Executes user commands using the Logic component.</p>
+<p>It executes user commands using the Logic component.</p>
 </li>
 <li>
-<p>Binds itself to some data in the Model component so that the UI can auto-update when data in the Model component changes.</p>
+<p>It binds itself to some data in the Model component so that the UI can auto-update when data in the Model component changes.</p>
 </li>
 <li>
-<p>Responds to events raised from various parts of the App and updates the UI accordingly.</p>
+<p>It responds to events raised from various parts of the App and updates the UI accordingly.</p>
 </li>
 </ul>
 </div>
 <div class="sect3">
-<h4 id="functional-overview"><a class="link" href="#functional-overview">3.2.1. Functional Overview</a></h4>
+<h4 id="functional-overview"><a class="link" href="#functional-overview">3.3.1. Functional Overview</a></h4>
 <div class="paragraph">
 <p>The UI consists of a <code>MainWindow</code> that contains the 5 main layout regions (<a href="#GUIOverview">Figure 2</a>):</p>
 </div>
@@ -444,9 +446,9 @@ If no  <code>EpicEvent</code> has been selected, <code>AttendeeList</code> will 
 </div>
 </div>
 <div class="sect3">
-<h4 id="technical-overview"><a class="link" href="#technical-overview">3.2.2. Technical Overview</a></h4>
+<h4 id="technical-overview"><a class="link" href="#technical-overview">3.3.2. Technical Overview</a></h4>
 <div class="paragraph">
-<p>The UI component (<a href="#UiClassDiagram">Figure 3</a>) is responsible for interfacing with the user. The UI component uses the JavaFx UI framework. The UI consists of a <code>MainWindow</code> that is made up of parts e.g.<code>CommandBox</code>, <code>ResultDisplay</code>, <code>PersonListPanel</code>, <code>StatusBarFooter</code> etc. All these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.</p>
+<p>The UI component (<a href="#UiClassDiagram">Figure 3</a>) uses the JavaFx UI framework. The UI consists of a <code>MainWindow</code> that is made up of parts e.g.<code>CommandBox</code>, <code>ResultDisplay</code>, <code>PersonListPanel</code>, <code>StatusBarFooter</code> etc. All these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.</p>
 </div>
 <div id="UiClassDiagram" class="imageblock">
 <div class="content">
@@ -458,14 +460,13 @@ If no  <code>EpicEvent</code> has been selected, <code>AttendeeList</code> will 
 <p><strong>API</strong> : <a href="https://github.com/CS2103JAN2018-W13-B2/main/blob/master/src/main/java/seedu/address/ui/Ui.java"><code>Ui.java</code></a></p>
 </div>
 <div class="paragraph">
-<p>The UI component uses JavaFx UI framework.
-The layout of these UI parts are defined in matching <code>.fxml</code> files that are in the <code>src/main/resources/view</code> folder.
+<p>The layout of these UI parts are defined in matching <code>.fxml</code> files that are in the <code>src/main/resources/view</code> folder.
 For example, the layout of the <a href="https://github.com/CS2103JAN2018-W13-B2/main/blob/master/src/main/java/seedu/address/ui/MainWindow.java"><code>MainWindow</code></a> is specified in <a href="https://github.com/CS2103JAN2018-W13-B2/main/blob/master/src/main/resources/view/MainWindow.fxml"><code>MainWindow.fxml</code></a></p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="Design-Logic"><a class="link" href="#Design-Logic">3.3. Logic Component</a></h3>
+<h3 id="Design-Logic"><a class="link" href="#Design-Logic">3.4. Logic Component</a></h3>
 <div class="paragraph">
 <p>The Logic component (<a href="#LGC">Figure 4</a>) is responsible for the parsing and execution of commands.</p>
 </div>
@@ -515,7 +516,7 @@ For example, the layout of the <a href="https://github.com/CS2103JAN2018-W13-B2/
 </div>
 </div>
 <div class="sect2">
-<h3 id="Design-Model"><a class="link" href="#Design-Model">3.4. Model Component</a></h3>
+<h3 id="Design-Model"><a class="link" href="#Design-Model">3.5. Model Component</a></h3>
 <div class="paragraph">
 <p>The Model component (<a href="#MCD">Figure 7</a>) is responsible for holding application data in-memory.</p>
 </div>
@@ -529,18 +530,18 @@ For example, the layout of the <a href="https://github.com/CS2103JAN2018-W13-B2/
 <p><strong>API</strong> : <a href="https://github.com/CS2103JAN2018-W13-B2/main/blob/master/src/main/java/seedu/address/model/Model.java"><code>Model.java</code></a></p>
 </div>
 <div class="paragraph">
-<p>The Model component:</p>
+<p>The Model component has the following responsibilities:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>stores a <code>UserPref</code> object that represents the user&#8217;s preferences.</p>
+<p>It stores a <code>UserPref</code> object that represents the user&#8217;s preferences.</p>
 </li>
 <li>
-<p>stores the Event Planner data.</p>
+<p>It stores the Event Planner data.</p>
 </li>
 <li>
-<p>exposes three unmodifiable <code>ObservableLists</code>, one each for <code>Person</code>, <code>EpicEvent</code> and <code>Attendance</code>.
+<p>It exposes three unmodifiable <code>ObservableLists</code>, one each for <code>Person</code>, <code>EpicEvent</code> and <code>Attendance</code>.
 The UI can be bound to any of these lists so that it automatically updates when the data in the list changes.</p>
 </li>
 </ul>
@@ -559,7 +560,7 @@ The Model does not depend on any of the other three components. This reduces cou
 </div>
 </div>
 <div class="sect2">
-<h3 id="Design-Storage"><a class="link" href="#Design-Storage">3.5. Storage Component</a></h3>
+<h3 id="Design-Storage"><a class="link" href="#Design-Storage">3.6. Storage Component</a></h3>
 <div class="paragraph">
 <p>The Storage component (<a href="#SCD">Figure 8</a>) is responsible for persisting application data on the hard disk.</p>
 </div>
@@ -573,15 +574,15 @@ The Model does not depend on any of the other three components. This reduces cou
 <p><strong>API</strong> : <a href="https://github.com/CS2103JAN2018-W13-B2/main/blob/master/src/main/java/seedu/address/storage/Storage.java"><code>Storage.java</code></a></p>
 </div>
 <div class="paragraph">
-<p>The Storage component:</p>
+<p>The Storage component has the following functions:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>can save <code>UserPref</code> objects in json format and reconstruct the Model from a file of this format.</p>
+<p>It can save <code>UserPref</code> objects in json format and reconstruct the Model from a file of this format.</p>
 </li>
 <li>
-<p>can save the Event Planner data in xml format and reconstruct the Model from a file of this format.</p>
+<p>It can save the Event Planner data in xml format and reconstruct the Model from a file of this format.</p>
 </li>
 </ul>
 </div>
@@ -618,42 +619,36 @@ The Model does not depend on any of the other three components. This reduces cou
 </div>
 </div>
 <div class="sect2">
-<h3 id="how-components-interact"><a class="link" href="#how-components-interact">3.6. How Components Interact</a></h3>
+<h3 id="how-components-interact"><a class="link" href="#how-components-interact">3.7. How Components Interact</a></h3>
 <div class="paragraph">
 <p>Finally, we will conclude the Architecture section with several examples on how the components interact.</p>
 </div>
 <div class="paragraph">
-<p>Each of the core components (UI, Logic, Model, Storage):</p>
+<p>Each of the core components (UI, Logic, Model, Storage) has the following functions:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Defines its <em>API</em> in an <code>interface</code> with the same name as the component.</p>
+<p>It defines its <em>API</em> in an <code>interface</code> with the same name as the component.</p>
 </li>
 <li>
-<p>Exposes its functionality using a <code>{COMPONENT NAME}Manager</code> class.</p>
+<p>It exposes its functionality using a <code>{COMPONENT NAME}Manager</code> class.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>For example, the Logic component (<a href="#LgicClassDiagram">Figure 10</a>)
+<p>For example, the Logic component
 defines its API in the <code>Logic.java</code> interface and exposes its functionality
 using the <code>LogicManager.java</code> class.</p>
 </div>
-<div id="LgicClassDiagram" class="imageblock">
-<div class="content">
-<img src="images/LogicClassDiagram.png" alt="LogicClassDiagram" width="800">
-</div>
-<div class="title">Figure 10. Class Diagram of the Logic Component</div>
-</div>
 <div class="paragraph">
-<p>The <em>Sequence Diagram</em> below shows how the interaction between the components after the user issues the command <code>delete 1</code>.</p>
+<p>The <em>Sequence Diagram</em> below shows how the components interact with one another after the user issues the command <code>delete 1</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/SDforDeletePerson.png" alt="SDforDeletePerson" width="800">
 </div>
-<div class="title">Figure 11. Component interactions for <code>delete 1</code> command (part 1)</div>
+<div class="title">Figure 10. Component interactions for <code>delete 1</code> command (part 1)</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -677,7 +672,7 @@ status bar of the UI reflecting the 'Last Updated' time.</p>
 <div class="content">
 <img src="images/SDforDeletePersonEventHandling.png" alt="SDforDeletePersonEventHandling" width="800">
 </div>
-<div class="title">Figure 12. Component interactions for <code>delete 1</code> command (part 2)</div>
+<div class="title">Figure 11. Component interactions for <code>delete 1</code> command (part 2)</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -776,13 +771,13 @@ undoing and redoing of commands that
 modify the state of the event planner (e.g. <code>add</code>, <code>edit</code>). Such commands will inherit from <code>UndoableCommand</code>.</p>
 </div>
 <div class="paragraph">
-<p><code>UndoRedoStack</code> only deals with <code>UndoableCommands</code>. Commands that cannot be undone will inherit from <code>Command</code> instead. <a href="#UCCD">Figure 13</a> shows the class diagram for commands:</p>
+<p><code>UndoRedoStack</code> only deals with <code>UndoableCommands</code>. Commands that cannot be undone will inherit from <code>Command</code> instead. <a href="#UCCD">Figure 12</a> shows the class diagram for commands:</p>
 </div>
 <div id="UCCD" class="imageblock">
 <div class="content">
 <img src="images/LogicCommandClassDiagram.png" alt="LogicCommandClassDiagram" width="800">
 </div>
-<div class="title">Figure 13. Class Diagram for commands</div>
+<div class="title">Figure 12. Class Diagram for commands</div>
 </div>
 <div class="paragraph">
 <p>As you can see from the diagram, <code>UndoableCommand</code> adds an extra layer between the abstract <code>Command</code> class and concrete commands that can be undone, such as the <code>DeleteCommand</code>. Note that extra tasks need to be done when executing a command in an <em>undoable</em> way, such
@@ -836,7 +831,7 @@ The <code>delete 5</code> command will then be pushed onto the <code>undoStack</
 <div class="content">
 <img src="images/UndoRedoStartingStackDiagram.png" alt="UndoRedoStartingStackDiagram" width="800">
 </div>
-<div class="title">Figure 14. How a delete command modifies the UndoRedoStack</div>
+<div class="title">Figure 13. How a delete command modifies the UndoRedoStack</div>
 </div>
 <div class="paragraph">
 <p>As the user continues to use the program, more commands are added into the <code>undoStack</code>. For example, the user may execute
@@ -846,7 +841,7 @@ The <code>delete 5</code> command will then be pushed onto the <code>undoStack</
 <div class="content">
 <img src="images/UndoRedoNewCommand1StackDiagram.png" alt="UndoRedoNewCommand1StackDiagram" width="800">
 </div>
-<div class="title">Figure 15. How an add command modifies the UndoRedoStack</div>
+<div class="title">Figure 14. How an add command modifies the UndoRedoStack</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -883,7 +878,7 @@ while the latter is an <code>AddPersonCommand</code>.
 <div class="content">
 <img src="images/UndoRedoExecuteUndoStackDiagram.png" alt="UndoRedoExecuteUndoStackDiagram" width="800">
 </div>
-<div class="title">Figure 16. How an undo command utilises the UndoRedoStack</div>
+<div class="title">Figure 15. How an undo command utilises the UndoRedoStack</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -904,7 +899,7 @@ If the <code>undoStack</code> is empty, there are no other commands left to be u
 <div class="content">
 <img src="images/UndoRedoSequenceDiagram.png" alt="UndoRedoSequenceDiagram" width="800">
 </div>
-<div class="title">Figure 17. Sequence Diagram for the undo command</div>
+<div class="title">Figure 16. Sequence Diagram for the undo command</div>
 </div>
 <div class="paragraph">
 <p>The redo does the exact opposite (pops from <code>redoStack</code>, push to <code>undoStack</code>, and performs the intention of the original command).</p>
@@ -941,7 +936,7 @@ commands like <code>delete</code> if <code>filteredPersons</code> had been alter
 <div class="content">
 <img src="images/UndoRedoNewCommand2StackDiagram.png" alt="UndoRedoNewCommand2StackDiagram" width="800">
 </div>
-<div class="title">Figure 18. How a clear command modifies the UndoRedoStack</div>
+<div class="title">Figure 17. How a clear command modifies the UndoRedoStack</div>
 </div>
 <div class="paragraph">
 <p>Commands that are not undoable are not added into the <code>undoStack</code>. For example, <code>list</code>, which inherits from <code>Command</code> rather than <code>UndoableCommand</code>, will not be added after execution:</p>
@@ -950,7 +945,7 @@ commands like <code>delete</code> if <code>filteredPersons</code> had been alter
 <div class="content">
 <img src="images/UndoRedoNewCommand3StackDiagram.png" alt="UndoRedoNewCommand3StackDiagram" width="800">
 </div>
-<div class="title">Figure 19. A list command does not modify the UndoRedoStack</div>
+<div class="title">Figure 18. A list command does not modify the UndoRedoStack</div>
 </div>
 <div class="paragraph">
 <p>The following activity diagram summarizes what happens inside the <code>UndoRedoStack</code> when a user executes a new command:</p>
@@ -959,7 +954,7 @@ commands like <code>delete</code> if <code>filteredPersons</code> had been alter
 <div class="content">
 <img src="images/UndoRedoActivityDiagram.png" alt="UndoRedoActivityDiagram" width="650">
 </div>
-<div class="title">Figure 20. Activity Diagram for command execution</div>
+<div class="title">Figure 19. Activity Diagram for command execution</div>
 </div>
 </div>
 <div class="sect3">
@@ -967,13 +962,13 @@ commands like <code>delete</code> if <code>filteredPersons</code> had been alter
 <div class="paragraph">
 <p>Instead of saving the entire event planner each time we execute an <code>UndoableCommand</code>, each <code>UndoableCommand</code> knows how to <code>undo/redo</code> itself.
 Each <code>UndoableCommand</code> has an <code>oppositeCommand</code> field, which is another <code>UndoableCommand</code> that, when executed, reverses the changes made by the original command.
-The sequence diagram for the new <code>undo()</code> implementation is shown in <a href="#SDUndo">Figure 21</a>.</p>
+The sequence diagram for the new <code>undo()</code> implementation is shown in <a href="#SDUndo">Figure 20</a>.</p>
 </div>
 <div id="SDUndo" class="imageblock">
 <div class="content">
 <img src="images/UndoSequenceDiagram.png" alt="UndoSequenceDiagram" width="650">
 </div>
-<div class="title">Figure 21. Sequence Diagram for new undo implementation</div>
+<div class="title">Figure 20. Sequence Diagram for new undo implementation</div>
 </div>
 <div class="paragraph">
 <p>The <code>oppositeCommand</code> is generated in the <code>execute()</code> method, after <code>preprocessUndoableCommand()</code>. This is because generating the <code>oppositeCommand</code>
@@ -1001,39 +996,6 @@ the user undoes a <code>ClearCommand</code>.</p>
 </div>
 <div class="sect3">
 <h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">4.2.3. Design Considerations</a></h4>
-<div class="sect4">
-<h5 id="aspect-implementation-of-code-undoablecommand-code"><a class="link" href="#aspect-implementation-of-code-undoablecommand-code">Aspect: Implementation of <code>UndoableCommand</code></a></h5>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Alternative 1 (current choice):</strong> Add a new abstract method <code>executeUndoableCommand()</code></p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Undo/redo functionality will now be part of the default behaviour. Classes that deal with <code>Command</code> will not have to know that <code>executeUndoableCommand()</code> exists.</p>
-</li>
-<li>
-<p>Cons: New developers will find the template pattern difficult to understand.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Alternative 2:</strong> Override <code>execute()</code></p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: New developers will not have to learn the above template pattern</p>
-</li>
-<li>
-<p>Cons: Command classes that inherit from <code>UndoableCommand</code> must remember to call <code>super.execute()</code>, or lose the ability to be undone/redone.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
 <div class="sect4">
 <h5 id="aspect-how-undo-and-redo-executes"><a class="link" href="#aspect-how-undo-and-redo-executes">Aspect: How Undo and Redo Executes</a></h5>
 <div class="ulist">
@@ -1068,6 +1030,39 @@ the user undoes a <code>ClearCommand</code>.</p>
 </div>
 </div>
 <div class="sect4">
+<h5 id="aspect-implementation-of-code-undoablecommand-code"><a class="link" href="#aspect-implementation-of-code-undoablecommand-code">Aspect: Implementation of <code>UndoableCommand</code></a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Add a new abstract method <code>executeUndoableCommand()</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Undo/redo functionality will now be part of the default behaviour. Classes that deal with <code>Command</code> will not have to know that <code>executeUndoableCommand()</code> exists.</p>
+</li>
+<li>
+<p>Cons: New developers will find the template pattern difficult to understand.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Override <code>execute()</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: New developers will not have to learn the above template pattern</p>
+</li>
+<li>
+<p>Cons: Command classes that inherit from <code>UndoableCommand</code> must remember to call <code>super.execute()</code>, or lose the ability to be undone/redone.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
 <h5 id="aspect-type-of-commands-that-can-be-undone-redone"><a class="link" href="#aspect-type-of-commands-that-can-be-undone-redone">Aspect: Type of Commands that Can be Undone/Redone</a></h5>
 <div class="ulist">
 <ul>
@@ -1089,7 +1084,7 @@ the user undoes a <code>ClearCommand</code>.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Might be more intuitive for the user.</p>
+<p>Pros: It might be more intuitive for the user.</p>
 </li>
 <li>
 <p>Cons: User has no way of skipping such commands if he or she just want to reset the state of the event planner and not the view.
@@ -1158,12 +1153,12 @@ since all commands v2.0 supports will not require the backward association.</p>
 <div class="sect3">
 <h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">4.5.1. Current Implementation</a></h4>
 <div class="paragraph">
-<p>The proposed implementation is to use a class called <code>Attendance</code>.
+<p>The implementation uses a class called <code>Attendance</code>.
 An instance of <code>Attendance</code> is created every time a person registers to an event and
 it is stored inside the <code>EpicEvent</code>. The instance stores the corresponding <code>EpicEvent</code> and <code>Person</code>
 and stores a <code>boolean</code> representing whether the person has attended the event.
 This reduces coupling between the <code>Person</code> and <code>EpicEvent</code> class and allows the event
-to have access to all its attendees so that adding, removing and listing attendees is
+to have access to all its attendees so that adding, removing and listing attendees are
 easy to implement.</p>
 </div>
 </div>
@@ -1178,11 +1173,11 @@ easy to implement.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Reduces coupling between <code>Person</code> and `EpicEvent and makes it easy for event to keep track of attendance list and easy
-for UI to display the attendance list.</p>
+<p>Pros: There is less coupling between <code>Person</code> and `EpicEvent and it is easier for event to keep track of attendance list.
+It is also easier for UI to display the attendance list.</p>
 </li>
 <li>
-<p>Cons: Makes it difficult for <code>EventPlanner</code> to track which events a person is registered for so deleting a person requires
+<p>Cons: It is more difficult for <code>EventPlanner</code> to track which events a person is registered for so deleting a person requires
 checking through all the events to delete a person properly.</p>
 </li>
 </ul>
@@ -1193,11 +1188,11 @@ checking through all the events to delete a person properly.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Makes it easy <code>EventPlanner</code> to track which events a person is registered to and thus making
+<p>Pros: It is easier for <code>EventPlanner</code> to track which events a person is registered to and thus making
 some person commands such as delete persons easier.</p>
 </li>
 <li>
-<p>Cons: Requires <code>EpicEvent</code> to search through entire list of <code>Attendance</code> of objects in <code>EventPlanner</code> to find out
+<p>Cons: An <code>EpicEvent</code> needs to search through the entire list of <code>Attendance</code> objects in <code>EventPlanner</code> to find out
 which persons are registered to itself. This can be very slow if the number of <code>Attendance</code> objects is very large.</p>
 </li>
 </ul>
@@ -1216,11 +1211,11 @@ which persons are registered to itself. This can be very slow if the number of <
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Makes it easier to track changes in <code>Attendance</code> objects as changes can be detected by a replacement of the
+<p>Pros: It is easier to track changes in <code>Attendance</code> objects as changes can be detected by a replacement of the
 <code>Attendance</code> object in the attendance list.</p>
 </li>
 <li>
-<p>Cons: Makes it more difficult to implement since the entire object has to be replaced whenever
+<p>Cons: It is more difficult to implement since the entire object has to be replaced whenever
 a change needs to be made, such as when marking attendance.</p>
 </li>
 </ul>
@@ -1231,11 +1226,11 @@ a change needs to be made, such as when marking attendance.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Makes it easier to implement marking of attendance since the <code>hasAttended</code> property
+<p>Pros: It is easier to implement marking of attendance since the <code>hasAttended</code> property
 inside the object can be directly mutated.</p>
 </li>
 <li>
-<p>Cons: Makes it more difficult to track the changes since mutating the object does not directly
+<p>Cons: It is more difficult to track the changes since mutating the object does not directly
 trigger any events.</p>
 </li>
 </ul>
@@ -1253,12 +1248,12 @@ trigger any events.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Makes it easier to undo the command since toggling is always valid while marking a participant
+<p>Pros: It is easier to undo the command since toggling is always valid while marking a participant
 has attended may not always be valid since that person may have already been marked as attended so undoing
 the command has to account for that.</p>
 </li>
 <li>
-<p>Cons: Makes it less intuitive for the user since the result of toggling
+<p>Cons: It is less intuitive for the user since the result of toggling
 depends on the current state of the attendance.</p>
 </li>
 </ul>
@@ -1270,10 +1265,10 @@ as not attended</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Makes it more intuitive for the user since marking as attended and not attended is a direct action.</p>
+<p>Pros: It is more intuitive for the user since marking as attended and not attended is a direct action.</p>
 </li>
 <li>
-<p>Cons: Makes it harder to undo the command since the command may not be successful if for example the participant
+<p>Cons: It is harder to undo the command since the command may not be successful if for example the participant
 has already been marked as attended when the user tries to mark the participant as attended.</p>
 </li>
 </ul>
@@ -1284,15 +1279,29 @@ has already been marked as attended when the user tries to mark the participant 
 </div>
 </div>
 <div class="sect2">
-<h3 id="three-pane-ui"><a class="link" href="#three-pane-ui">4.6. Three Pane UI</a></h3>
+<h3 id="proposed-mass-registration"><a class="link" href="#proposed-mass-registration">4.6. [Proposed] Mass Registration</a></h3>
+<div class="sect3">
+<h4 id="proposed-implementation"><a class="link" href="#proposed-implementation">4.6.1. Proposed Implementation</a></h4>
 <div class="paragraph">
-<p>The proposed new UI is a 3 pane UI consisting of list of persons, events, and attendees for the selected event. Being able to view all three panes will allow the user to read off the desired command parameters without having to switch between lists.</p>
+<p>This feature is proposed to allow for mass registration of multiple persons to a single event.
+The proposed implementation is to make use of tags to select groups of persons to register for an event.
+It is proposed that the <code>Tag</code> class be split into <code>PersonTag</code> and <code>EpicEventTag</code> so as to differentiate
+the two. This allows for searching of persons by <code>PersonTag</code> and searching for events by <code>EpicEventTag</code>.
+By doing so, a group of persons can be identified by <code>PersonTag</code> and thus registered to an event
+by iteratively registering each person.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="three-pane-ui"><a class="link" href="#three-pane-ui">4.7. Three Pane UI</a></h3>
+<div class="paragraph">
+<p>The new UI is a 3 pane UI consisting of list of persons, events, and attendees for the selected event. Being able to view all three panes will allow the user to read off the desired command parameters without having to switch between lists.</p>
 </div>
 <div class="paragraph">
 <p>In addition, <code>edit</code> and <code>edit-command</code> commands are now implemented in a mutable manner (see <a href="#edit-curr-implementation">Section 4.1.2</a>). As a result, the <code>ObservableList</code> that wraps the people and event data will no longer be notified to changes. The new UI must be notified of changes to data so it can refresh itself to reflect such changes. The UI will also have to respond to new commands such as the <code>select-event</code> and <code>toggle</code>. The <code>select-event</code> could invoke a change in the contents of the Attendance Panel and <code>toggle</code> will toggle the attendance status and is reflected in the UI in the form of the attendance icon change.</p>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">4.6.1. Current Implementation</a></h4>
+<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">4.7.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The UI now consists of 3 list panels: <code>PersonListPanel</code>, <code>EpicEventListPanel</code> and <code>AttendanceListPanel</code>. Each panel is a list of <code>PersonCard</code>, <code>EpicEventCard</code> and <code>AttendanceCard</code> respectively. Since the <code>AttendanceCard</code> has the same UI as <code>PersonCard</code> with the addition of the toggle icon, it extends <code>PersonCard</code>. The <code>model</code> maintains a <code>selectedEpicEvent</code> variable whose attendees will be displayed in the <code>AttendancePanel</code>.</p>
 </div>
@@ -1339,7 +1348,7 @@ has already been marked as attended when the user tries to mark the participant 
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">4.6.2. Design Considerations</a></h4>
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">4.7.2. Design Considerations</a></h4>
 <div class="paragraph">
 <p>When deciding on the UI, the following aspects of user experience were considered:</p>
 </div>
@@ -1427,7 +1436,7 @@ has already been marked as attended when the user tries to mark the participant 
 </div>
 </div>
 <div class="sect3">
-<h4 id="binding-data-to-attendance-panel"><a class="link" href="#binding-data-to-attendance-panel">4.6.3. Binding Data to Attendance Panel</a></h4>
+<h4 id="binding-data-to-attendance-panel"><a class="link" href="#binding-data-to-attendance-panel">4.7.3. Binding Data to Attendance Panel</a></h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1474,33 +1483,33 @@ has already been marked as attended when the user tries to mark the participant 
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-export-an-event"><a class="link" href="#proposed-export-an-event">4.7. [proposed] Export an Event</a></h3>
+<h3 id="proposed-export-an-event"><a class="link" href="#proposed-export-an-event">4.8. [proposed] Export an Event</a></h3>
 <div class="paragraph">
-<p>The proposed export command exports the name of the attendees, their phone number,
-their email address, their home address and their attendance information of a particular
-event to a csv file into a file path specified by the user. Having the attendance of a
-particular event in a csv file would enable the users to analyse the data using other tools.</p>
+<p>The proposed export command exports the names of the attendees, their phone numbers,
+their email addresses, their home addresses and their attendance information of a particular
+event to a csv file into a file path specified by the user. Having all the information of a
+particular event in a csv file would enable the user to analyse the data using other tools.</p>
 </div>
 <div class="sect3">
-<h4 id="proposed-implementation"><a class="link" href="#proposed-implementation">4.7.1. [proposed] Implementation</a></h4>
+<h4 id="proposed-implementation-2"><a class="link" href="#proposed-implementation-2">4.8.1. [proposed] Implementation</a></h4>
 <div class="paragraph">
 <p>The <code>export-event</code> command input is first parsed in <code>EventPlannerParser</code> to create an <code>ExportEventCommand</code>.
 The execution of it creates a <code>CsvEventPlannerStorage</code>. The subsequent export mechanism is handled by a <code>CsvEventPlannerStorage</code> where event data is parsed by <code>CsvUtil</code> and then exported as a file through <code>CsvFileStorage</code> using the file path specified by the user.</p>
 </div>
 <div class="paragraph">
-<p><a href="#SDCSV">Figure 22</a> below shows how the csv event export is processed in the storage component.</p>
+<p><a href="#SDCSV">Figure 21</a> below shows how the csv event export is processed in the storage component.</p>
 </div>
 <div id="SDCSV" class="imageblock">
 <div class="content">
 <img src="images/ExportEventSequenceDiagram.png" alt="ExportEventSequenceDiagram" width="650">
 </div>
-<div class="title">Figure 22. Sequence Diagram for csv export</div>
+<div class="title">Figure 21. Sequence Diagram for csv export</div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">4.7.2. Design Considerations</a></h4>
+<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">4.8.2. Design Considerations</a></h4>
 <div class="paragraph">
-<p>When deciding on the export option, the following aspects of user experience are considered.</p>
+<p>When deciding on the export options, the following aspects of user experience are considered.</p>
 </div>
 <div class="sect4">
 <h5 id="aspect-data-to-be-exported"><a class="link" href="#aspect-data-to-be-exported">Aspect: Data to be Exported</a></h5>
@@ -1536,9 +1545,42 @@ The execution of it creates a <code>CsvEventPlannerStorage</code>. The subsequen
 </div>
 </div>
 </div>
+<div class="sect3">
+<h4 id="aspect-format-of-exported-files"><a class="link" href="#aspect-format-of-exported-files">4.8.3. Aspect: Format of Exported Files</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice)</strong>: csv files</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: The format can be imported and then processed by most data processing software in the market.</p>
+</li>
+<li>
+<p>Cons: The files are not reader friendly if they are open directly as a text file.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2</strong>: excel files</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Excel files are well formatted when opened with Microsoft Excel software.</p>
+</li>
+<li>
+<p>Cons: Even though Microsoft Excel software is used by many people, some may prefer other data processing software that supports csv files but not excel files.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">4.8. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">4.9. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
@@ -1648,7 +1690,7 @@ Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows y
 <div class="content">
 <img src="images/chrome_save_as_pdf.png" alt="chrome save as pdf" width="300">
 </div>
-<div class="title">Figure 23. Saving documentation as PDF files in Chrome</div>
+<div class="title">Figure 22. Saving documentation as PDF files in Chrome</div>
 </div>
 </div>
 </div>
@@ -2625,7 +2667,7 @@ Expected: Similar to previous.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-10 23:13:54 UTC
+Last updated 2018-04-13 22:51:46 UTC
 </div>
 </div>
 </body>

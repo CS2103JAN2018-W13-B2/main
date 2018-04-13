@@ -37,7 +37,8 @@ EPIC is optimized for event planners who prefer typing to using the mouse.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Major enhancement</strong>: overhauled UI to a three panel system and binds UI elements to data in the Model component and ensuring that updates to data is reflected in the UI.</p>
+<p><strong>Major enhancement</strong>: overhauled UI to a three panel system that
+binds UI elements to data in the Model component and ensures that updates to data are reflected in the UI.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -67,7 +68,7 @@ EPIC is optimized for event planners who prefer typing to using the mouse.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Managed release <code>v.1.4.1</code>  on GitHub</p>
+<p>Managed release <a href="https://github.com/CS2103JAN2018-W13-B2/main/releases/tag/1.4.1">v.1.4.1</a>  on GitHub</p>
 </li>
 </ul>
 </div>
@@ -112,9 +113,6 @@ EPIC is optimized for event planners who prefer typing to using the mouse.</p>
 </div>
 </li>
 </ul>
-</div>
-<div class="paragraph">
-<p><em>{you can add/remove categories in the list above}</em></p>
 </div>
 </div>
 </div>
@@ -200,18 +198,18 @@ By default, the first event in the Event List Panel is the selected event.
 <div class="sect2">
 <h3 id="ui-component"><a class="link" href="#ui-component">UI Component</a></h3>
 <div class="paragraph">
-<p>The UI component is responsible for interfacing with the user. The UI component:</p>
+<p>The UI component is responsible for interfacing with the user. The UI component has three main responsibilities:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Executes user commands using the Logic component.</p>
+<p>It executes user commands using the Logic component.</p>
 </li>
 <li>
-<p>Binds itself to some data in the Model component so that the UI can auto-update when data in the Model component changes.</p>
+<p>It binds itself to some data in the Model component so that the UI can auto-update when data in the Model component changes.</p>
 </li>
 <li>
-<p>Responds to events raised from various parts of the App and updates the UI accordingly.</p>
+<p>It responds to events raised from various parts of the App and updates the UI accordingly.</p>
 </li>
 </ul>
 </div>
@@ -270,7 +268,7 @@ If no  <code>EpicEvent</code> has been selected, <code>AttendeeList</code> will 
 <div class="sect3">
 <h4 id="technical-overview"><a class="link" href="#technical-overview">Technical Overview</a></h4>
 <div class="paragraph">
-<p>The UI component (<a href="#UiClassDiagram">Structure of the UI Component</a>) is responsible for interfacing with the user. The UI component uses the JavaFx UI framework. The UI consists of a <code>MainWindow</code> that is made up of parts e.g.<code>CommandBox</code>, <code>ResultDisplay</code>, <code>PersonListPanel</code>, <code>StatusBarFooter</code> etc. All these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.</p>
+<p>The UI component (<a href="#UiClassDiagram">Structure of the UI Component</a>) uses the JavaFx UI framework. The UI consists of a <code>MainWindow</code> that is made up of parts e.g.<code>CommandBox</code>, <code>ResultDisplay</code>, <code>PersonListPanel</code>, <code>StatusBarFooter</code> etc. All these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.</p>
 </div>
 <div id="UiClassDiagram" class="imageblock">
 <div class="content">
@@ -282,8 +280,7 @@ If no  <code>EpicEvent</code> has been selected, <code>AttendeeList</code> will 
 <p><strong>API</strong> : <a href="{repoURL}/src/main/java/seedu/address/ui/Ui.java"><code>Ui.java</code></a></p>
 </div>
 <div class="paragraph">
-<p>The UI component uses JavaFx UI framework.
-The layout of these UI parts are defined in matching <code>.fxml</code> files that are in the <code>src/main/resources/view</code> folder.
+<p>The layout of these UI parts are defined in matching <code>.fxml</code> files that are in the <code>src/main/resources/view</code> folder.
 For example, the layout of the <a href="{repoURL}/src/main/java/seedu/address/ui/MainWindow.java"><code>MainWindow</code></a> is specified in <a href="{repoURL}/src/main/resources/view/MainWindow.fxml"><code>MainWindow.fxml</code></a></p>
 </div>
 </div>
@@ -291,7 +288,7 @@ For example, the layout of the <a href="{repoURL}/src/main/java/seedu/address/ui
 <div class="sect2">
 <h3 id="three-pane-ui"><a class="link" href="#three-pane-ui">Three Pane UI</a></h3>
 <div class="paragraph">
-<p>The proposed new UI is a 3 pane UI consisting of list of persons, events, and attendees for the selected event. Being able to view all three panes will allow the user to read off the desired command parameters without having to switch between lists.</p>
+<p>The new UI is a 3 pane UI consisting of list of persons, events, and attendees for the selected event. Being able to view all three panes will allow the user to read off the desired command parameters without having to switch between lists.</p>
 </div>
 <div class="paragraph">
 <p>In addition, <code>edit</code> and <code>edit-command</code> commands are now implemented in a mutable manner (see <a href="#edit-curr-implementation">[edit-curr-implementation]</a>). As a result, the <code>ObservableList</code> that wraps the people and event data will no longer be notified to changes. The new UI must be notified of changes to data so it can refresh itself to reflect such changes. The UI will also have to respond to new commands such as the <code>select-event</code> and <code>toggle</code>. The <code>select-event</code> could invoke a change in the contents of the Attendance Panel and <code>toggle</code> will toggle the attendance status and is reflected in the UI in the form of the attendance icon change.</p>
@@ -349,7 +346,7 @@ For example, the layout of the <a href="{repoURL}/src/main/java/seedu/address/ui
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-10 23:13:54 UTC
+Last updated 2018-04-13 22:51:47 UTC
 </div>
 </div>
 </body>

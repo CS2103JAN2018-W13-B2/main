@@ -167,7 +167,7 @@ Format: <code>undo</code></p>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Undoable commands: those commands that modify the event planner&#8217;s content.
+<p>Undoable commands: those commands that modify EPIC&#8217;s content.
 To see the full list of undoable commands, refer to <a href="#List of undoable commands">[List of undoable commands]</a></p>
 </div>
 </td>
@@ -495,39 +495,6 @@ the user undoes a <code>ClearCommand</code>.</p>
 <div class="sect3">
 <h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
 <div class="sect4">
-<h5 id="aspect-implementation-of-code-undoablecommand-code"><a class="link" href="#aspect-implementation-of-code-undoablecommand-code">Aspect: Implementation of <code>UndoableCommand</code></a></h5>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Alternative 1 (current choice):</strong> Add a new abstract method <code>executeUndoableCommand()</code></p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Undo/redo functionality will now be part of the default behaviour. Classes that deal with <code>Command</code> will not have to know that <code>executeUndoableCommand()</code> exists.</p>
-</li>
-<li>
-<p>Cons: New developers will find the template pattern difficult to understand.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Alternative 2:</strong> Override <code>execute()</code></p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: New developers will not have to learn the above template pattern</p>
-</li>
-<li>
-<p>Cons: Command classes that inherit from <code>UndoableCommand</code> must remember to call <code>super.execute()</code>, or lose the ability to be undone/redone.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect4">
 <h5 id="aspect-how-undo-and-redo-executes"><a class="link" href="#aspect-how-undo-and-redo-executes">Aspect: How Undo and Redo Executes</a></h5>
 <div class="ulist">
 <ul>
@@ -561,6 +528,39 @@ the user undoes a <code>ClearCommand</code>.</p>
 </div>
 </div>
 <div class="sect4">
+<h5 id="aspect-implementation-of-code-undoablecommand-code"><a class="link" href="#aspect-implementation-of-code-undoablecommand-code">Aspect: Implementation of <code>UndoableCommand</code></a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Add a new abstract method <code>executeUndoableCommand()</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Undo/redo functionality will now be part of the default behaviour. Classes that deal with <code>Command</code> will not have to know that <code>executeUndoableCommand()</code> exists.</p>
+</li>
+<li>
+<p>Cons: New developers will find the template pattern difficult to understand.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Override <code>execute()</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: New developers will not have to learn the above template pattern</p>
+</li>
+<li>
+<p>Cons: Command classes that inherit from <code>UndoableCommand</code> must remember to call <code>super.execute()</code>, or lose the ability to be undone/redone.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
 <h5 id="aspect-type-of-commands-that-can-be-undone-redone"><a class="link" href="#aspect-type-of-commands-that-can-be-undone-redone">Aspect: Type of Commands that Can be Undone/Redone</a></h5>
 <div class="ulist">
 <ul>
@@ -582,7 +582,7 @@ the user undoes a <code>ClearCommand</code>.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Might be more intuitive for the user.</p>
+<p>Pros: It might be more intuitive for the user.</p>
 </li>
 <li>
 <p>Cons: User has no way of skipping such commands if he or she just want to reset the state of the event planner and not the view.
@@ -643,7 +643,7 @@ the user undoes a <code>ClearCommand</code>.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-10 23:13:54 UTC
+Last updated 2018-04-13 22:51:47 UTC
 </div>
 </div>
 </body>

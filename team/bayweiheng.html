@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.6.1">
+<title>Bay Wei Heng - Project Portfolio</title>
+<link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Bay Wei Heng - Project Portfolio</h1>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="project-event-planning-isn-t-complicated-epic"><a class="link" href="#project-event-planning-isn-t-complicated-epic">PROJECT: Event Planning isn’t Complicated (EPIC)</a></h2>
+<div class="sectionbody">
+<hr>
+</div>
+</div>
+<div class="sect1">
+<h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Event Planning isn’t Complicated (EPIC) is a desktop application used for <strong>event planning
+and registration for large organisations</strong>.
+EPIC is optimized for event planners who prefer typing to using the mouse.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">Summary of contributions</a></h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Major Enhancement</strong>: Implementation of event-person interactions</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Description: Persons can be registered for/deregistered from events, and a particular event&#8217;s participants can be
+displayed. These functions form the core of the application.</p>
+</li>
+<li>
+<p>Design Decisions: There were various design decisions I had to make through the course of implementing these interactions.
+Two of the most notable ones are:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Editing of persons is done is a mutable manner.</p>
+</li>
+<li>
+<p>Deletion of persons still registered for an event is not allowed.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Justification: I made the above choices for the following reasons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Mutable edit - Allows editing of persons to be done in an efficient manner; events automatically receive the edited participant&#8217;s
+data, without the need to duplicate the data and update each event manually.</p>
+</li>
+<li>
+<p>Deletion constraint - Acts as a safeguard to ensure that every participant&#8217;s data is present during event registration.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Highlights: This enhancement was done across multiple components:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Modified the Model component to allow navigability from events to persons</p>
+</li>
+<li>
+<p>Added new commands to the Logic component, and provided their implementation</p>
+</li>
+<li>
+<p>Ensured that the UI component updates whenever a person is edited, even when it is done in a mutable manner, and similarly
+when a person is registered for/deregistered from an event.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Minor Enhancement</strong>: Overhaul of undo-redo functionality</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Previous Implementation: In the previous iteration of the product, the <strong>entire</strong> memory contents of the application were duplicated
+and stored to facilitate undoing/redoing commands.</p>
+</li>
+<li>
+<p>Current Implementation: In EPIC v1.5, <em>every</em> undoable command now learns how to undo/redo itself in the pre-processing
+stage. This knowledge is stored alongside the command.</p>
+</li>
+<li>
+<p>Justification: The new implementation only requires essential, and hence minimal, information to be stored, <strong>significantly</strong>
+reducing memory consumption of EPIC.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Code contributed</strong>: [<a href="https://github.com/CS2103JAN2018-W13-B2/main/blob/master/collated/functional/bayweiheng.md">Functional code</a>] [<a href="https://github.com/CS2103JAN2018-W13-B2/main/blob/master/collated/test/bayweiheng.md">Test code</a>]</p>
+</li>
+<li>
+<p><strong>Other contributions</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Project management:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Set up team repository on GitHub</p>
+</li>
+<li>
+<p>Set up continuous integration tools such as <a href="https://travis-ci.org/CS2103JAN2018-W13-B2/main">Travis CI</a> and <a href="https://ci.appveyor.com/project/bayweiheng/addressbook-level4-kqc9e">Appveyor</a></p>
+</li>
+<li>
+<p>Set up coverage checkers such as <a href="https://coveralls.io/github/CS2103T-2018-W13-B2">Coveralls</a></p>
+</li>
+<li>
+<p>Managed releases <a href="https://github.com/CS2103JAN2018-W13-B2/main/releases/tag/v1.2">v1.2</a>, <a href="https://github.com/CS2103JAN2018-W13-B2/main/releases/tag/v1.3">v1.3</a>,
+and <a href="https://github.com/CS2103JAN2018-W13-B2/main/releases/tag/1.4">v1.4</a> on GitHub</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Documentation:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Editor for the user and developer guides, ensuring consistency and checking for language errors. Relevant PRs: <a href="https://github.com/CS2103JAN2018-W13-B2/main/pull/103">#103</a>
+and <a href="https://github.com/CS2103JAN2018-W13-B2/main/pull/147">#147</a></p>
+</li>
+<li>
+<p>Added various example outcomes for previous commands in the User Guide</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Community:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>PRs reviewed (with non-trivial review comments): <a href="https://github.com/CS2103JAN2018-W13-B2/main/pull/41">#41</a></p>
+</li>
+<li>
+<p>Posted bugs of teammates as issues on GitHub: <a href="https://github.com/CS2103JAN2018-W13-B2/main/issues/107">#107</a> and <a href="https://github.com/CS2103JAN2018-W13-B2/main/issues/155">#155</a></p>
+</li>
+<li>
+<p>Reported bugs and suggestions for other teams in the class. Relevant issues on GitHub:
+<a href="https://github.com/CS2103JAN2018-T11-B2/main/issues/110">#110</a> (has follow-up with team),
+<a href="https://github.com/CS2103JAN2018-T11-B2/main/issues/89">#89</a> (suggested fix),
+<a href="https://github.com/CS2103JAN2018-T11-B2/main/issues/112">#112</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-user-guide"><a class="link" href="#contributions-to-the-user-guide">Contributions to the User Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users.</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="interacting-with-the-gui"><a class="link" href="#interacting-with-the-gui">Interacting with the GUI</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Clicking on an event in the Events Pane selects that event, allowing you to see all persons registered for that event in the Attendees Pane,
+as well as perform actions such as toggling attendance.
+Selecting an event can also be done with the <code>select</code> command in the command box.</p>
+</li>
+<li>
+<p>Clicking on the tick/cross symbol next to a person&#8217;s details in the Attendees Pane allows you to toggle
+that person&#8217;s attendance for the currently selected event.
+Toggling the attendance can also be done with the <code>toggle</code> command.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="registering-a-person-for-an-event-code-register-code"><a class="link" href="#registering-a-person-for-an-event-code-register-code">Registering a Person for an Event: <code>register</code></a></h3>
+<div class="paragraph">
+<p>Registers the specified person for an event in EPIC.<br>
+Format: <code>register INDEX EVENT_NAME</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Registers the person at the specified <code>INDEX</code>.
+The index refers to the index number shown in the Persons Pane.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong>: 1, 2, 3, &#8230;&#8203;</p>
+</li>
+<li>
+<p><code>EVENT_NAME</code> must match the name of an event in EPIC exactly.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>list</code><br>
+<code>register 2 AY201718 Graduation</code><br>
+Registers the 2nd person in EPIC for AY201718 Graduation.</p>
+</li>
+<li>
+<p><code>find Betsy</code><br>
+<code>register 1 Computing Seminar</code><br>
+Registers the 1st person in the results of the <code>find</code> command for Computing Seminar.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deregistering-a-person-from-an-event-code-deregister-code"><a class="link" href="#deregistering-a-person-from-an-event-code-deregister-code">Deregistering a Person from an Event: <code>deregister</code></a></h3>
+<div class="paragraph">
+<p>Deregisters the specified person from an event in the EPIC.<br>
+Format: <code>deregister INDEX EVENT_NAME</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Deregisters the person at the specified <code>INDEX</code>.
+The index refers to the index number shown in the Persons Pane.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong>: 1, 2, 3, &#8230;&#8203;</p>
+</li>
+<li>
+<p><code>EVENT_NAME</code> must match the name of an event in EPIC exactly.</p>
+</li>
+<li>
+<p>The person to be deregistered must be already in the event.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>list</code><br>
+<code>deregister 2 AY201718 Graduation</code><br>
+Deregisters the 2nd person in EPIC from AY201718 Graduation.</p>
+</li>
+<li>
+<p><code>find Betsy</code><br>
+<code>deregister 1 Computing Seminar</code><br>
+Deregisters the 1st person in the results of the <code>find</code> command from Computing Seminar.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="listing-all-event-participants-code-list-registered-code"><a class="link" href="#listing-all-event-participants-code-list-registered-code">Listing all Event Participants: <code>list-registered</code></a></h3>
+<div class="paragraph">
+<p>Lists all participants for the specified event.<br>
+Format: <code>list-registered EVENT_NAME</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><code>EVENT_NAME</code> must match the name of an event in EPIC exactly.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="undoing-commands-code-undo-code"><a class="link" href="#undoing-commands-code-undo-code">Undoing Commands : <code>undo</code></a></h3>
+<div class="paragraph">
+<p>Restores EPIC to the state before the previous <em>undoable</em> command was executed.<br>
+There is no guarantee that relative ordering of persons/events will be maintained after the undoing
+of a <code>delete</code> or <code>delete-event</code> command.<br>
+Format: <code>undo</code></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Undoable commands: those commands that modify EPIC&#8217;s content.
+To see the full list of undoable commands, refer to <a href="#List of undoable commands">[List of undoable commands]</a></p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>delete 1</code><br>
+<code>list</code><br>
+<code>undo</code><br>
+Undoes the <code>delete 1</code> command. Note that <code>list</code> is not an undoable command.</p>
+</li>
+<li>
+<p><code>select 1</code><br>
+<code>list</code><br>
+<code>undo</code><br>
+The <code>undo</code> command fails as there are no undoable commands executed previously.</p>
+</li>
+<li>
+<p><code>delete 1</code><br>
+<code>clear</code><br>
+<code>undo</code><br>
+<code>undo</code><br>
+Undoes the <code>clear</code> command, followed by the <code>delete 1</code> command.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="redoing-commands-code-redo-code"><a class="link" href="#redoing-commands-code-redo-code">Redoing Commands : <code>redo</code></a></h3>
+<div class="paragraph">
+<p>Reverses the most recent <code>undo</code> command. This will <strong>fail</strong> if the most recent command
+was neither <code>undo</code> nor <code>redo</code> (See last example below)<br>
+Format: <code>redo</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>delete 1</code><br>
+<code>undo</code><br>
+<code>redo</code><br>
+Redoes the <code>delete 1</code> command.</p>
+</li>
+<li>
+<p><code>delete 1</code><br>
+<code>redo</code><br>
+The <code>redo</code> command fails as there are no <code>undo</code> commands executed previously.</p>
+</li>
+<li>
+<p><code>delete 1</code><br>
+<code>clear</code><br>
+<code>undo</code><br>
+<code>undo</code><br>
+<code>redo</code><br>
+<code>redo</code><br>
+Redoes the <code>delete 1</code> command, followed by the <code>clear</code> command.</p>
+</li>
+<li>
+<p><code>add-event n/MyEvent</code><br>
+<code>undo</code><br>
+<code>add-event n/MyEvent</code><br>
+<code>redo</code><br>
+The <code>redo</code> command fails as the most recent command was not an <code>undo/redo</code> command. This
+prevents ill-defined behavior like trying to add back an event that already exists.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">Contributions to the Developer Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project.</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="edit-person-event-feature"><a class="link" href="#edit-person-event-feature">Edit Person/Event Feature</a></h3>
+<div class="sect3">
+<h4 id="previous-implementation"><a class="link" href="#previous-implementation">Previous Implementation</a></h4>
+<div class="paragraph">
+<p>In <a href="https://github.com/se-edu/addressbook-level4">AddressBook-Level4</a>, the <code>edit</code> command was performed by creating a new <code>Person</code> and passing it to a <code>UniquePersonList</code> in the model, which would then replace the to-be-edited <code>Person</code> with it.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">    <span class="type">int</span> index = internalList.indexOf(personToEdit);
+    Person editedPerson = <span class="keyword">new</span> Person(name, ...);
+    internalList.set(index, editedPerson);</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="edit-curr-implementation"><a class="link" href="#edit-curr-implementation">Current Implementation</a></h4>
+<div class="paragraph">
+<p>In EPIC, the <code>edit</code> and <code>edit-event</code> commands are now implemented in a mutable manner - instead of replacing the to-be-edited <code>Person/EpicEvent</code> with the new one, we edit the details of the to-be-edited <code>Person/EpicEvent</code> directly.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">    <span class="type">int</span> index = internalList.indexOf(personToEdit);
+    Person editedPerson = <span class="keyword">new</span> Person(name, ...);
+    internalList.get(index).setPerson(editedPerson); <span class="comment">// setPerson edits internal details using those of the supplied Person</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-implementation-of-code-edit-code"><a class="link" href="#aspect-implementation-of-code-edit-code">Aspect: Implementation of <code>edit</code></a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Edit in a mutable manner</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Since EPIC has both <code>EpicEvent</code> and <code>Person</code> objects, which maintain references to one another, editing a <code>Person/EpicEvent</code> in this manner automatically updates the <code>EpicEvent/Person</code> objects that is associated with it.</p>
+</li>
+<li>
+<p>Cons: Implementation of <code>undo</code> will be more difficult.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Edit in an immutable manner</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Implementation of <code>undo</code> is easier, since we can just replace the current <code>EventPlanner</code> with the previous one.</p>
+</li>
+<li>
+<p>Cons: Editing a <code>Person/EpicEvent</code> will require passing a copy of the newly-created <code>Person/EpicEvent</code> to all objects associated with the to-be-edited version, introducing significant overhead</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="changes-from-previous-implementation"><a class="link" href="#changes-from-previous-implementation">Changes from Previous Implementation</a></h4>
+<div class="paragraph">
+<p>Instead of saving the entire event planner each time we execute an <code>UndoableCommand</code>, each <code>UndoableCommand</code> knows how to <code>undo/redo</code> itself.
+Each <code>UndoableCommand</code> has an <code>oppositeCommand</code> field, which is another <code>UndoableCommand</code> that, when executed, reverses the changes made by the original command.
+The sequence diagram for the new <code>undo()</code> implementation is shown in <a href="#SDUndo">Sequence Diagram for new undo implementation</a>.</p>
+</div>
+<div id="SDUndo" class="imageblock">
+<div class="content">
+<img src="../images/UndoSequenceDiagram.png" alt="UndoSequenceDiagram" width="650">
+</div>
+<div class="title">Figure 1. Sequence Diagram for new undo implementation</div>
+</div>
+<div class="paragraph">
+<p>The <code>oppositeCommand</code> is generated in the <code>execute()</code> method, after <code>preprocessUndoableCommand()</code>. This is because generating the <code>oppositeCommand</code>
+requires knowledge of the actual <code>Person/EpicEvent</code> objects to be modified. For example, the <code>oppositeCommand</code> for a <code>deletePersonCommand</code> is an <code>addPersonCommand</code>,
+but we only know the person to be deleted after the pre-processing step.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Each <code>UndoableCommand</code> now requires its individual <code>generateOppositeCommand()</code> implementation. Hence, this method is made abstract in
+the abstract class <code>UndoableCommand</code>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>There was no <code>Command</code> that could easily reverse the changes of a <code>ClearCommand</code>, hence a new <code>Command</code> <code>RestoreCommand</code> had to be created. Since the sole purpose
+of this command is to serve as the <code>oppositeCommand</code> of a <code>ClearCommand</code>, this command is not directly accessible to the user, and can only be executed when
+the user undoes a <code>ClearCommand</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-how-undo-and-redo-executes"><a class="link" href="#aspect-how-undo-and-redo-executes">Aspect: How Undo and Redo Executes</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Store the minimal knowledge required to undo each command inside itself.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Significantly less memory is used (e.g. for <code>delete</code>, just save the person being deleted). Compatible with mutable commands.</p>
+</li>
+<li>
+<p>Cons: Implementation is more complicated.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Save the entire event planner after every undoable command.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Implementation is easy.</p>
+</li>
+<li>
+<p>Cons: Performance issues may result due to high memory usage. Also, this is incompatible with the mutable <code>edit</code> and <code>edit-event</code> implementations.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2018-04-13 22:51:47 UTC
+</div>
+</div>
+</body>
+</html>
