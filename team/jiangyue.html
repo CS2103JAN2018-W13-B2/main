@@ -98,6 +98,7 @@
 </li>
 </ul>
 </div>
+<div style="page-break-after: always;"></div>
 </div>
 </div>
 <div class="sect1">
@@ -242,6 +243,7 @@ Deletes the 1st event in the results of the <code>find-event</code> command.</p>
 </li>
 </ul>
 </div>
+<div style="page-break-after: always;"></div>
 </div>
 </div>
 </div>
@@ -290,12 +292,82 @@ Deletes the 1st event in the results of the <code>find-event</code> command.</p>
 <div class="title">Figure 1. Interactions Inside the Storage Component to restore data</div>
 </div>
 <div class="sect2">
+<h3 id="find-event-feature"><a class="link" href="#find-event-feature">Find Event Feature</a></h3>
+<div class="paragraph">
+<p>The find-event command enables the user to find events from the event list with keywords. The command finds all events whose names contain any of the given keywords. The user can further modify the events with <code>edit-event</code> or <code>delete-event</code> command once the event is found.</p>
+</div>
+<div class="paragraph">
+<p><a href="#SDFEC">Sequence Diagram for find-event command</a> below shows how the <code>find-event</code> command is processed in the Logic component.</p>
+</div>
+<div id="SDFEC" class="imageblock">
+<div class="content">
+<img src="../images/FindEventCommandSequenceDiagram.png" alt="FindEventCommandSequenceDiagram" width="650">
+</div>
+<div class="title">Figure 2. Sequence Diagram for find-event command</div>
+</div>
+<div class="sect3">
+<h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
+<div class="paragraph">
+<p>The <code>find-event</code> command input is passed into an <code>EventPlannerParser</code> object. The <code>EventPlannerParser</code> reads the command word “find-events” and creates a <code>FindEventCommandParser</code> object that further parses the command input and creates a <code>FindEventCommand</code>. The <code>FindEventCommand</code> filters the the event list based on the keywords and updates Model components on changes in the filtered event list.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-keyword-matching-pattern"><a class="link" href="#aspect-keyword-matching-pattern">Aspect: Keyword Matching Pattern</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Match any of the keywords</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: The user can find multiple events given multiple keywords for events.</p>
+</li>
+<li>
+<p>Cons: The user cannot pin-point an event if the keyword used for matching is also inside other event names.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Match all the keywords</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: The find events function will be more targeted and precise.</p>
+</li>
+<li>
+<p>Cons: The users cannot find different types of events at the same time.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 3:</strong> Fuzzy search</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: The user can find an event even if he/she has forgotten the name of the event.</p>
+</li>
+<li>
+<p>Cons: It is harder to implement the find function.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="proposed-export-an-event"><a class="link" href="#proposed-export-an-event">[proposed] Export an Event</a></h3>
 <div class="paragraph">
-<p>The proposed export command exports the name of the attendees, their phone number,
-their email address, their home address and their attendance information of a particular
-event to a csv file into a file path specified by the user. Having the attendance of a
-particular event in a csv file would enable the users to analyse the data using other tools.</p>
+<p>The proposed export command exports the names of the attendees, their phone numbers,
+their email addresses, their home addresses and their attendance information of a particular
+event to a csv file into a file path specified by the user. Having all the information of a
+particular event in a csv file would enable the user to analyse the data using other tools.</p>
 </div>
 <div class="sect3">
 <h4 id="proposed-implementation"><a class="link" href="#proposed-implementation">[proposed] Implementation</a></h4>
@@ -310,13 +382,13 @@ The execution of it creates a <code>CsvEventPlannerStorage</code>. The subsequen
 <div class="content">
 <img src="../images/ExportEventSequenceDiagram.png" alt="ExportEventSequenceDiagram" width="650">
 </div>
-<div class="title">Figure 2. Sequence Diagram for csv export</div>
+<div class="title">Figure 3. Sequence Diagram for csv export</div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">Design Considerations</a></h4>
 <div class="paragraph">
-<p>When deciding on the export option, the following aspects of user experience are considered.</p>
+<p>When deciding on the export options, the following aspects of user experience are considered.</p>
 </div>
 <div class="sect4">
 <h5 id="aspect-data-to-be-exported"><a class="link" href="#aspect-data-to-be-exported">Aspect: Data to be Exported</a></h5>
@@ -352,13 +424,46 @@ The execution of it creates a <code>CsvEventPlannerStorage</code>. The subsequen
 </div>
 </div>
 </div>
+<div class="sect3">
+<h4 id="aspect-format-of-exported-files"><a class="link" href="#aspect-format-of-exported-files">Aspect: Format of Exported Files</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice)</strong>: csv files</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: The format can be imported and then processed by most data processing software in the market.</p>
+</li>
+<li>
+<p>Cons: The files are not reader friendly if they are open directly as a text file.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2</strong>: excel files</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Excel files are well formatted when opened with Microsoft Excel software.</p>
+</li>
+<li>
+<p>Cons: Even though Microsoft Excel software is used by many people, some may prefer other data processing software that supports csv files but not excel files.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-14 16:30:30 UTC
+Last updated 2018-04-14 16:41:33 UTC
 </div>
 </div>
 </body>

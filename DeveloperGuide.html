@@ -49,15 +49,16 @@
 </li>
 <li><a href="#implementation">4. Implementation</a>
 <ul class="sectlevel2">
-<li><a href="#edit-person-event-feature">4.1. Edit Person/Event Feature</a></li>
-<li><a href="#undo-redo-feature">4.2. Undo/Redo Feature</a></li>
-<li><a href="#register-deregister-persons-for-from-events">4.3. Register/Deregister Persons for/from Events</a></li>
-<li><a href="#list-registered-persons-for-an-event">4.4. List Registered Persons for an Event</a></li>
-<li><a href="#toggling-attendance">4.5. Toggling Attendance</a></li>
-<li><a href="#proposed-mass-registration">4.6. [Proposed] Mass Registration</a></li>
-<li><a href="#three-pane-ui">4.7. Three Pane UI</a></li>
-<li><a href="#proposed-export-an-event">4.8. [proposed] Export an Event</a></li>
-<li><a href="#logging">4.9. Logging</a></li>
+<li><a href="#find-event-feature">4.1. Find Event Feature</a></li>
+<li><a href="#edit-person-event-feature">4.2. Edit Person/Event Feature</a></li>
+<li><a href="#undo-redo-feature">4.3. Undo/Redo Feature</a></li>
+<li><a href="#register-deregister-persons-for-from-events">4.4. Register/Deregister Persons for/from Events</a></li>
+<li><a href="#list-registered-persons-for-an-event">4.5. List Registered Persons for an Event</a></li>
+<li><a href="#toggling-attendance">4.6. Toggling Attendance</a></li>
+<li><a href="#proposed-mass-registration">4.7. [Proposed] Mass Registration</a></li>
+<li><a href="#three-pane-ui">4.8. Three Pane UI</a></li>
+<li><a href="#proposed-export-an-event">4.9. [proposed] Export an Event</a></li>
+<li><a href="#logging">4.10. Logging</a></li>
 </ul>
 </li>
 <li><a href="#documentation">5. Documentation</a>
@@ -697,9 +698,79 @@ the Model component having to be coupled to either of them. This is an example o
 <p>This section describes some noteworthy details on how certain features are implemented.</p>
 </div>
 <div class="sect2">
-<h3 id="edit-person-event-feature"><a class="link" href="#edit-person-event-feature">4.1. Edit Person/Event Feature</a></h3>
+<h3 id="find-event-feature"><a class="link" href="#find-event-feature">4.1. Find Event Feature</a></h3>
+<div class="paragraph">
+<p>The find-event command enables the user to find events from the event list with keywords. The command finds all events whose names contain any of the given keywords. The user can further modify the events with <code>edit-event</code> or <code>delete-event</code> command once the event is found.</p>
+</div>
+<div class="paragraph">
+<p><a href="#SDFEC">Figure 12</a> below shows how the <code>find-event</code> command is processed in the Logic component.</p>
+</div>
+<div id="SDFEC" class="imageblock">
+<div class="content">
+<img src="images/FindEventCommandSequenceDiagram.png" alt="FindEventCommandSequenceDiagram" width="650">
+</div>
+<div class="title">Figure 12. Sequence Diagram for find-event command</div>
+</div>
 <div class="sect3">
-<h4 id="previous-implementation"><a class="link" href="#previous-implementation">4.1.1. Previous Implementation</a></h4>
+<h4 id="current-implementation"><a class="link" href="#current-implementation">4.1.1. Current Implementation</a></h4>
+<div class="paragraph">
+<p>The <code>find-event</code> command input is passed into an <code>EventPlannerParser</code> object. The <code>EventPlannerParser</code> reads the command word “find-events” and creates a <code>FindEventCommandParser</code> object that further parses the command input and creates a <code>FindEventCommand</code>. The <code>FindEventCommand</code> filters the the event list based on the keywords and updates Model components on changes in the filtered event list.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">4.1.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-keyword-matching-pattern"><a class="link" href="#aspect-keyword-matching-pattern">Aspect: Keyword Matching Pattern</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Match any of the keywords</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: The user can find multiple events given multiple keywords for events.</p>
+</li>
+<li>
+<p>Cons: The user cannot pin-point an event if the keyword used for matching is also inside other event names.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Match all the keywords</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: The find events function will be more targeted and precise.</p>
+</li>
+<li>
+<p>Cons: The users cannot find different types of events at the same time.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 3:</strong> Fuzzy search</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: The user can find an event even if he/she has forgotten the name of the event.</p>
+</li>
+<li>
+<p>Cons: It is harder to implement the find function.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="edit-person-event-feature"><a class="link" href="#edit-person-event-feature">4.2. Edit Person/Event Feature</a></h3>
+<div class="sect3">
+<h4 id="previous-implementation"><a class="link" href="#previous-implementation">4.2.1. Previous Implementation</a></h4>
 <div class="paragraph">
 <p>In <a href="https://github.com/se-edu/addressbook-level4">AddressBook-Level4</a>, the <code>edit</code> command was performed by creating a new <code>Person</code> and passing it to a <code>UniquePersonList</code> in the model, which would then replace the to-be-edited <code>Person</code> with it.</p>
 </div>
@@ -712,7 +783,7 @@ the Model component having to be coupled to either of them. This is an example o
 </div>
 </div>
 <div class="sect3">
-<h4 id="edit-curr-implementation"><a class="link" href="#edit-curr-implementation">4.1.2. Current Implementation</a></h4>
+<h4 id="edit-curr-implementation"><a class="link" href="#edit-curr-implementation">4.2.2. Current Implementation</a></h4>
 <div class="paragraph">
 <p>In EPIC, the <code>edit</code> and <code>edit-event</code> commands are now implemented in a mutable manner - instead of replacing the to-be-edited <code>Person/EpicEvent</code> with the new one, we edit the details of the to-be-edited <code>Person/EpicEvent</code> directly.</p>
 </div>
@@ -725,7 +796,7 @@ the Model component having to be coupled to either of them. This is an example o
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations"><a class="link" href="#design-considerations">4.1.3. Design Considerations</a></h4>
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">4.2.3. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-implementation-of-code-edit-code"><a class="link" href="#aspect-implementation-of-code-edit-code">Aspect: Implementation of <code>edit</code></a></h5>
 <div class="ulist">
@@ -762,22 +833,22 @@ the Model component having to be coupled to either of them. This is an example o
 </div>
 </div>
 <div class="sect2">
-<h3 id="undo-redo-feature"><a class="link" href="#undo-redo-feature">4.2. Undo/Redo Feature</a></h3>
+<h3 id="undo-redo-feature"><a class="link" href="#undo-redo-feature">4.3. Undo/Redo Feature</a></h3>
 <div class="sect3">
-<h4 id="current-implementation"><a class="link" href="#current-implementation">4.2.1. Current Implementation</a></h4>
+<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">4.3.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The undo/redo mechanism is facilitated by an <code>UndoRedoStack</code>, which resides inside <code>LogicManager</code>. It supports
 undoing and redoing of commands that
 modify the state of the event planner (e.g. <code>add</code>, <code>edit</code>). Such commands will inherit from <code>UndoableCommand</code>.</p>
 </div>
 <div class="paragraph">
-<p><code>UndoRedoStack</code> only deals with <code>UndoableCommands</code>. Commands that cannot be undone will inherit from <code>Command</code> instead. <a href="#UCCD">Figure 12</a> shows the class diagram for commands:</p>
+<p><code>UndoRedoStack</code> only deals with <code>UndoableCommands</code>. Commands that cannot be undone will inherit from <code>Command</code> instead. <a href="#UCCD">Figure 13</a> shows the class diagram for commands:</p>
 </div>
 <div id="UCCD" class="imageblock">
 <div class="content">
 <img src="images/LogicCommandClassDiagram.png" alt="LogicCommandClassDiagram" width="800">
 </div>
-<div class="title">Figure 12. Class Diagram for commands</div>
+<div class="title">Figure 13. Class Diagram for commands</div>
 </div>
 <div class="paragraph">
 <p>As you can see from the diagram, <code>UndoableCommand</code> adds an extra layer between the abstract <code>Command</code> class and concrete commands that can be undone, such as the <code>DeleteCommand</code>. Note that extra tasks need to be done when executing a command in an <em>undoable</em> way, such
@@ -831,7 +902,7 @@ The <code>delete 5</code> command will then be pushed onto the <code>undoStack</
 <div class="content">
 <img src="images/UndoRedoStartingStackDiagram.png" alt="UndoRedoStartingStackDiagram" width="800">
 </div>
-<div class="title">Figure 13. How a delete command modifies the UndoRedoStack</div>
+<div class="title">Figure 14. How a delete command modifies the UndoRedoStack</div>
 </div>
 <div class="paragraph">
 <p>As the user continues to use the program, more commands are added into the <code>undoStack</code>. For example, the user may execute
@@ -841,7 +912,7 @@ The <code>delete 5</code> command will then be pushed onto the <code>undoStack</
 <div class="content">
 <img src="images/UndoRedoNewCommand1StackDiagram.png" alt="UndoRedoNewCommand1StackDiagram" width="800">
 </div>
-<div class="title">Figure 14. How an add command modifies the UndoRedoStack</div>
+<div class="title">Figure 15. How an add command modifies the UndoRedoStack</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -878,7 +949,7 @@ while the latter is an <code>AddPersonCommand</code>.
 <div class="content">
 <img src="images/UndoRedoExecuteUndoStackDiagram.png" alt="UndoRedoExecuteUndoStackDiagram" width="800">
 </div>
-<div class="title">Figure 15. How an undo command utilises the UndoRedoStack</div>
+<div class="title">Figure 16. How an undo command utilises the UndoRedoStack</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -899,7 +970,7 @@ If the <code>undoStack</code> is empty, there are no other commands left to be u
 <div class="content">
 <img src="images/UndoRedoSequenceDiagram.png" alt="UndoRedoSequenceDiagram" width="800">
 </div>
-<div class="title">Figure 16. Sequence Diagram for the undo command</div>
+<div class="title">Figure 17. Sequence Diagram for the undo command</div>
 </div>
 <div class="paragraph">
 <p>The redo does the exact opposite (pops from <code>redoStack</code>, push to <code>undoStack</code>, and performs the intention of the original command).</p>
@@ -936,7 +1007,7 @@ commands like <code>delete</code> if <code>filteredPersons</code> had been alter
 <div class="content">
 <img src="images/UndoRedoNewCommand2StackDiagram.png" alt="UndoRedoNewCommand2StackDiagram" width="800">
 </div>
-<div class="title">Figure 17. How a clear command modifies the UndoRedoStack</div>
+<div class="title">Figure 18. How a clear command modifies the UndoRedoStack</div>
 </div>
 <div class="paragraph">
 <p>Commands that are not undoable are not added into the <code>undoStack</code>. For example, <code>list</code>, which inherits from <code>Command</code> rather than <code>UndoableCommand</code>, will not be added after execution:</p>
@@ -945,7 +1016,7 @@ commands like <code>delete</code> if <code>filteredPersons</code> had been alter
 <div class="content">
 <img src="images/UndoRedoNewCommand3StackDiagram.png" alt="UndoRedoNewCommand3StackDiagram" width="800">
 </div>
-<div class="title">Figure 18. A list command does not modify the UndoRedoStack</div>
+<div class="title">Figure 19. A list command does not modify the UndoRedoStack</div>
 </div>
 <div class="paragraph">
 <p>The following activity diagram summarizes what happens inside the <code>UndoRedoStack</code> when a user executes a new command:</p>
@@ -954,21 +1025,21 @@ commands like <code>delete</code> if <code>filteredPersons</code> had been alter
 <div class="content">
 <img src="images/UndoRedoActivityDiagram.png" alt="UndoRedoActivityDiagram" width="650">
 </div>
-<div class="title">Figure 19. Activity Diagram for command execution</div>
+<div class="title">Figure 20. Activity Diagram for command execution</div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="changes-from-previous-implementation"><a class="link" href="#changes-from-previous-implementation">4.2.2. Changes from Previous Implementation</a></h4>
+<h4 id="changes-from-previous-implementation"><a class="link" href="#changes-from-previous-implementation">4.3.2. Changes from Previous Implementation</a></h4>
 <div class="paragraph">
 <p>Instead of saving the entire event planner each time we execute an <code>UndoableCommand</code>, each <code>UndoableCommand</code> knows how to <code>undo/redo</code> itself.
 Each <code>UndoableCommand</code> has an <code>oppositeCommand</code> field, which is another <code>UndoableCommand</code> that, when executed, reverses the changes made by the original command.
-The sequence diagram for the new <code>undo()</code> implementation is shown in <a href="#SDUndo">Figure 20</a>.</p>
+The sequence diagram for the new <code>undo()</code> implementation is shown in <a href="#SDUndo">Figure 21</a>.</p>
 </div>
 <div id="SDUndo" class="imageblock">
 <div class="content">
 <img src="images/UndoSequenceDiagram.png" alt="UndoSequenceDiagram" width="650">
 </div>
-<div class="title">Figure 20. Sequence Diagram for new undo implementation</div>
+<div class="title">Figure 21. Sequence Diagram for new undo implementation</div>
 </div>
 <div class="paragraph">
 <p>The <code>oppositeCommand</code> is generated in the <code>execute()</code> method, after <code>preprocessUndoableCommand()</code>. This is because generating the <code>oppositeCommand</code>
@@ -995,7 +1066,7 @@ the user undoes a <code>ClearCommand</code>.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">4.2.3. Design Considerations</a></h4>
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">4.3.3. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-undo-and-redo-executes"><a class="link" href="#aspect-how-undo-and-redo-executes">Aspect: How Undo and Redo Executes</a></h5>
 <div class="ulist">
@@ -1132,9 +1203,9 @@ the user undoes a <code>ClearCommand</code>.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="register-deregister-persons-for-from-events"><a class="link" href="#register-deregister-persons-for-from-events">4.3. Register/Deregister Persons for/from Events</a></h3>
+<h3 id="register-deregister-persons-for-from-events"><a class="link" href="#register-deregister-persons-for-from-events">4.4. Register/Deregister Persons for/from Events</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">4.3.1. Current Implementation</a></h4>
+<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">4.4.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>Each <code>EpicEvent</code> class maintains a <code>UniqueAttendanceList</code>, which contains references to the <code>Persons</code>
 registered for that event. The association between <code>EpicEvent</code> and <code>Person</code> is unidirectional i.e.
@@ -1151,11 +1222,11 @@ the <code>Person</code>. This counter is used to check whether a <code>Person</c
 when the user attempts to delete that <code>Person</code>.</p>
 </div>
 <div class="paragraph">
-<p>The entire process is illustrated using the sequence diagram (<a href="#registerseq">Section 4.3.2</a>) below.</p>
+<p>The entire process is illustrated using the sequence diagram (<a href="#registerseq">Section 4.4.2</a>) below.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="registerseq"><a class="link" href="#registerseq">4.3.2. Design Considerations</a></h4>
+<h4 id="registerseq"><a class="link" href="#registerseq">4.4.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-association-links-between-epicevent-and-person"><a class="link" href="#aspect-association-links-between-epicevent-and-person">Aspect: Association Links between EpicEvent and Person</a></h5>
 <div class="ulist">
@@ -1193,7 +1264,7 @@ need to implement the link later.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="aspect-deletion-of-persons-still-registered-for-an-event"><a class="link" href="#aspect-deletion-of-persons-still-registered-for-an-event">4.3.3. Aspect: Deletion of Persons still Registered for an Event</a></h4>
+<h4 id="aspect-deletion-of-persons-still-registered-for-an-event"><a class="link" href="#aspect-deletion-of-persons-still-registered-for-an-event">4.4.3. Aspect: Deletion of Persons still Registered for an Event</a></h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1229,9 +1300,9 @@ Implementation is easier.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="list-registered-persons-for-an-event"><a class="link" href="#list-registered-persons-for-an-event">4.4. List Registered Persons for an Event</a></h3>
+<h3 id="list-registered-persons-for-an-event"><a class="link" href="#list-registered-persons-for-an-event">4.5. List Registered Persons for an Event</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">4.4.1. Current Implementation</a></h4>
+<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">4.5.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>A new feature in Java 8, <code>Predicate</code> supports the filtering of lists in a functional style.
 To list the persons registered for an event, we create a <code>Predicate</code> that tests whether a <code>Person</code>
@@ -1240,9 +1311,9 @@ is in an <code>EpicEvent</code>, then pass it to <code>updateFilteredPersonList(
 </div>
 </div>
 <div class="sect2">
-<h3 id="toggling-attendance"><a class="link" href="#toggling-attendance">4.5. Toggling Attendance</a></h3>
+<h3 id="toggling-attendance"><a class="link" href="#toggling-attendance">4.6. Toggling Attendance</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">4.5.1. Current Implementation</a></h4>
+<h4 id="current-implementation-5"><a class="link" href="#current-implementation-5">4.6.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The implementation uses a class called <code>Attendance</code>.
 An instance of <code>Attendance</code> is created every time a person registers to an event and
@@ -1254,7 +1325,7 @@ easy to implement.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">4.5.2. Design Considerations</a></h4>
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">4.6.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-location-of-instances-of-code-attendance-code-objects"><a class="link" href="#aspect-location-of-instances-of-code-attendance-code-objects">Aspect: Location of Instances of <code>Attendance</code> Objects</a></h5>
 <div class="ulist">
@@ -1294,7 +1365,7 @@ which persons are registered to itself. This can be very slow if the number of <
 </div>
 </div>
 <div class="sect3">
-<h4 id="aspect-mutability-of-code-attendance-code-objects"><a class="link" href="#aspect-mutability-of-code-attendance-code-objects">4.5.3. Aspect: Mutability of <code>Attendance</code> Objects</a></h4>
+<h4 id="aspect-mutability-of-code-attendance-code-objects"><a class="link" href="#aspect-mutability-of-code-attendance-code-objects">4.6.3. Aspect: Mutability of <code>Attendance</code> Objects</a></h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1331,7 +1402,7 @@ trigger any events.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="aspect-method-of-marking-attendance"><a class="link" href="#aspect-method-of-marking-attendance">4.5.4. Aspect: Method of Marking Attendance</a></h4>
+<h4 id="aspect-method-of-marking-attendance"><a class="link" href="#aspect-method-of-marking-attendance">4.6.4. Aspect: Method of Marking Attendance</a></h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1370,9 +1441,9 @@ has already been marked as attended when the user tries to mark the participant 
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-mass-registration"><a class="link" href="#proposed-mass-registration">4.6. [Proposed] Mass Registration</a></h3>
+<h3 id="proposed-mass-registration"><a class="link" href="#proposed-mass-registration">4.7. [Proposed] Mass Registration</a></h3>
 <div class="sect3">
-<h4 id="proposed-implementation"><a class="link" href="#proposed-implementation">4.6.1. Proposed Implementation</a></h4>
+<h4 id="proposed-implementation"><a class="link" href="#proposed-implementation">4.7.1. Proposed Implementation</a></h4>
 <div class="paragraph">
 <p>This feature is proposed to allow for mass registration of multiple persons to a single event.
 The proposed implementation is to make use of tags to select groups of persons to register for an event.
@@ -1384,15 +1455,15 @@ by iteratively registering each person.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="three-pane-ui"><a class="link" href="#three-pane-ui">4.7. Three Pane UI</a></h3>
+<h3 id="three-pane-ui"><a class="link" href="#three-pane-ui">4.8. Three Pane UI</a></h3>
 <div class="paragraph">
 <p>The new UI is a 3 pane UI consisting of list of persons, events, and attendees for the selected event. Being able to view all three panes will allow the user to read off the desired command parameters without having to switch between lists.</p>
 </div>
 <div class="paragraph">
-<p>In addition, <code>edit</code> and <code>edit-command</code> commands are now implemented in a mutable manner (see <a href="#edit-curr-implementation">Section 4.1.2</a>). As a result, the <code>ObservableList</code> that wraps the people and event data will no longer be notified to changes. The new UI must be notified of changes to data so it can refresh itself to reflect such changes. The UI will also have to respond to new commands such as the <code>select-event</code> and <code>toggle</code>. The <code>select-event</code> could invoke a change in the contents of the Attendance Panel and <code>toggle</code> will toggle the attendance status and is reflected in the UI in the form of the attendance icon change.</p>
+<p>In addition, <code>edit</code> and <code>edit-command</code> commands are now implemented in a mutable manner (see <a href="#edit-curr-implementation">Section 4.2.2</a>). As a result, the <code>ObservableList</code> that wraps the people and event data will no longer be notified to changes. The new UI must be notified of changes to data so it can refresh itself to reflect such changes. The UI will also have to respond to new commands such as the <code>select-event</code> and <code>toggle</code>. The <code>select-event</code> could invoke a change in the contents of the Attendance Panel and <code>toggle</code> will toggle the attendance status and is reflected in the UI in the form of the attendance icon change.</p>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-5"><a class="link" href="#current-implementation-5">4.7.1. Current Implementation</a></h4>
+<h4 id="current-implementation-6"><a class="link" href="#current-implementation-6">4.8.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The UI now consists of 3 list panels: <code>PersonListPanel</code>, <code>EpicEventListPanel</code> and <code>AttendanceListPanel</code>. Each panel is a list of <code>PersonCard</code>, <code>EpicEventCard</code> and <code>AttendanceCard</code> respectively. Since the <code>AttendanceCard</code> has the same UI as <code>PersonCard</code> with the addition of the toggle icon, it extends <code>PersonCard</code>. The <code>model</code> maintains a <code>selectedEpicEvent</code> variable whose attendees will be displayed in the <code>AttendancePanel</code>.</p>
 </div>
@@ -1439,7 +1510,7 @@ by iteratively registering each person.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">4.7.2. Design Considerations</a></h4>
+<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">4.8.2. Design Considerations</a></h4>
 <div class="paragraph">
 <p>When deciding on the UI, the following aspects of user experience were considered:</p>
 </div>
@@ -1527,7 +1598,7 @@ by iteratively registering each person.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="binding-data-to-attendance-panel"><a class="link" href="#binding-data-to-attendance-panel">4.7.3. Binding Data to Attendance Panel</a></h4>
+<h4 id="binding-data-to-attendance-panel"><a class="link" href="#binding-data-to-attendance-panel">4.8.3. Binding Data to Attendance Panel</a></h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1574,7 +1645,7 @@ by iteratively registering each person.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-export-an-event"><a class="link" href="#proposed-export-an-event">4.8. [proposed] Export an Event</a></h3>
+<h3 id="proposed-export-an-event"><a class="link" href="#proposed-export-an-event">4.9. [proposed] Export an Event</a></h3>
 <div class="paragraph">
 <p>The proposed export command exports the names of the attendees, their phone numbers,
 their email addresses, their home addresses and their attendance information of a particular
@@ -1582,23 +1653,23 @@ event to a csv file into a file path specified by the user. Having all the infor
 particular event in a csv file would enable the user to analyse the data using other tools.</p>
 </div>
 <div class="sect3">
-<h4 id="proposed-implementation-2"><a class="link" href="#proposed-implementation-2">4.8.1. [proposed] Implementation</a></h4>
+<h4 id="proposed-implementation-2"><a class="link" href="#proposed-implementation-2">4.9.1. [proposed] Implementation</a></h4>
 <div class="paragraph">
 <p>The <code>export-event</code> command input is first parsed in <code>EventPlannerParser</code> to create an <code>ExportEventCommand</code>.
 The execution of it creates a <code>CsvEventPlannerStorage</code>. The subsequent export mechanism is handled by a <code>CsvEventPlannerStorage</code> where event data is parsed by <code>CsvUtil</code> and then exported as a file through <code>CsvFileStorage</code> using the file path specified by the user.</p>
 </div>
 <div class="paragraph">
-<p><a href="#SDCSV">Figure 21</a> below shows how the csv event export is processed in the storage component.</p>
+<p><a href="#SDCSV">Figure 22</a> below shows how the csv event export is processed in the storage component.</p>
 </div>
 <div id="SDCSV" class="imageblock">
 <div class="content">
 <img src="images/ExportEventSequenceDiagram.png" alt="ExportEventSequenceDiagram" width="650">
 </div>
-<div class="title">Figure 21. Sequence Diagram for csv export</div>
+<div class="title">Figure 22. Sequence Diagram for csv export</div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">4.8.2. Design Considerations</a></h4>
+<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">4.9.2. Design Considerations</a></h4>
 <div class="paragraph">
 <p>When deciding on the export options, the following aspects of user experience are considered.</p>
 </div>
@@ -1637,7 +1708,7 @@ The execution of it creates a <code>CsvEventPlannerStorage</code>. The subsequen
 </div>
 </div>
 <div class="sect3">
-<h4 id="aspect-format-of-exported-files"><a class="link" href="#aspect-format-of-exported-files">4.8.3. Aspect: Format of Exported Files</a></h4>
+<h4 id="aspect-format-of-exported-files"><a class="link" href="#aspect-format-of-exported-files">4.9.3. Aspect: Format of Exported Files</a></h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1671,7 +1742,7 @@ The execution of it creates a <code>CsvEventPlannerStorage</code>. The subsequen
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">4.9. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">4.10. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
@@ -1781,7 +1852,7 @@ Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows y
 <div class="content">
 <img src="images/chrome_save_as_pdf.png" alt="chrome save as pdf" width="300">
 </div>
-<div class="title">Figure 22. Saving documentation as PDF files in Chrome</div>
+<div class="title">Figure 23. Saving documentation as PDF files in Chrome</div>
 </div>
 </div>
 </div>
@@ -2758,7 +2829,7 @@ Expected: Similar to previous.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-14 16:30:30 UTC
+Last updated 2018-04-14 16:41:33 UTC
 </div>
 </div>
 </body>
