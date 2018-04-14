@@ -245,23 +245,6 @@ The Model does not depend on any of the other three components. This reduces cou
 </div>
 </div>
 <div class="sect2">
-<h3 id="register-deregister-persons-for-from-events"><a class="link" href="#register-deregister-persons-for-from-events">Register/Deregister Persons for/from Events</a></h3>
-<div class="paragraph">
-<p>The EpicEvent-Person association is unidirectional i.e. an <code>EpicEvent</code> maintains references to <code>Person</code> objects registered for it, but a <code>Person</code> does not
-maintain references to <code>EpicEvent</code> objects he/she has registered for. This implementation was chosen to reduce overhead and complications in implementation,
-since all commands v2.0 supports will not require the backward association.</p>
-</div>
-<div class="paragraph">
-<p>The references are maintained using a <code>UniquePersonList</code> inside each <code>EpicEvent</code></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="list-registered-persons-for-an-event"><a class="link" href="#list-registered-persons-for-an-event">List Registered Persons for an Event</a></h3>
-<div class="paragraph">
-<p>This is done by creating a <code>Predicate</code> that tests whether a <code>Person</code> is in an <code>EpicEvent</code>, then passing it to <code>updateFilteredPersonList()</code></p>
-</div>
-</div>
-<div class="sect2">
 <h3 id="toggling-attendance"><a class="link" href="#toggling-attendance">Toggling Attendance</a></h3>
 <div class="sect3">
 <h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
@@ -410,7 +393,7 @@ by iteratively registering each person.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-14 07:11:46 UTC
+Last updated 2018-04-14 16:30:30 UTC
 </div>
 </div>
 </body>

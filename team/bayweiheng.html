@@ -238,16 +238,28 @@ The index refers to the index number shown in the Persons Pane.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>list</code><br>
-<code>register 2 AY201718 Graduation</code><br>
-Registers the 2nd person in EPIC for AY201718 Graduation.</p>
-</li>
-<li>
 <p><code>find Betsy</code><br>
 <code>register 1 Computing Seminar</code><br>
 Registers the 1st person in the results of the <code>find</code> command for Computing Seminar.</p>
 </li>
+<li>
+<p><code>list</code><br>
+<code>register 2 AY201718 Graduation</code><br>
+Registers the 2nd person in EPIC for AY201718 Graduation. See the figures below for UI changes.<br></p>
+</li>
 </ul>
+</div>
+<div id="register" class="imageblock">
+<div class="content">
+<img src="../images/RegisterUIBefore.png" alt="RegisterUIBefore" width="790">
+</div>
+<div class="title">Figure 1. Before the <code>register</code> command is executed</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/RegisterUIAfter.png" alt="RegisterUIAfter" width="790">
+</div>
+<div class="title">Figure 2. After the <code>register</code> command is executed</div>
 </div>
 </div>
 <div class="sect2">
@@ -317,7 +329,7 @@ Format: <code>list-registered EVENT_NAME</code></p>
 <h3 id="undoing-commands-code-undo-code"><a class="link" href="#undoing-commands-code-undo-code">Undoing Commands : <code>undo</code></a></h3>
 <div class="paragraph">
 <p>Restores EPIC to the state before the previous <em>undoable</em> command was executed.<br>
-There is no guarantee that relative ordering of persons/events will be maintained after the undoing
+There is no guarantee that the relative order of persons/events will be preserved after the undoing
 of a <code>delete</code> or <code>delete-event</code> command.<br>
 Format: <code>undo</code></p>
 </div>
@@ -342,16 +354,10 @@ To see the full list of undoable commands, refer to <a href="#List of undoable c
 <div class="ulist">
 <ul>
 <li>
-<p><code>delete 1</code><br>
-<code>list</code><br>
-<code>undo</code><br>
-Undoes the <code>delete 1</code> command. Note that <code>list</code> is not an undoable command.</p>
-</li>
-<li>
 <p><code>select 1</code><br>
 <code>list</code><br>
 <code>undo</code><br>
-The <code>undo</code> command fails as there are no undoable commands executed previously.</p>
+The <code>undo</code> command fails since neither <code>list</code> nor <code>select</code> is undoable.</p>
 </li>
 <li>
 <p><code>delete 1</code><br>
@@ -360,7 +366,31 @@ The <code>undo</code> command fails as there are no undoable commands executed p
 <code>undo</code><br>
 Undoes the <code>clear</code> command, followed by the <code>delete 1</code> command.</p>
 </li>
+<li>
+<p><code>delete 2</code><br>
+<code>undo</code><br>
+Undoes the <code>delete 2</code> command. See the figures below for UI changes. In particular,
+<a href="#undoafter">After the <code>undo</code> command is executed</a> shows that relative order of persons might not be preserved.<br></p>
+</li>
 </ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/DeleteUIBefore.png" alt="DeleteUIBefore" width="790">
+</div>
+<div class="title">Figure 3. Before the <code>delete 2</code> command is executed</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UndoUIBefore.png" alt="UndoUIBefore" width="790">
+</div>
+<div class="title">Figure 4. After the <code>delete 2</code> command is executed</div>
+</div>
+<div id="undoafter" class="imageblock">
+<div class="content">
+<img src="../images/UndoUIAfter.png" alt="UndoUIAfter" width="790">
+</div>
+<div class="title">Figure 5. After the <code>undo</code> command is executed</div>
 </div>
 </div>
 <div class="sect2">
@@ -496,7 +526,7 @@ The sequence diagram for the new <code>undo()</code> implementation is shown in 
 <div class="content">
 <img src="../images/UndoSequenceDiagram.png" alt="UndoSequenceDiagram" width="650">
 </div>
-<div class="title">Figure 1. Sequence Diagram for new undo implementation</div>
+<div class="title">Figure 6. Sequence Diagram for new undo implementation</div>
 </div>
 <div class="paragraph">
 <p>The <code>oppositeCommand</code> is generated in the <code>execute()</code> method, after <code>preprocessUndoableCommand()</code>. This is because generating the <code>oppositeCommand</code>
@@ -564,7 +594,7 @@ the user undoes a <code>ClearCommand</code>.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-14 07:11:46 UTC
+Last updated 2018-04-14 16:30:30 UTC
 </div>
 </div>
 </body>

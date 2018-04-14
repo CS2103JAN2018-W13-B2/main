@@ -1133,25 +1133,116 @@ the user undoes a <code>ClearCommand</code>.</p>
 </div>
 <div class="sect2">
 <h3 id="register-deregister-persons-for-from-events"><a class="link" href="#register-deregister-persons-for-from-events">4.3. Register/Deregister Persons for/from Events</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">4.3.1. Current Implementation</a></h4>
 <div class="paragraph">
-<p>The EpicEvent-Person association is unidirectional i.e. an <code>EpicEvent</code> maintains references to <code>Person</code> objects registered for it, but a <code>Person</code> does not
-maintain references to <code>EpicEvent</code> objects he/she has registered for. This implementation was chosen to reduce overhead and complications in implementation,
-since all commands v2.0 supports will not require the backward association.</p>
+<p>Each <code>EpicEvent</code> class maintains a <code>UniqueAttendanceList</code>, which contains references to the <code>Persons</code>
+registered for that event. The association between <code>EpicEvent</code> and <code>Person</code> is unidirectional i.e.
+a <code>Person</code> does not maintain references to the <code>EpicEvents</code> he/she has registered for.</p>
 </div>
 <div class="paragraph">
-<p>The references are maintained using a <code>UniquePersonList</code> inside each <code>EpicEvent</code></p>
+<p>When a <code>register</code> command is called, we first find the <code>PersonToRegister</code> using the index provided,
+and the <code>EventToRegisterFor</code> using the name provided. Then, we call <code>registerPersonForEvent()</code> through
+the <code>ModelManager</code>, which eventually calls the <code>registerPerson()</code> method of the <code>EpicEvent</code>.</p>
+</div>
+<div class="paragraph">
+<p>This method not only adds the reference of the <code>Person</code> of the <code>EpicEvent</code>, but also increments a counter inside
+the <code>Person</code>. This counter is used to check whether a <code>Person</code> is still registered for some event
+when the user attempts to delete that <code>Person</code>.</p>
+</div>
+<div class="paragraph">
+<p>The entire process is illustrated using the sequence diagram (<a href="#registerseq">Section 4.3.2</a>) below.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="registerseq"><a class="link" href="#registerseq">4.3.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-association-links-between-epicevent-and-person"><a class="link" href="#aspect-association-links-between-epicevent-and-person">Aspect: Association Links between EpicEvent and Person</a></h5>
+<div class="ulist">
+<div class="title">Sequence Diagram for the <code>register</code> command</div>
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Make the EpicEvent-Person association unidirectional</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Implementation of the association is easier.</p>
+</li>
+<li>
+<p>Cons: Some features might need the backward association link in future.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Make the EpicEvent-Person association bidirectional</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Features needing the backward association link can be more easily implemented - there is no
+need to implement the link later.</p>
+</li>
+<li>
+<p>Cons: Implementation of the association is much more complicated. Violates the <code>You Aren&#8217;t Gonna Need It (YAGNI)</code> principle.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="aspect-deletion-of-persons-still-registered-for-an-event"><a class="link" href="#aspect-deletion-of-persons-still-registered-for-an-event">4.3.3. Aspect: Deletion of Persons still Registered for an Event</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Disallow deletion of persons still registered for an event</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Ensures that person&#8217;s details will be safeguarded until they are no longer required.</p>
+</li>
+<li>
+<p>Cons: Implementation is more complicated.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Allow deletion of persons still registered for an event</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: User will not have to deregister persons/delete events before a person can be deleted.
+Implementation is easier.</p>
+</li>
+<li>
+<p>Cons: User might absentmindedly delete a person when his/her details are still required
+(by an upcoming event he/she is registered for).</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="list-registered-persons-for-an-event"><a class="link" href="#list-registered-persons-for-an-event">4.4. List Registered Persons for an Event</a></h3>
+<div class="sect3">
+<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">4.4.1. Current Implementation</a></h4>
 <div class="paragraph">
-<p>This is done by creating a <code>Predicate</code> that tests whether a <code>Person</code> is in an <code>EpicEvent</code>, then passing it to <code>updateFilteredPersonList()</code></p>
+<p>A new feature in Java 8, <code>Predicate</code> supports the filtering of lists in a functional style.
+To list the persons registered for an event, we create a <code>Predicate</code> that tests whether a <code>Person</code>
+is in an <code>EpicEvent</code>, then pass it to <code>updateFilteredPersonList()</code>.</p>
+</div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="toggling-attendance"><a class="link" href="#toggling-attendance">4.5. Toggling Attendance</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">4.5.1. Current Implementation</a></h4>
+<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">4.5.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The implementation uses a class called <code>Attendance</code>.
 An instance of <code>Attendance</code> is created every time a person registers to an event and
@@ -1301,7 +1392,7 @@ by iteratively registering each person.</p>
 <p>In addition, <code>edit</code> and <code>edit-command</code> commands are now implemented in a mutable manner (see <a href="#edit-curr-implementation">Section 4.1.2</a>). As a result, the <code>ObservableList</code> that wraps the people and event data will no longer be notified to changes. The new UI must be notified of changes to data so it can refresh itself to reflect such changes. The UI will also have to respond to new commands such as the <code>select-event</code> and <code>toggle</code>. The <code>select-event</code> could invoke a change in the contents of the Attendance Panel and <code>toggle</code> will toggle the attendance status and is reflected in the UI in the form of the attendance icon change.</p>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">4.7.1. Current Implementation</a></h4>
+<h4 id="current-implementation-5"><a class="link" href="#current-implementation-5">4.7.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The UI now consists of 3 list panels: <code>PersonListPanel</code>, <code>EpicEventListPanel</code> and <code>AttendanceListPanel</code>. Each panel is a list of <code>PersonCard</code>, <code>EpicEventCard</code> and <code>AttendanceCard</code> respectively. Since the <code>AttendanceCard</code> has the same UI as <code>PersonCard</code> with the addition of the toggle icon, it extends <code>PersonCard</code>. The <code>model</code> maintains a <code>selectedEpicEvent</code> variable whose attendees will be displayed in the <code>AttendancePanel</code>.</p>
 </div>
@@ -2667,7 +2758,7 @@ Expected: Similar to previous.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-14 07:11:46 UTC
+Last updated 2018-04-14 16:30:30 UTC
 </div>
 </div>
 </body>

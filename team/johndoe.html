@@ -155,7 +155,7 @@
 <h3 id="undoing-commands-code-undo-code"><a class="link" href="#undoing-commands-code-undo-code">Undoing Commands : <code>undo</code></a></h3>
 <div class="paragraph">
 <p>Restores EPIC to the state before the previous <em>undoable</em> command was executed.<br>
-There is no guarantee that relative ordering of persons/events will be maintained after the undoing
+There is no guarantee that the relative order of persons/events will be preserved after the undoing
 of a <code>delete</code> or <code>delete-event</code> command.<br>
 Format: <code>undo</code></p>
 </div>
@@ -180,16 +180,10 @@ To see the full list of undoable commands, refer to <a href="#List of undoable c
 <div class="ulist">
 <ul>
 <li>
-<p><code>delete 1</code><br>
-<code>list</code><br>
-<code>undo</code><br>
-Undoes the <code>delete 1</code> command. Note that <code>list</code> is not an undoable command.</p>
-</li>
-<li>
 <p><code>select 1</code><br>
 <code>list</code><br>
 <code>undo</code><br>
-The <code>undo</code> command fails as there are no undoable commands executed previously.</p>
+The <code>undo</code> command fails since neither <code>list</code> nor <code>select</code> is undoable.</p>
 </li>
 <li>
 <p><code>delete 1</code><br>
@@ -198,7 +192,31 @@ The <code>undo</code> command fails as there are no undoable commands executed p
 <code>undo</code><br>
 Undoes the <code>clear</code> command, followed by the <code>delete 1</code> command.</p>
 </li>
+<li>
+<p><code>delete 2</code><br>
+<code>undo</code><br>
+Undoes the <code>delete 2</code> command. See the figures below for UI changes. In particular,
+<a href="#undoafter">After the <code>undo</code> command is executed</a> shows that relative order of persons might not be preserved.<br></p>
+</li>
 </ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/DeleteUIBefore.png" alt="DeleteUIBefore" width="790">
+</div>
+<div class="title">Figure 1. Before the <code>delete 2</code> command is executed</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UndoUIBefore.png" alt="UndoUIBefore" width="790">
+</div>
+<div class="title">Figure 2. After the <code>delete 2</code> command is executed</div>
+</div>
+<div id="undoafter" class="imageblock">
+<div class="content">
+<img src="../images/UndoUIAfter.png" alt="UndoUIAfter" width="790">
+</div>
+<div class="title">Figure 3. After the <code>undo</code> command is executed</div>
 </div>
 </div>
 <div class="sect2">
@@ -275,7 +293,7 @@ modify the state of the event planner (e.g. <code>add</code>, <code>edit</code>)
 <div class="content">
 <img src="../images/LogicCommandClassDiagram.png" alt="LogicCommandClassDiagram" width="800">
 </div>
-<div class="title">Figure 1. Class Diagram for commands</div>
+<div class="title">Figure 4. Class Diagram for commands</div>
 </div>
 <div class="paragraph">
 <p>As you can see from the diagram, <code>UndoableCommand</code> adds an extra layer between the abstract <code>Command</code> class and concrete commands that can be undone, such as the <code>DeleteCommand</code>. Note that extra tasks need to be done when executing a command in an <em>undoable</em> way, such
@@ -329,7 +347,7 @@ The <code>delete 5</code> command will then be pushed onto the <code>undoStack</
 <div class="content">
 <img src="../images/UndoRedoStartingStackDiagram.png" alt="UndoRedoStartingStackDiagram" width="800">
 </div>
-<div class="title">Figure 2. How a delete command modifies the UndoRedoStack</div>
+<div class="title">Figure 5. How a delete command modifies the UndoRedoStack</div>
 </div>
 <div class="paragraph">
 <p>As the user continues to use the program, more commands are added into the <code>undoStack</code>. For example, the user may execute
@@ -339,7 +357,7 @@ The <code>delete 5</code> command will then be pushed onto the <code>undoStack</
 <div class="content">
 <img src="../images/UndoRedoNewCommand1StackDiagram.png" alt="UndoRedoNewCommand1StackDiagram" width="800">
 </div>
-<div class="title">Figure 3. How an add command modifies the UndoRedoStack</div>
+<div class="title">Figure 6. How an add command modifies the UndoRedoStack</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -376,7 +394,7 @@ while the latter is an <code>AddPersonCommand</code>.
 <div class="content">
 <img src="../images/UndoRedoExecuteUndoStackDiagram.png" alt="UndoRedoExecuteUndoStackDiagram" width="800">
 </div>
-<div class="title">Figure 4. How an undo command utilises the UndoRedoStack</div>
+<div class="title">Figure 7. How an undo command utilises the UndoRedoStack</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -397,7 +415,7 @@ If the <code>undoStack</code> is empty, there are no other commands left to be u
 <div class="content">
 <img src="../images/UndoRedoSequenceDiagram.png" alt="UndoRedoSequenceDiagram" width="800">
 </div>
-<div class="title">Figure 5. Sequence Diagram for the undo command</div>
+<div class="title">Figure 8. Sequence Diagram for the undo command</div>
 </div>
 <div class="paragraph">
 <p>The redo does the exact opposite (pops from <code>redoStack</code>, push to <code>undoStack</code>, and performs the intention of the original command).</p>
@@ -434,7 +452,7 @@ commands like <code>delete</code> if <code>filteredPersons</code> had been alter
 <div class="content">
 <img src="../images/UndoRedoNewCommand2StackDiagram.png" alt="UndoRedoNewCommand2StackDiagram" width="800">
 </div>
-<div class="title">Figure 6. How a clear command modifies the UndoRedoStack</div>
+<div class="title">Figure 9. How a clear command modifies the UndoRedoStack</div>
 </div>
 <div class="paragraph">
 <p>Commands that are not undoable are not added into the <code>undoStack</code>. For example, <code>list</code>, which inherits from <code>Command</code> rather than <code>UndoableCommand</code>, will not be added after execution:</p>
@@ -443,7 +461,7 @@ commands like <code>delete</code> if <code>filteredPersons</code> had been alter
 <div class="content">
 <img src="../images/UndoRedoNewCommand3StackDiagram.png" alt="UndoRedoNewCommand3StackDiagram" width="800">
 </div>
-<div class="title">Figure 7. A list command does not modify the UndoRedoStack</div>
+<div class="title">Figure 10. A list command does not modify the UndoRedoStack</div>
 </div>
 <div class="paragraph">
 <p>The following activity diagram summarizes what happens inside the <code>UndoRedoStack</code> when a user executes a new command:</p>
@@ -452,7 +470,7 @@ commands like <code>delete</code> if <code>filteredPersons</code> had been alter
 <div class="content">
 <img src="../images/UndoRedoActivityDiagram.png" alt="UndoRedoActivityDiagram" width="650">
 </div>
-<div class="title">Figure 8. Activity Diagram for command execution</div>
+<div class="title">Figure 11. Activity Diagram for command execution</div>
 </div>
 </div>
 <div class="sect3">
@@ -466,7 +484,7 @@ The sequence diagram for the new <code>undo()</code> implementation is shown in 
 <div class="content">
 <img src="../images/UndoSequenceDiagram.png" alt="UndoSequenceDiagram" width="650">
 </div>
-<div class="title">Figure 9. Sequence Diagram for new undo implementation</div>
+<div class="title">Figure 12. Sequence Diagram for new undo implementation</div>
 </div>
 <div class="paragraph">
 <p>The <code>oppositeCommand</code> is generated in the <code>execute()</code> method, after <code>preprocessUndoableCommand()</code>. This is because generating the <code>oppositeCommand</code>
@@ -643,7 +661,7 @@ the user undoes a <code>ClearCommand</code>.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-14 07:11:46 UTC
+Last updated 2018-04-14 16:30:30 UTC
 </div>
 </div>
 </body>
