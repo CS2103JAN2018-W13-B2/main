@@ -43,7 +43,7 @@ EPIC is optimized for event planners who prefer typing to using the mouse.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Major enhancement</strong>: implemented the <code>toggle</code> command to toggle attendance of registrants to events.</p>
+<p><strong>Major enhancement</strong>: Implemented the <code>toggle</code> command to toggle attendance of registrants to events.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -65,7 +65,7 @@ and added the <code>Attendance</code> and <code>UniqueAttendanceList</code> clas
 </div>
 </li>
 <li>
-<p><strong>Minor enhancement</strong>: updated the structure of the app and added an EpicEvent class in order
+<p><strong>Minor enhancement</strong>: Updated the structure of the app and added an EpicEvent class in order
 to support all operations related to events. Implemented the <code>add-event</code> command to support adding of
 events to EPIC.</p>
 </li>
@@ -192,11 +192,15 @@ The index refers to the index number shown in the Attendance Pane.</p>
 <div class="paragraph">
 <p>Examples:</p>
 </div>
-<div class="paragraph">
-<p>*<code>select-event 2</code><br>
+<div class="ulist">
+<ul>
+<li>
+<p><code>select-event 2</code><br>
 <code>toggle 3</code><br>
 Toggles the attendance of the 3rd registrant in the attendance list of
 the 2nd event currently listed. See <a href="#toggle">Figure 1</a> below for UI changes.<br></p>
+</li>
+</ul>
 </div>
 <div id="toggle" class="imageblock">
 <div class="content">
@@ -267,6 +271,7 @@ The Model does not depend on any of the other three components. This reduces cou
 </tr>
 </table>
 </div>
+<div style="page-break-after: always;"></div>
 <div class="paragraph">
 <p><em>Excerpts from Toggle Attendance Feature</em></p>
 </div>
@@ -277,17 +282,16 @@ The Model does not depend on any of the other three components. This reduces cou
 <h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
 <div class="paragraph">
 <p>The implementation uses a class called <code>Attendance</code>. An instance of <code>Attendance</code> is created
-every time a <code>Person</code> registers to an <code>EpicEvent</code> and stores references to the corresponding
-<code>EpicEvent</code> and <code>Person</code>. It also stores a <code>BooleanProperty</code> called <code>hasAttendedEventProperty</code>
-to store information on whether the <code>Person</code> has attended the <code>EpicEvent.
-The `Attendance</code> object is then added to the <code>UniqueAttendanceList</code> inside the <code>EpicEvent</code>.
+every time a <code>EpicEvent</code> registers to an <code>EpicEvent</code> and the instance stores references to the corresponding
+<code>Person</code> and <code>Person</code>. It also stores a <code>BooleanProperty</code> called <code>hasAttendedEventProperty</code>
+that represents whether the <code>Person</code> has attended the <code>EpicEvent</code>.
+The <code>Attendance</code> object is then added to the <code>UniqueAttendanceList</code> inside the <code>EpicEvent</code>.
 This structure reduces coupling between the <code>Person</code> and <code>EpicEvent</code> class and allows the
 <code>EpicEvent</code> to have access to all its registrants so that adding, removing and listing registrants are
 easy to implement.</p>
 </div>
 <div class="paragraph">
-<p>When the <code>toggle</code> command is called, the command is passed to the <code>EventPlannerParser</code> object
-,which reads and parses the input to return a <code>ToggleAttendanceCommand</code> object.
+<p>When the <code>toggle</code> command is called, the command is passed to the <code>EventPlannerParser</code> object, which reads and parses the input to return a <code>ToggleAttendanceCommand</code> object.
 The command then uses the index provided to find and save a reference to the <code>Attendance</code> object
 to be toggled. This is done so that the command can be undone by toggling the same
 <code>Attendance</code> object. <a href="#TCD">Figure 3</a> below shows how the <code>toggle</code> command is processed
@@ -318,13 +322,15 @@ where the <code>hasAttendedEventProperty</code> is toggled.</p>
 <ul>
 <li>
 <p>Pros: There is less coupling between the <code>Person</code> and <code>EpicEvent</code> classes.
-Instances of <code>EpicEvent</code> are also able to keep track of the attendance list more easily and
-thus the UI has less difficulty displaying the attendance list.</p>
+Instances of <code>EpicEvent</code> are also able to keep track of changes in the attendance list more easily,
+making it easier for the UI  to reflect these changes when required.</p>
 </li>
 <li>
-<p>Cons: It is more difficult for <code>EventPlanner</code> to track which events a
-person is registered for, so deleting a person requires
-checking through all the events to delete a person properly.</p>
+<p>Cons: It is more difficult for <code>EventPlanner</code> to track which <code>EpicEvents</code> a
+<code>Person</code> is registered for. In this case, deleting a <code>Person</code> requires
+checking through all the <code>EpicEvents</code> to determine whether the <code>Person</code> is still
+registered for any <code>EpicEvents</code> and this might be slow if there is a large number <code>EpicEvents</code> in
+the <code>EventPlanner</code></p>
 </li>
 </ul>
 </div>
@@ -334,11 +340,11 @@ checking through all the events to delete a person properly.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: The <code>EventPlanner</code> can easily track which events a person is registered for, thus making
-the implementation of some person-related commands such as <code>delete</code> easier.</p>
+<p>Pros: The <code>EventPlanner</code> can easily track which <code>EpicEvent</code> a <code>Person</code> is registered for, making
+the implementation of some person-related commands, such as <code>delete</code>, easier.</p>
 </li>
 <li>
-<p>Cons: In order to find out which persons are registered to an <code>EpicEvent</code>,
+<p>Cons: In order to find out which <code>Persons</code> are registered to an <code>EpicEvent</code>,
 an instance of <code>EpicEvent</code> would have to search through the entire list of <code>Attendance</code>
 objects in <code>EventPlanner</code>. This can be very slow if the number of <code>Attendance</code> objects is very large.</p>
 </li>
@@ -361,7 +367,7 @@ objects in <code>EventPlanner</code>. This can be very slow if the number of <co
 <p>Pros: Changes to the <code>Attendance</code> objects in the attendance list are more easily
 tracked, which makes updating of the UI more striaghtforward.
 This is because changes need to be made by replacing the object
-with a new copy that contains the updated properties and this can be tracked using listeners.</p>
+with a new copy that contains the updated properties, and this replacement can be tracked using listeners.</p>
 </li>
 <li>
 <p>Cons: Implementation of the <code>toggle</code> command is more difficult as the entire object has to be replaced whenever
@@ -376,7 +382,7 @@ by replacing the entire object with a new copy which only has its <code>hasAtten
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Implementation of the <code>toggle</code> command is easier the <code>hasAttendedEventProperty</code>
+<p>Pros: Implementation of the <code>toggle</code> command is easier as the <code>hasAttendedEventProperty</code>
 of the <code>Attendance</code> object can be directly accessed and modified.</p>
 </li>
 <li>
@@ -399,7 +405,7 @@ would have to be used to trigger changes in the UI.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Undoing the <code>toggle</code> command is easier as toggling is always valid while marking a registrant
+<p>Pros: Undoing the <code>toggle</code> command is easier as toggling is always valid. In constrast, marking a registrant
 as attended may not always be valid since that registrant may have already been marked as attended so
 the undo command has to account for that.</p>
 </li>
@@ -419,7 +425,7 @@ them as not attended</p>
 <p>Pros: Users may find it more intuitive compared to toggling the attendance of a registrant.</p>
 </li>
 <li>
-<p>Cons: Undoing the command is more difficult the undo commmand has to account for the case where
+<p>Cons: Undoing the command is more difficult as the undo commmand has to account for the case where
 a user tries to mark a registrant as attended when he/she has already been marked as attended.</p>
 </li>
 </ul>
@@ -427,6 +433,7 @@ a user tries to mark a registrant as attended when he/she has already been marke
 </li>
 </ul>
 </div>
+<div style="page-break-after: always;"></div>
 <div class="paragraph">
 <p><em>Excerpts from Mass Registration</em></p>
 </div>
@@ -442,9 +449,9 @@ the same tag, to a single event. For example, a user can register all persons ta
 <code>computing</code> for a computing-related seminar.</p>
 </div>
 <div class="paragraph">
-<p>The proposed implementation is to make use of tags to select groups of persons to register for an event.
+<p>The proposed implementation is to make use of tags to select a group persons to register for an event.
 Currently, the <code>Tag</code> class has been split into <code>PersonTag</code> and <code>EpicEventTag</code> so as to
-differentiate between the two. This allows searching of persons by <code>PersonTag</code> and searching for events by <code>EpicEventTag</code>.</p>
+differentiate between the two. This allows searching for persons by <code>PersonTag</code> and searching for events by <code>EpicEventTag</code>.</p>
 </div>
 <div class="paragraph">
 <p>By doing so, a <code>register-by-tag</code> command can be implemented that takes in a <code>PersonTag</code> as an argument.
@@ -458,7 +465,7 @@ to an <code>EpicEvent</code> without requiring the user to register each person 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-15 15:37:26 UTC
+Last updated 2018-04-15 15:52:16 UTC
 </div>
 </div>
 </body>
