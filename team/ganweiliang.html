@@ -173,16 +173,26 @@ The index refers to the index number shown in the rightmost pane.</p>
 <div class="paragraph">
 <p>Examples:</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>find-event AY201718 Graduation</code><br>
-<code>select-event 1</code><br>
-<code>toggle 1</code><br>
-Toggles the attendance of the 1st person attendee in the attendance list of
-AY201718 Graduation.</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>*<code>select-event 2</code><br>
+<code>toggle 3</code><br>
+Toggles the attendance of the 3rd registrant in the attendance list of
+the 2nd event currently listed. <a href="#ToggleBefore">GUI before the <code>toggle 3</code> command is executed</a> below shows an example of
+how EPIC looks like after the <code>select-event 2</code> command is executed and
+<a href="#ToggleAfter">GUI after the <code>toggle 3</code> command is exectued</a> below shows how EPIC would look like after the <code>toggle 3</code> command
+is executed.</p>
+</div>
+<div id="ToggleBefore" class="imageblock">
+<div class="content">
+<img src="../images/ToggleScreenShotBefore.png" alt="ToggleScreenShotBefore" width="800">
+</div>
+<div class="title">Figure 1. GUI before the <code>toggle 3</code> command is executed</div>
+</div>
+<div id="ToggleAfter" class="imageblock">
+<div class="content">
+<img src="../images/ToggleScreenShotAfter.png" alt="ToggleScreenShotAfter" width="800">
+</div>
+<div class="title">Figure 2. GUI after the <code>toggle 3</code> command is exectued</div>
 </div>
 </div>
 </div>
@@ -209,7 +219,7 @@ AY201718 Graduation.</p>
 <div class="content">
 <img src="../images/ModelClassDiagram.png" alt="ModelClassDiagram" width="800">
 </div>
-<div class="title">Figure 1. Structure of the Model Component</div>
+<div class="title">Figure 3. Structure of the Model Component</div>
 </div>
 <div class="paragraph">
 <p><strong>API</strong> : <a href="{repoURL}/src/main/java/seedu/address/model/Model.java"><code>Model.java</code></a></p>
@@ -249,13 +259,33 @@ The Model does not depend on any of the other three components. This reduces cou
 <div class="sect3">
 <h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
 <div class="paragraph">
-<p>The implementation uses a class called <code>Attendance</code>.
-An instance of <code>Attendance</code> is created every time a person registers to an event and
+<p>The implementation uses a class called <code>Attendance</code>, the structure of which is shown
+in <a href="#ACD">Structure of the Attendance class</a> below.</p>
+</div>
+<div id="ACD" class="imageblock">
+<div class="content">
+<img src="../images/ModelClassDiagram.png" alt="ModelClassDiagram" width="800px">
+</div>
+<div class="title">Figure 4. Structure of the Attendance class</div>
+</div>
+<div class="paragraph">
+<p>An instance of <code>Attendance</code> is created every time a person registers to an event and
 it is stored inside the <code>EpicEvent</code>. The instance stores the corresponding <code>EpicEvent</code> and <code>Person</code>
 and stores a <code>boolean</code> representing whether the person has attended the event.
 This reduces coupling between the <code>Person</code> and <code>EpicEvent</code> class and allows the event
 to have access to all its registrants so that adding, removing and listing registrants are
 easy to implement.</p>
+</div>
+<div class="paragraph">
+<p>When the <code>toggle</code> command is called, an instance of <code>ToggleAttendanceCommand</code> is created
+and it uses the index provided to find and save a reference to the <code>Attendance</code> object
+to be toggled. This is done so that the command can be undone by toggling the exact same
+<code>Attendance</code> object.</p>
+</div>
+<div class="paragraph">
+<p>When the <code>ToggleAttendanceCommand</code> is executed, it obtains the relevant <code>Person</code> and
+<code>EpicEvent</code> from the stored <code>Attendance</code> object and triggers <code>toggleAttendance</code> from
+the <code>Model</code>. The actions that follow are shown in the sequence diagram below.</p>
 </div>
 </div>
 <div class="sect3">
@@ -381,10 +411,10 @@ has already been marked as attended when the user tries to mark the participant 
 <div class="paragraph">
 <p>This feature is proposed to allow for mass registration of multiple persons to a single event.
 The proposed implementation is to make use of tags to select groups of persons to register for an event.
-It is proposed that the <code>Tag</code> class be split into <code>PersonTag</code> and <code>EpicEventTag</code> so as to differentiate
-the two. This allows for searching of persons by <code>PersonTag</code> and searching for events by <code>EpicEventTag</code>.
-By doing so, a group of persons can be identified by <code>PersonTag</code> and thus registered to an event
-by iteratively registering each person.</p>
+Currently, the <code>Tag</code> class has been split into <code>PersonTag</code> and <code>EpicEventTag</code> so as to
+differentiate between the two. This allows for searching of persons by <code>PersonTag</code> and searching for events by <code>EpicEventTag</code>.
+By doing so, a group of persons can be filtered by <code>PersonTag</code> and thus registered to an event
+by iteratively registering each person without requiring the user to register each person individually.</p>
 </div>
 </div>
 </div>
@@ -393,7 +423,7 @@ by iteratively registering each person.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-15 04:46:01 UTC
+Last updated 2018-04-15 06:51:49 UTC
 </div>
 </div>
 </body>

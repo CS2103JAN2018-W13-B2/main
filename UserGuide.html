@@ -921,16 +921,26 @@ The index refers to the index number shown in the rightmost pane.</p>
 <div class="paragraph">
 <p>Examples:</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>find-event AY201718 Graduation</code><br>
-<code>select-event 1</code><br>
-<code>toggle 1</code><br>
-Toggles the attendance of the 1st person attendee in the attendance list of
-AY201718 Graduation.</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>*<code>select-event 2</code><br>
+<code>toggle 3</code><br>
+Toggles the attendance of the 3rd registrant in the attendance list of
+the 2nd event currently listed. <a href="#ToggleBefore">Figure 11</a> below shows an example of
+how EPIC looks like after the <code>select-event 2</code> command is executed and
+<a href="#ToggleAfter">Figure 12</a> below shows how EPIC would look like after the <code>toggle 3</code> command
+is executed.</p>
+</div>
+<div id="ToggleBefore" class="imageblock">
+<div class="content">
+<img src="images/ToggleScreenShotBefore.png" alt="ToggleScreenShotBefore" width="800">
+</div>
+<div class="title">Figure 11. GUI before the <code>toggle 3</code> command is executed</div>
+</div>
+<div id="ToggleAfter" class="imageblock">
+<div class="content">
+<img src="images/ToggleScreenShotAfter.png" alt="ToggleScreenShotAfter" width="800">
+</div>
+<div class="title">Figure 12. GUI after the <code>toggle 3</code> command is exectued</div>
 </div>
 </div>
 <div class="sect2">
@@ -1006,7 +1016,7 @@ Undoes the <code>clear</code> command, followed by the <code>delete 1</code> com
 <p><code>delete 2</code><br>
 <code>undo</code><br>
 Undoes the <code>delete 2</code> command. See the figures below for UI changes. In particular,
-<a href="#undoafter">Figure 13</a> shows that relative order of persons might not be preserved.<br></p>
+<a href="#undoafter">Figure 15</a> shows that relative order of persons might not be preserved.<br></p>
 </li>
 </ul>
 </div>
@@ -1014,19 +1024,19 @@ Undoes the <code>delete 2</code> command. See the figures below for UI changes. 
 <div class="content">
 <img src="images/DeleteUIBefore.png" alt="DeleteUIBefore" width="790">
 </div>
-<div class="title">Figure 11. Before the <code>delete 2</code> command is executed</div>
+<div class="title">Figure 13. Before the <code>delete 2</code> command is executed</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/UndoUIBefore.png" alt="UndoUIBefore" width="790">
 </div>
-<div class="title">Figure 12. After the <code>delete 2</code> command is executed</div>
+<div class="title">Figure 14. After the <code>delete 2</code> command is executed</div>
 </div>
 <div id="undoafter" class="imageblock">
 <div class="content">
 <img src="images/UndoUIAfter.png" alt="UndoUIAfter" width="790">
 </div>
-<div class="title">Figure 13. After the <code>undo</code> command is executed</div>
+<div class="title">Figure 15. After the <code>undo</code> command is executed</div>
 </div>
 </div>
 <div class="sect2">
@@ -1278,7 +1288,7 @@ e.g. <code>toggle 1</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-15 04:46:01 UTC
+Last updated 2018-04-15 06:51:49 UTC
 </div>
 </div>
 </body>
