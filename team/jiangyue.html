@@ -117,7 +117,7 @@
 <div class="sect2">
 <h3 id="editing-an-event-code-edit-event-code"><a class="link" href="#editing-an-event-code-edit-event-code">Editing an Event : <code>edit-event</code></a></h3>
 <div class="paragraph">
-<p>Edits an existing event in the event planner.<br>
+<p>Edits an existing event in the EPIC.<br>
 Format: <code>edit-event INDEX [n/NAME] [t/TAG]&#8230;&#8203;</code></p>
 </div>
 <div class="sidebarblock">
@@ -150,14 +150,29 @@ The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p
 <div class="ulist">
 <ul>
 <li>
-<p><code>edit-event 1 n/IoT Talk t/talk</code><br>
-Edits the name and tag of the 1st event to be <code>IoT Talk</code> and <code>talk</code> respectively.</p>
+<p><code>edit-event 1 n/Career Talk 2018</code><br>
+Edits the name of the 1st event in event pane to be <code>Career Talk 2018</code>.</p>
 </li>
 <li>
 <p><code>edit-event 2 n/Graduation Day t/</code><br>
 Edits the name of the 2nd event to be <code>Graduation Day</code> and clears all existing tags.</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>See the figures below for UI changes.<br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/EditUIBefore.png" alt="# edit-event" width="790">
+</div>
+<div class="title">Figure 1. Before the <code>edit-event</code> command is executed</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/EditUIAfter.png" alt="EditUIAfter" width="790">
+</div>
+<div class="title">Figure 2. After the <code>edit-event</code> command is executed</div>
 </div>
 </div>
 <div class="sect2">
@@ -195,8 +210,8 @@ Format: <code>find-event KEYWORD [MORE_KEYWORDS]</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>find-event Talk</code><br>
-Returns <code>IoT Talk</code> and <code>Food Talk</code></p>
+<p><code>find-event talk</code><br>
+Returns <code>Career Talk</code></p>
 </li>
 <li>
 <p><code>find-event Talk Competition</code><br>
@@ -204,11 +219,26 @@ Returns any event having name <code>Talk</code>, or <code>Competition</code></p>
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>See the figures below for UI changes.<br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/FindUIBefore.png" alt="# find" width="790">
+</div>
+<div class="title">Figure 3. Before the <code>find-event</code> command is executed</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/FindUIAfter.png" alt="FindUIAfter" width="790">
+</div>
+<div class="title">Figure 4. After the <code>find-event</code> command is executed</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="deleting-an-event-code-delete-event-code"><a class="link" href="#deleting-an-event-code-delete-event-code">Deleting an Event : <code>delete-event</code></a></h3>
 <div class="paragraph">
-<p>Deletes the specified event from the event planner.<br>
+<p>Deletes the specified event from EPIC.<br>
 Format: <code>delete-event INDEX</code></p>
 </div>
 <div class="sidebarblock">
@@ -234,7 +264,7 @@ The index refers to the index number shown in the middle pane.</p>
 <li>
 <p><code>list-events</code><br>
 <code>delete-event 2</code><br>
-Deletes the 2nd event in the event planner.</p>
+Deletes the 2nd event in EPIC.</p>
 </li>
 <li>
 <p><code>find-event Talk</code><br>
@@ -289,7 +319,7 @@ Deletes the 1st event in the results of the <code>find-event</code> command.</p>
 <div class="content">
 <img src="../images/StorageComponentSequenceDiagram.png" alt="StorageComponentSequenceDiagram" width="800">
 </div>
-<div class="title">Figure 1. Interactions Inside the Storage Component to restore data</div>
+<div class="title">Figure 5. Interactions Inside the Storage Component to restore data</div>
 </div>
 <div class="sect2">
 <h3 id="find-event-feature"><a class="link" href="#find-event-feature">Find Event Feature</a></h3>
@@ -303,7 +333,7 @@ Deletes the 1st event in the results of the <code>find-event</code> command.</p>
 <div class="content">
 <img src="../images/FindEventCommandSequenceDiagram.png" alt="FindEventCommandSequenceDiagram" width="650">
 </div>
-<div class="title">Figure 2. Sequence Diagram for find-event command</div>
+<div class="title">Figure 6. Sequence Diagram for find-event command</div>
 </div>
 <div class="sect3">
 <h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
@@ -382,7 +412,7 @@ The execution of it creates a <code>CsvEventPlannerStorage</code>. The subsequen
 <div class="content">
 <img src="../images/ExportEventSequenceDiagram.png" alt="ExportEventSequenceDiagram" width="650">
 </div>
-<div class="title">Figure 3. Sequence Diagram for csv export</div>
+<div class="title">Figure 7. Sequence Diagram for csv export</div>
 </div>
 </div>
 <div class="sect3">
@@ -463,7 +493,7 @@ The execution of it creates a <code>CsvEventPlannerStorage</code>. The subsequen
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-14 16:41:33 UTC
+Last updated 2018-04-15 01:48:14 UTC
 </div>
 </div>
 </body>
