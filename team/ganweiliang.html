@@ -104,6 +104,7 @@ and updated models: (Pull request <a href="https://github.com">#50</a>)</p>
 </li>
 </ul>
 </div>
+<div style="page-break-after: always;"></div>
 </div>
 </div>
 <div class="sect1">
@@ -148,11 +149,13 @@ Adds the event AY201718 Graduation to EPIC.</p>
 </li>
 <li>
 <p><code>add-event n/Computing Seminar</code>
-Adds the event Computing Seminar to EPIC.
-=== Toggle Attendance for Event Participant : <code>toggle</code></p>
+Adds the event Computing Seminar to EPIC.</p>
 </li>
 </ul>
 </div>
+</div>
+<div class="sect2">
+<h3 id="toggle-attendance-for-event-participant-code-toggle-code"><a class="link" href="#toggle-attendance-for-event-participant-code-toggle-code">Toggle Attendance for Event Participant : <code>toggle</code></a></h3>
 <div class="paragraph">
 <p>Toggles the attendance of a participant to an event from attended to not attended and vice versa.<br>
 Format: <code>toggle INDEX</code></p>
@@ -179,23 +182,15 @@ The index refers to the index number shown in the rightmost pane.</p>
 <p>*<code>select-event 2</code><br>
 <code>toggle 3</code><br>
 Toggles the attendance of the 3rd registrant in the attendance list of
-the 2nd event currently listed. <a href="#ToggleBefore">GUI before the <code>toggle 3</code> command is executed</a> below shows an example of
-how EPIC looks like after the <code>select-event 2</code> command is executed and
-<a href="#ToggleAfter">GUI after the <code>toggle 3</code> command is exectued</a> below shows how EPIC would look like after the <code>toggle 3</code> command
-is executed.</p>
+the 2nd event currently listed. See <a href="#toggle">Illustration of <code>toggle</code> command (only the Attendees Pane is shown for clarity).</a> below for UI changes.<br></p>
 </div>
-<div id="ToggleBefore" class="imageblock">
+<div id="toggle" class="imageblock">
 <div class="content">
-<img src="../images/ToggleScreenShotBefore.png" alt="ToggleScreenShotBefore" width="800">
+<img src="../images/ToggleUG.png" alt="ToggleUG" width="790">
 </div>
-<div class="title">Figure 1. GUI before the <code>toggle 3</code> command is executed</div>
+<div class="title">Figure 1. Illustration of <code>toggle</code> command (only the Attendees Pane is shown for clarity).</div>
 </div>
-<div id="ToggleAfter" class="imageblock">
-<div class="content">
-<img src="../images/ToggleScreenShotAfter.png" alt="ToggleScreenShotAfter" width="800">
-</div>
-<div class="title">Figure 2. GUI after the <code>toggle 3</code> command is exectued</div>
-</div>
+<div style="page-break-after: always;"></div>
 </div>
 </div>
 </div>
@@ -221,7 +216,7 @@ is executed.</p>
 <div class="content">
 <img src="../images/ModelClassDiagram.png" alt="ModelClassDiagram" width="800">
 </div>
-<div class="title">Figure 3. Structure of the Model Component</div>
+<div class="title">Figure 2. Structure of the Model Component</div>
 </div>
 <div class="paragraph">
 <p><strong>API</strong> : <a href="{repoURL}/src/main/java/seedu/address/model/Model.java"><code>Model.java</code></a></p>
@@ -268,7 +263,7 @@ in <a href="#ACD">Structure of the Attendance class</a> below.</p>
 <div class="content">
 <img src="../images/ModelClassDiagram.png" alt="ModelClassDiagram" width="800px">
 </div>
-<div class="title">Figure 4. Structure of the Attendance class</div>
+<div class="title">Figure 3. Structure of the Attendance class</div>
 </div>
 <div class="paragraph">
 <p>An instance of <code>Attendance</code> is created every time a person registers to an event and
@@ -289,7 +284,7 @@ in the logic component.</p>
 <div class="content">
 <img src="../images/ToggleAttendanceCommandSequenceDiagram.png" alt="ToggleAttendanceCommandSequenceDiagram" width="800">
 </div>
-<div class="title">Figure 5. Sequence Diagram for toggle command</div>
+<div class="title">Figure 4. Sequence Diagram for toggle command</div>
 </div>
 <div class="paragraph">
 <p>When the <code>ToggleAttendanceCommand</code> is executed, it obtains the relevant <code>Person</code> and
@@ -433,7 +428,7 @@ by iteratively registering each person without requiring the user to register ea
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-15 07:28:29 UTC
+Last updated 2018-04-15 09:32:52 UTC
 </div>
 </div>
 </body>

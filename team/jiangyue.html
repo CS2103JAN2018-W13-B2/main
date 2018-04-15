@@ -16,13 +16,17 @@
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="project-epic"><a class="link" href="#project-epic">PROJECT: EPIC</a></h2>
+<h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>This Project Portfolio details my contributions to project EPIC, showing that I am capable of producing functional code,
+and working in a team on a large project.</p>
+</div>
 <hr>
 </div>
 </div>
 <div class="sect1">
-<h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
+<h2 id="project-epic"><a class="link" href="#project-epic">PROJECT: EPIC</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Event Planning isn’t Complicated (EPIC) is a desktop application used for <strong>event planning
@@ -154,29 +158,20 @@ The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p
 <div class="ulist">
 <ul>
 <li>
-<p><code>edit-event 1 n/Career Talk 2018</code><br>
-Edits the name of the 1st event in event pane to be <code>Career Talk 2018</code>.</p>
-</li>
-<li>
 <p><code>edit-event 2 n/Graduation Day t/</code><br>
 Edits the name of the 2nd event to be <code>Graduation Day</code> and clears all existing tags.</p>
 </li>
+<li>
+<p><code>edit-event 6 n/Career Talk 2018</code><br>
+Edits the name of the 6th event in event pane to be <code>Career Talk 2018</code>. See <a href="#editevent">Illustration of <code>edit-event</code> command (only the Events Pane is shown for clarity).</a> below for UI changes.<br></p>
+</li>
 </ul>
 </div>
-<div class="paragraph">
-<p>See the figures below for UI changes.<br></p>
-</div>
-<div class="imageblock">
+<div id="editevent" class="imageblock">
 <div class="content">
-<img src="../images/EditUIBefore.png" alt="# edit-event" width="790">
+<img src="../images/EditEventUG.png" alt="EditEventUG" width="790">
 </div>
-<div class="title">Figure 1. Before the <code>edit-event</code> command is executed</div>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/EditUIAfter.png" alt="EditUIAfter" width="790">
-</div>
-<div class="title">Figure 2. After the <code>edit-event</code> command is executed</div>
+<div class="title">Figure 1. Illustration of <code>edit-event</code> command (only the Events Pane is shown for clarity).</div>
 </div>
 </div>
 <div class="sect2">
@@ -190,7 +185,7 @@ Format: <code>find-event KEYWORD [MORE_KEYWORDS]</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>The search is case insensitive. e.g <code>talks</code> will match <code>Talks</code></p>
+<p>The search is case-insensitive. e.g <code>talks</code> will match <code>Talks</code></p>
 </li>
 <li>
 <p>The order of the keywords does not matter. e.g. <code>Food Talk</code> will match <code>Talk Food</code></p>
@@ -219,24 +214,15 @@ Returns <code>Career Talk</code></p>
 </li>
 <li>
 <p><code>find-event Talk Competition</code><br>
-Returns any event having name <code>Talk</code>, or <code>Competition</code></p>
+Returns any event having name <code>Talk</code>, or <code>Competition</code>. See <a href="#findevent">Illustration of <code>find-event</code> command (only the Events Pane is shown for clarity).</a> below for UI changes.<br></p>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>See the figures below for UI changes.<br></p>
-</div>
-<div class="imageblock">
+<div id="findevent" class="imageblock">
 <div class="content">
-<img src="../images/FindUIBefore.png" alt="# find" width="790">
+<img src="../images/FindEventUG.png" alt="FindEventUG" width="790">
 </div>
-<div class="title">Figure 3. Before the <code>find-event</code> command is executed</div>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/FindUIAfter.png" alt="FindUIAfter" width="790">
-</div>
-<div class="title">Figure 4. After the <code>find-event</code> command is executed</div>
+<div class="title">Figure 2. Illustration of <code>find-event</code> command (only the Events Pane is shown for clarity).</div>
 </div>
 </div>
 <div class="sect2">
@@ -323,12 +309,12 @@ Deletes the 1st event in the results of the <code>find-event</code> command.</p>
 <div class="content">
 <img src="../images/StorageComponentSequenceDiagram.png" alt="StorageComponentSequenceDiagram" width="800">
 </div>
-<div class="title">Figure 5. Interactions Inside the Storage Component to restore data</div>
+<div class="title">Figure 3. Interactions Inside the Storage Component to restore data</div>
 </div>
 <div class="sect2">
 <h3 id="find-event-feature"><a class="link" href="#find-event-feature">Find Event Feature</a></h3>
 <div class="paragraph">
-<p>The find-event command enables the user to find events from the event list with keywords. The command finds all events whose names contain any of the given keywords. The user can further modify the events with <code>edit-event</code> or <code>delete-event</code> command once the event is found.</p>
+<p>The <code>find-event</code> command enables the user to find events from the event list with keywords. The command finds all events whose names contain any of the given keywords. The user can further modify the events with <code>edit-event</code> or <code>delete-event</code> command once the event is found.</p>
 </div>
 <div class="paragraph">
 <p><a href="#SDFEC">Sequence Diagram for find-event command</a> below shows how the <code>find-event</code> command is processed in the Logic component.</p>
@@ -337,7 +323,7 @@ Deletes the 1st event in the results of the <code>find-event</code> command.</p>
 <div class="content">
 <img src="../images/FindEventCommandSequenceDiagram.png" alt="FindEventCommandSequenceDiagram" width="650">
 </div>
-<div class="title">Figure 6. Sequence Diagram for find-event command</div>
+<div class="title">Figure 4. Sequence Diagram for find-event command</div>
 </div>
 <div class="sect3">
 <h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
@@ -398,7 +384,7 @@ Deletes the 1st event in the results of the <code>find-event</code> command.</p>
 <div class="sect2">
 <h3 id="proposed-export-an-event"><a class="link" href="#proposed-export-an-event">[proposed] Export an Event</a></h3>
 <div class="paragraph">
-<p>The proposed export command exports the names of the attendees, their phone numbers,
+<p>The proposed export command exports the names of the registrants, their phone numbers,
 their email addresses, their home addresses and their attendance information of a particular
 event to a csv file into a file path specified by the user. Having all the information of a
 particular event in a csv file would enable the user to analyse the data using other tools.</p>
@@ -416,7 +402,7 @@ The execution of it creates a <code>CsvEventPlannerStorage</code>. The subsequen
 <div class="content">
 <img src="../images/ExportEventSequenceDiagram.png" alt="ExportEventSequenceDiagram" width="650">
 </div>
-<div class="title">Figure 7. Sequence Diagram for csv export</div>
+<div class="title">Figure 5. Sequence Diagram for csv export</div>
 </div>
 </div>
 <div class="sect3">
@@ -429,27 +415,27 @@ The execution of it creates a <code>CsvEventPlannerStorage</code>. The subsequen
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice)</strong>: Name of the attendees, their phone number, their email address, their home address and their attendance information for the event</p>
+<p><strong>Alternative 1 (current choice)</strong>: Name of the registrants, their phone number, their email address, their home address and their attendance information for the event</p>
 <div class="ulist">
 <ul>
 <li>
 <p>Pros: The information includes almost all the data users need for an event. The parsing of the data is straight forward.</p>
 </li>
 <li>
-<p>Cons: The tags of the attendees are not exported.</p>
+<p>Cons: The tags of the registrants are not exported.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Alternative 2</strong>: All information for attendees including their tags</p>
+<p><strong>Alternative 2</strong>: All information for registrants including their tags</p>
 <div class="ulist">
 <ul>
 <li>
 <p>Pros: More information for users as compared to current implementation.</p>
 </li>
 <li>
-<p>Cons: The attendees may have zero or multiple tags. The uncertainty in the number of tags make parsing messy.</p>
+<p>Cons: The registrants may have zero or multiple tags. The uncertainty in the number of tags make parsing messy.</p>
 </li>
 </ul>
 </div>
@@ -497,7 +483,7 @@ The execution of it creates a <code>CsvEventPlannerStorage</code>. The subsequen
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-15 07:28:29 UTC
+Last updated 2018-04-15 09:32:52 UTC
 </div>
 </div>
 </body>

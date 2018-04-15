@@ -1034,13 +1034,22 @@ commands like <code>delete</code> if <code>filteredPersons</code> had been alter
 <div class="paragraph">
 <p>Instead of saving the entire event planner each time we execute an <code>UndoableCommand</code>, each <code>UndoableCommand</code> knows how to <code>undo/redo</code> itself.
 Each <code>UndoableCommand</code> has an <code>oppositeCommand</code> field, which is another <code>UndoableCommand</code> that, when executed, reverses the changes made by the original command.
-The sequence diagram for the new <code>undo()</code> implementation is shown in <a href="#SDUndo">Figure 21</a>.</p>
+This <code>oppositeCommand</code> is generated as part of the <code>execute()</code> method, which is overridden in the <code>UndoableCommand</code> class.</p>
 </div>
-<div id="SDUndo" class="imageblock">
+<div class="paragraph">
+<p>The sequence diagram for the overridden <code>execute()</code> method is shown in <a href="#sdoverriddenexecute">Figure 21</a>, and that for the new <code>undo()</code> implementation in <a href="#sdundo">Figure 22</a>.</p>
+</div>
+<div id="sdoverriddenexecute" class="imageblock">
+<div class="content">
+<img src="images/ExecuteSequenceDiagram.png" alt="ExecuteSequenceDiagram" width="650">
+</div>
+<div class="title">Figure 21. Sequence Diagram for the overridden <code>execute()</code></div>
+</div>
+<div id="sdundo" class="imageblock">
 <div class="content">
 <img src="images/UndoSequenceDiagram.png" alt="UndoSequenceDiagram" width="650">
 </div>
-<div class="title">Figure 21. Sequence Diagram for new undo implementation</div>
+<div class="title">Figure 22. Sequence Diagram for new undo implementation</div>
 </div>
 <div class="paragraph">
 <p>The <code>oppositeCommand</code> is generated in the <code>execute()</code> method, after <code>preprocessUndoableCommand()</code>. This is because generating the <code>oppositeCommand</code>
@@ -1223,15 +1232,20 @@ the <code>Person</code>. This counter is used to check whether a <code>Person</c
 when the user attempts to delete that <code>Person</code>.</p>
 </div>
 <div class="paragraph">
-<p>The entire process is illustrated using the sequence diagram (<a href="#registerseq">Section 4.4.2</a>) below.</p>
+<p>The entire process is illustrated using the sequence diagram (<a href="#registerseq">Figure 23</a>) below.</p>
+</div>
+<div id="registerseq" class="imageblock">
+<div class="content">
+<img src="images/RegisterPersonCommandSequenceDiagram.png" alt="RegisterPersonCommandSequenceDiagram" width="650">
+</div>
+<div class="title">Figure 23. Sequence Diagram for the <code>register</code> command</div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="registerseq"><a class="link" href="#registerseq">4.4.2. Design Considerations</a></h4>
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">4.4.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-association-links-between-epicevent-and-person"><a class="link" href="#aspect-association-links-between-epicevent-and-person">Aspect: Association Links between EpicEvent and Person</a></h5>
 <div class="ulist">
-<div class="title">Sequence Diagram for the <code>register</code> command</div>
 <ul>
 <li>
 <p><strong>Alternative 1 (current choice):</strong> Make the EpicEvent-Person association unidirectional</p>
@@ -1317,13 +1331,13 @@ is in an <code>EpicEvent</code>, then pass it to <code>updateFilteredPersonList(
 <h4 id="current-implementation-5"><a class="link" href="#current-implementation-5">4.6.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The implementation uses a class called <code>Attendance</code>, the structure of which is shown
-in <a href="#ACD">Figure 22</a> below.</p>
+in <a href="#ACD">Figure 24</a> below.</p>
 </div>
 <div id="ACD" class="imageblock">
 <div class="content">
 <img src="images/ModelClassDiagram.png" alt="ModelClassDiagram" width="800px">
 </div>
-<div class="title">Figure 22. Structure of the Attendance class</div>
+<div class="title">Figure 24. Structure of the Attendance class</div>
 </div>
 <div class="paragraph">
 <p>An instance of <code>Attendance</code> is created every time a person registers to an event and
@@ -1337,14 +1351,14 @@ easy to implement.</p>
 <p>When the <code>toggle</code> command is called, an instance of <code>ToggleAttendanceCommand</code> is created
 and it uses the index provided to find and save a reference to the <code>Attendance</code> object
 to be toggled. This is done so that the command can be undone by toggling the exact same
-<code>Attendance</code> object. <a href="#TCD">Figure 23</a> below shows how the <code>toggle</code> command is processed
+<code>Attendance</code> object. <a href="#TCD">Figure 25</a> below shows how the <code>toggle</code> command is processed
 in the logic component.</p>
 </div>
 <div id="TCD" class="imageblock">
 <div class="content">
 <img src="images/ToggleAttendanceCommandSequenceDiagram.png" alt="ToggleAttendanceCommandSequenceDiagram" width="800">
 </div>
-<div class="title">Figure 23. Sequence Diagram for toggle command</div>
+<div class="title">Figure 25. Sequence Diagram for toggle command</div>
 </div>
 <div class="paragraph">
 <p>When the <code>ToggleAttendanceCommand</code> is executed, it obtains the relevant <code>Person</code> and
@@ -1354,7 +1368,7 @@ where the <code>hasAttendedEventProperty</code> is toggled.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">4.6.2. Design Considerations</a></h4>
+<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">4.6.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-location-of-instances-of-code-attendance-code-objects"><a class="link" href="#aspect-location-of-instances-of-code-attendance-code-objects">Aspect: Location of Instances of <code>Attendance</code> Objects</a></h5>
 <div class="ulist">
@@ -1477,13 +1491,13 @@ whose names contain any of the given keywords will be listed. The user can furth
 registrants with the <code>toggle</code> command.</p>
 </div>
 <div class="paragraph">
-<p><a href="#SDSEC">Figure 24</a> below shows how the <code>find-registrant</code> command is processed in the Logic component.</p>
+<p><a href="#SDSEC">Figure 26</a> below shows how the <code>find-registrant</code> command is processed in the Logic component.</p>
 </div>
 <div id="SDSEC" class="imageblock">
 <div class="content">
 <img src="images/FindRegistrantSequenceDiagram.png" alt="FindRegistrantSequenceDiagram" width="650">
 </div>
-<div class="title">Figure 24. Sequence Diagram for <code>find-registrant</code> command</div>
+<div class="title">Figure 26. Sequence Diagram for <code>find-registrant</code> command</div>
 </div>
 <div class="sect3">
 <h4 id="current-implementation-6"><a class="link" href="#current-implementation-6">4.7.1. Current Implementation</a></h4>
@@ -1494,7 +1508,7 @@ list of registrants and the Attendance List Panel is updated.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">4.7.2. Design Considerations</a></h4>
+<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">4.7.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-keyword-matching-pattern-2"><a class="link" href="#aspect-keyword-matching-pattern-2">Aspect: Keyword Matching Pattern</a></h5>
 <div class="ulist">
@@ -1606,7 +1620,7 @@ list of registrants and the Attendance List Panel is updated.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">4.8.2. Design Considerations</a></h4>
+<h4 id="design-considerations-7"><a class="link" href="#design-considerations-7">4.8.2. Design Considerations</a></h4>
 <div class="paragraph">
 <p>When deciding on the UI, the following aspects of user experience were considered:</p>
 </div>
@@ -1819,17 +1833,17 @@ particular event in a csv file would enable the user to analyse the data using o
 The execution of it creates a <code>CsvEventPlannerStorage</code>. The subsequent export mechanism is handled by a <code>CsvEventPlannerStorage</code> where event data is parsed by <code>CsvUtil</code> and then exported as a file through <code>CsvFileStorage</code> using the file path specified by the user.</p>
 </div>
 <div class="paragraph">
-<p><a href="#SDCSV">Figure 25</a> below shows how the csv event export is processed in the storage component.</p>
+<p><a href="#SDCSV">Figure 27</a> below shows how the csv event export is processed in the storage component.</p>
 </div>
 <div id="SDCSV" class="imageblock">
 <div class="content">
 <img src="images/ExportEventSequenceDiagram.png" alt="ExportEventSequenceDiagram" width="650">
 </div>
-<div class="title">Figure 25. Sequence Diagram for csv export</div>
+<div class="title">Figure 27. Sequence Diagram for csv export</div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-7"><a class="link" href="#design-considerations-7">4.11.2. Design Considerations</a></h4>
+<h4 id="design-considerations-8"><a class="link" href="#design-considerations-8">4.11.2. Design Considerations</a></h4>
 <div class="paragraph">
 <p>When deciding on the export options, the following aspects of user experience are considered.</p>
 </div>
@@ -1962,7 +1976,7 @@ Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows y
 <div class="content">
 <img src="images/chrome_save_as_pdf.png" alt="chrome save as pdf" width="300">
 </div>
-<div class="title">Figure 26. Saving documentation as PDF files in Chrome</div>
+<div class="title">Figure 28. Saving documentation as PDF files in Chrome</div>
 </div>
 </div>
 </div>
@@ -2939,7 +2953,7 @@ Expected: Similar to previous.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-15 07:28:29 UTC
+Last updated 2018-04-15 09:32:52 UTC
 </div>
 </div>
 </body>

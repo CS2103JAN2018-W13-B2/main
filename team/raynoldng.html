@@ -16,6 +16,15 @@
 </div>
 <div id="content">
 <div class="sect1">
+<h2 id="introduction"><a class="link" href="#introduction">Introduction</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This Project Portfolio details my contributions to past projects, showing that I am capable of producing functional code,
+and work in a team on a large project.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="project-event-planning-isn-t-complicated-epic"><a class="link" href="#project-event-planning-isn-t-complicated-epic">PROJECT: Event Planning isn’t Complicated (EPIC)</a></h2>
 <div class="sectionbody">
 <hr>
@@ -124,6 +133,7 @@ command that resets it.</p>
 </li>
 </ul>
 </div>
+<div style="page-break-after: always;"></div>
 </div>
 </div>
 <div class="sect1">
@@ -224,16 +234,16 @@ names contain any of the given keys are displayed.</p>
 </div>
 <div class="paragraph">
 <p>In our example, we&#8217;ll apply a filter to display only participants from the IoT Talk Event with the
-name "Alice".</p>
+name "Alex".</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Select the IoT Event by executing <code>select-event 1</code>. Observe that Alice Pauline is registered</p>
+<p>Select the IoT Event by executing <code>select-event 1</code>. Observe that Alex Yeoh is registered</p>
 </li>
 <li>
-<p>Execute <code>find-registrant alice</code>, this filters the attendance panel, hiding anyone whose name does
-not contain the word alice (case-insensitive).</p>
+<p>Execute <code>find-registrant alex</code>, this filters the attendance panel, hiding anyone whose name does
+not contain the word alex (case-insensitive).</p>
 </li>
 <li>
 <p>To remove the filter, execute <code>list-attendance</code>.</p>
@@ -242,19 +252,30 @@ not contain the word alice (case-insensitive).</p>
 </div>
 <div class="paragraph">
 <p>When a filter is applied, the header of the attendance panel will display <code>filtered</code>, and the attendance statistic will
-be computed based on the filtered list (see <a href="#after-find-registrant">Figure 3</a>).</p>
+be computed based on the filtered list. See <a href="#findregistrants">Figure 2</a> below for UI changes.<br></p>
 </div>
-<div id="before-find-registrant" class="imageblock">
+<div id="findregistrants" class="imageblock">
 <div class="content">
-<img src="../images/before_find_attendance.png" alt="before find attendance" width="750">
+<img src="../images/FindRegistrantsUG.png" alt="FindRegistrantsUG" width="790">
 </div>
-<div class="title">Figure 2. Before the <code>find-registrant alice</code> command is executed</div>
+<div class="title">Figure 2. Illustration of <code>find-registrants</code> command (only the Attendees Pane is shown for clarity).</div>
 </div>
-<div id="after-find-registrant" class="imageblock">
+<div class="sidebarblock">
 <div class="content">
-<img src="../images/after_find_attendance.png" alt="after find attendance" width="750">
+<div class="ulist">
+<ul>
+<li>
+<p>The search is case insensitive. e.g hans will match Hans.</p>
+</li>
+<li>
+<p>Only the name is searched.</p>
+</li>
+<li>
+<p>Only full words will be matched. e.g. Han will not match Hans.</p>
+</li>
+</ul>
 </div>
-<div class="title">Figure 3. After the <code>find-registrant alice</code> command is executed</div>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -263,6 +284,7 @@ be computed based on the filtered list (see <a href="#after-find-registrant">Fig
 <p>Lists all participants for the specified event, removing any filter.<br>
 Format: <code>list-registered EVENT_NAME</code></p>
 </div>
+<div style="page-break-after: always;"></div>
 </div>
 </div>
 </div>
@@ -287,13 +309,13 @@ whose names contain any of the given keywords will be listed. The user can furth
 registrants with the <code>toggle</code> command.</p>
 </div>
 <div class="paragraph">
-<p><a href="#SDSEC">Figure 4</a> below shows how the <code>find-registrant</code> command is processed in the Logic component.</p>
+<p><a href="#SDSEC">Figure 3</a> below shows how the <code>find-registrant</code> command is processed in the Logic component.</p>
 </div>
 <div id="SDSEC" class="imageblock">
 <div class="content">
 <img src="../images/FindRegistrantSequenceDiagram.png" alt="FindRegistrantSequenceDiagram" width="650">
 </div>
-<div class="title">Figure 4. Sequence Diagram for <code>find-registrant</code> command</div>
+<div class="title">Figure 3. Sequence Diagram for <code>find-registrant</code> command</div>
 </div>
 <div class="sect3">
 <h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
@@ -374,13 +396,13 @@ list of registrants and the Attendance List Panel is updated.</p>
 <div class="sect3">
 <h4 id="functional-overview"><a class="link" href="#functional-overview">Functional Overview</a></h4>
 <div class="paragraph">
-<p>The UI consists of a <code>MainWindow</code> that contains the 5 main layout regions (<a href="#GUIOverview">Figure 5</a>):</p>
+<p>The UI consists of a <code>MainWindow</code> that contains the 5 main layout regions (<a href="#GUIOverview">Figure 4</a>):</p>
 </div>
 <div id="GUIOverview" class="imageblock">
 <div class="content">
 <img src="../images/GUI.png" alt="GUI" width="750">
 </div>
-<div class="title">Figure 5. Overview of the Graphical User Interface of EPIC</div>
+<div class="title">Figure 4. Overview of the Graphical User Interface of EPIC</div>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -426,13 +448,13 @@ If no  <code>EpicEvent</code> has been selected, the Attendance List Panel will 
 <div class="sect3">
 <h4 id="technical-overview"><a class="link" href="#technical-overview">Technical Overview</a></h4>
 <div class="paragraph">
-<p>The UI component (<a href="#UiClassDiagram">Figure 6</a>) uses the JavaFX UI framework. The UI consists of a <code>MainWindow</code> that is made up of parts e.g.<code>CommandBox</code>, <code>ResultDisplay</code>, <code>PersonListPanel</code>, <code>StatusBarFooter</code> etc. All these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.</p>
+<p>The UI component (<a href="#UiClassDiagram">Figure 5</a>) uses the JavaFX UI framework. The UI consists of a <code>MainWindow</code> that is made up of parts e.g.<code>CommandBox</code>, <code>ResultDisplay</code>, <code>PersonListPanel</code>, <code>StatusBarFooter</code> etc. All these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.</p>
 </div>
 <div id="UiClassDiagram" class="imageblock">
 <div class="content">
 <img src="../images/UiClassDiagram.png" alt="UiClassDiagram" width="750">
 </div>
-<div class="title">Figure 6. Structure of the UI Component</div>
+<div class="title">Figure 5. Structure of the UI Component</div>
 </div>
 <div class="paragraph">
 <p><strong>API</strong> : <a href="{repoURL}/src/main/java/seedu/address/ui/Ui.java"><code>Ui.java</code></a></p>
@@ -642,10 +664,19 @@ For example, the layout of the <a href="{repoURL}/src/main/java/seedu/address/ui
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="overview-2"><a class="link" href="#overview-2">Overview</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>NUSMods Planner is an automatic timetable generator, helping students to generate their timetable purely from
+specifications. More details can be found at <a href="https://github.com/raynoldng/nusmods-planner">my Github page</a></p>
+</div>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-15 07:28:29 UTC
+Last updated 2018-04-15 09:32:52 UTC
 </div>
 </div>
 </body>

@@ -425,6 +425,9 @@ The index refers to the index number shown in the Persons Pane.</p>
 <li>
 <p>The index <strong>must be a positive integer</strong>: 1, 2, 3, &#8230;&#8203;</p>
 </li>
+<li>
+<p>The person specified must not be registered for any event.</p>
+</li>
 </ul>
 </div>
 </div>
@@ -584,29 +587,20 @@ The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p
 <div class="ulist">
 <ul>
 <li>
-<p><code>edit-event 1 n/Career Talk 2018</code><br>
-Edits the name of the 1st event in event pane to be <code>Career Talk 2018</code>.</p>
-</li>
-<li>
 <p><code>edit-event 2 n/Graduation Day t/</code><br>
 Edits the name of the 2nd event to be <code>Graduation Day</code> and clears all existing tags.</p>
 </li>
+<li>
+<p><code>edit-event 6 n/Career Talk 2018</code><br>
+Edits the name of the 6th event in event pane to be <code>Career Talk 2018</code>. See <a href="#editevent">Figure 3</a> below for UI changes.<br></p>
+</li>
 </ul>
 </div>
-<div class="paragraph">
-<p>See the figures below for UI changes.<br></p>
-</div>
-<div class="imageblock">
+<div id="editevent" class="imageblock">
 <div class="content">
-<img src="images/EditUIBefore.png" alt="# edit-event" width="790">
+<img src="images/EditEventUG.png" alt="EditEventUG" width="790">
 </div>
-<div class="title">Figure 3. Before the <code>edit-event</code> command is executed</div>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/EditUIAfter.png" alt="EditUIAfter" width="790">
-</div>
-<div class="title">Figure 4. After the <code>edit-event</code> command is executed</div>
+<div class="title">Figure 3. Illustration of <code>edit-event</code> command (only the Events Pane is shown for clarity).</div>
 </div>
 </div>
 <div class="sect2">
@@ -649,24 +643,15 @@ Returns <code>Career Talk</code></p>
 </li>
 <li>
 <p><code>find-event Talk Competition</code><br>
-Returns any event having name <code>Talk</code>, or <code>Competition</code></p>
+Returns any event having name <code>Talk</code>, or <code>Competition</code>. See <a href="#findevent">Figure 4</a> below for UI changes.<br></p>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>See the figures below for UI changes.<br></p>
-</div>
-<div class="imageblock">
+<div id="findevent" class="imageblock">
 <div class="content">
-<img src="images/FindUIBefore.png" alt="# find" width="790">
+<img src="images/FindEventUG.png" alt="FindEventUG" width="790">
 </div>
-<div class="title">Figure 5. Before the <code>find-event</code> command is executed</div>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/FindUIAfter.png" alt="FindUIAfter" width="790">
-</div>
-<div class="title">Figure 6. After the <code>find-event</code> command is executed</div>
+<div class="title">Figure 4. Illustration of <code>find-event</code> command (only the Events Pane is shown for clarity).</div>
 </div>
 </div>
 <div class="sect2">
@@ -745,21 +730,15 @@ Registers the 1st person in the results of the <code>find</code> command for Com
 <li>
 <p><code>list</code><br>
 <code>register 2 AY201718 Graduation</code><br>
-Registers the 2nd person in EPIC for AY201718 Graduation. See the figures below for UI changes.<br></p>
+Registers the 2nd person in EPIC for AY201718 Graduation. See <a href="#register">Figure 5</a> below for UI changes.<br></p>
 </li>
 </ul>
 </div>
 <div id="register" class="imageblock">
 <div class="content">
-<img src="images/RegisterUIBefore.png" alt="RegisterUIBefore" width="790">
+<img src="images/RegisterUG.png" alt="RegisterUG" width="790">
 </div>
-<div class="title">Figure 7. Before the <code>register</code> command is executed</div>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/RegisterUIAfter.png" alt="RegisterUIAfter" width="790">
-</div>
-<div class="title">Figure 8. After the <code>register</code> command is executed</div>
+<div class="title">Figure 5. Illustration of <code>register</code> command (only the Attendees Pane is shown for clarity).</div>
 </div>
 </div>
 <div class="sect2">
@@ -857,16 +836,16 @@ names contain any of the given keys are displayed.</p>
 </div>
 <div class="paragraph">
 <p>In our example, we&#8217;ll apply a filter to display only participants from the IoT Talk Event with the
-name "Alice".</p>
+name "Alex".</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Select the IoT Event by executing <code>select-event 1</code>. Observe that Alice Pauline is registered</p>
+<p>Select the IoT Event by executing <code>select-event 1</code>. Observe that Alex Yeoh is registered</p>
 </li>
 <li>
-<p>Execute <code>find-registrant alice</code>, this filters the attendance panel, hiding anyone whose name does
-not contain the word alice (case-insensitive).</p>
+<p>Execute <code>find-registrant alex</code>, this filters the attendance panel, hiding anyone whose name does
+not contain the word alex (case-insensitive).</p>
 </li>
 <li>
 <p>To remove the filter, execute <code>list-attendance</code>.</p>
@@ -875,19 +854,30 @@ not contain the word alice (case-insensitive).</p>
 </div>
 <div class="paragraph">
 <p>When a filter is applied, the header of the attendance panel will display <code>filtered</code>, and the attendance statistic will
-be computed based on the filtered list (see <a href="#after-find-registrant">Figure 10</a>).</p>
+be computed based on the filtered list. See <a href="#findregistrants">Figure 6</a> below for UI changes.<br></p>
 </div>
-<div id="before-find-registrant" class="imageblock">
+<div id="findregistrants" class="imageblock">
 <div class="content">
-<img src="images/before_find_attendance.png" alt="before find attendance" width="750">
+<img src="images/FindRegistrantsUG.png" alt="FindRegistrantsUG" width="790">
 </div>
-<div class="title">Figure 9. Before the <code>find-registrant alice</code> command is executed</div>
+<div class="title">Figure 6. Illustration of <code>find-registrants</code> command (only the Attendees Pane is shown for clarity).</div>
 </div>
-<div id="after-find-registrant" class="imageblock">
+<div class="sidebarblock">
 <div class="content">
-<img src="images/after_find_attendance.png" alt="after find attendance" width="750">
+<div class="ulist">
+<ul>
+<li>
+<p>The search is case insensitive. e.g hans will match Hans.</p>
+</li>
+<li>
+<p>Only the name is searched.</p>
+</li>
+<li>
+<p>Only full words will be matched. e.g. Han will not match Hans.</p>
+</li>
+</ul>
 </div>
-<div class="title">Figure 10. After the <code>find-registrant alice</code> command is executed</div>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -925,22 +915,13 @@ The index refers to the index number shown in the rightmost pane.</p>
 <p>*<code>select-event 2</code><br>
 <code>toggle 3</code><br>
 Toggles the attendance of the 3rd registrant in the attendance list of
-the 2nd event currently listed. <a href="#ToggleBefore">Figure 11</a> below shows an example of
-how EPIC looks like after the <code>select-event 2</code> command is executed and
-<a href="#ToggleAfter">Figure 12</a> below shows how EPIC would look like after the <code>toggle 3</code> command
-is executed.</p>
+the 2nd event currently listed. See <a href="#toggle">Figure 7</a> below for UI changes.<br></p>
 </div>
-<div id="ToggleBefore" class="imageblock">
+<div id="toggle" class="imageblock">
 <div class="content">
-<img src="images/ToggleScreenShotBefore.png" alt="ToggleScreenShotBefore" width="800">
+<img src="images/ToggleUG.png" alt="ToggleUG" width="790">
 </div>
-<div class="title">Figure 11. GUI before the <code>toggle 3</code> command is executed</div>
-</div>
-<div id="ToggleAfter" class="imageblock">
-<div class="content">
-<img src="images/ToggleScreenShotAfter.png" alt="ToggleScreenShotAfter" width="800">
-</div>
-<div class="title">Figure 12. GUI after the <code>toggle 3</code> command is exectued</div>
+<div class="title">Figure 7. Illustration of <code>toggle</code> command (only the Attendees Pane is shown for clarity).</div>
 </div>
 </div>
 <div class="sect2">
@@ -1015,28 +996,16 @@ Undoes the <code>clear</code> command, followed by the <code>delete 1</code> com
 <li>
 <p><code>delete 2</code><br>
 <code>undo</code><br>
-Undoes the <code>delete 2</code> command. See the figures below for UI changes. In particular,
-<a href="#undoafter">Figure 15</a> shows that relative order of persons might not be preserved.<br></p>
+Undoes the <code>delete 2</code> command. See <a href="#undoafter">Figure 8</a> below for UI changes. In particular,
+it shows that relative order of persons might not be preserved.<br></p>
 </li>
 </ul>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="images/DeleteUIBefore.png" alt="DeleteUIBefore" width="790">
-</div>
-<div class="title">Figure 13. Before the <code>delete 2</code> command is executed</div>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/UndoUIBefore.png" alt="UndoUIBefore" width="790">
-</div>
-<div class="title">Figure 14. After the <code>delete 2</code> command is executed</div>
-</div>
 <div id="undoafter" class="imageblock">
 <div class="content">
-<img src="images/UndoUIAfter.png" alt="UndoUIAfter" width="790">
+<img src="images/UndoUG.png" alt="UndoUG" width="790">
 </div>
-<div class="title">Figure 15. After the <code>undo</code> command is executed</div>
+<div class="title">Figure 8. Illustration of <code>undo</code> command (only the Persons Pane is shown for clarity).</div>
 </div>
 </div>
 <div class="sect2">
@@ -1288,7 +1257,7 @@ e.g. <code>toggle 1</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-15 07:28:29 UTC
+Last updated 2018-04-15 09:32:52 UTC
 </div>
 </div>
 </body>
