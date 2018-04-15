@@ -50,9 +50,9 @@
 <li><a href="#implementation">4. Implementation</a>
 <ul class="sectlevel2">
 <li><a href="#find-event-feature">4.1. Find Event Feature</a></li>
-<li><a href="#edit-person-event-feature">4.2. Edit Person/Event Feature</a></li>
-<li><a href="#undo-redo-feature">4.3. Undo/Redo Feature</a></li>
-<li><a href="#register-deregister-persons-for-from-events">4.4. Register/Deregister Persons for/from Events</a></li>
+<li><a href="#edit-person-event-features">4.2. Edit Person/Event Features</a></li>
+<li><a href="#undo-redo-features">4.3. Undo/Redo Features</a></li>
+<li><a href="#register-deregister-features">4.4. Register/Deregister Features</a></li>
 <li><a href="#list-registered-persons-for-an-event">4.5. List Registered Persons for an Event</a></li>
 <li><a href="#toggling-attendance">4.6. Toggling Attendance</a></li>
 <li><a href="#find-registrant-feature">4.7. Find Registrant Feature</a></li>
@@ -769,7 +769,7 @@ the Model component having to be coupled to either of them. This is an example o
 </div>
 </div>
 <div class="sect2">
-<h3 id="edit-person-event-feature"><a class="link" href="#edit-person-event-feature">4.2. Edit Person/Event Feature</a></h3>
+<h3 id="edit-person-event-features"><a class="link" href="#edit-person-event-features">4.2. Edit Person/Event Features</a></h3>
 <div class="sect3">
 <h4 id="previous-implementation"><a class="link" href="#previous-implementation">4.2.1. Previous Implementation</a></h4>
 <div class="paragraph">
@@ -834,7 +834,7 @@ the Model component having to be coupled to either of them. This is an example o
 </div>
 </div>
 <div class="sect2">
-<h3 id="undo-redo-feature"><a class="link" href="#undo-redo-feature">4.3. Undo/Redo Feature</a></h3>
+<h3 id="undo-redo-features"><a class="link" href="#undo-redo-features">4.3. Undo/Redo Features</a></h3>
 <div class="sect3">
 <h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">4.3.1. Current Implementation</a></h4>
 <div class="paragraph">
@@ -983,7 +983,7 @@ If the <code>undoStack</code> is empty, there are no other commands left to be u
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If the <code>redoStack</code> is empty, then there are no other commands left to be redone, and an <code>Exception</code> will be thrown when popping the <code>redoStack</code>.
+If the <code>redoStack</code> is empty, then there are no other commands left to be redone, and a <code>CommandException</code> will be thrown when popping the <code>redoStack</code>.
 </td>
 </tr>
 </table>
@@ -1041,13 +1041,13 @@ This <code>oppositeCommand</code> is generated as part of the <code>execute()</c
 </div>
 <div id="sdoverriddenexecute" class="imageblock">
 <div class="content">
-<img src="images/ExecuteSequenceDiagram.png" alt="ExecuteSequenceDiagram" width="650">
+<img src="images/ExecuteSequenceDiagram.png" alt="ExecuteSequenceDiagram" width="450">
 </div>
 <div class="title">Figure 21. Sequence Diagram for the overridden <code>execute()</code></div>
 </div>
 <div id="sdundo" class="imageblock">
 <div class="content">
-<img src="images/UndoSequenceDiagram.png" alt="UndoSequenceDiagram" width="650">
+<img src="images/UndoSequenceDiagram.png" alt="UndoSequenceDiagram" width="450">
 </div>
 <div class="title">Figure 22. Sequence Diagram for new undo implementation</div>
 </div>
@@ -1213,7 +1213,7 @@ the user undoes a <code>ClearCommand</code>.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="register-deregister-persons-for-from-events"><a class="link" href="#register-deregister-persons-for-from-events">4.4. Register/Deregister Persons for/from Events</a></h3>
+<h3 id="register-deregister-features"><a class="link" href="#register-deregister-features">4.4. Register/Deregister Features</a></h3>
 <div class="sect3">
 <h4 id="current-implementation-3"><a class="link" href="#current-implementation-3">4.4.1. Current Implementation</a></h4>
 <div class="paragraph">
@@ -2953,7 +2953,7 @@ Expected: Similar to previous.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-15 09:32:52 UTC
+Last updated 2018-04-15 10:55:08 UTC
 </div>
 </div>
 </body>
