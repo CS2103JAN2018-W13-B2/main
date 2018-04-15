@@ -773,7 +773,8 @@ the Model component having to be coupled to either of them. This is an example o
 <div class="sect3">
 <h4 id="previous-implementation"><a class="link" href="#previous-implementation">4.2.1. Previous Implementation</a></h4>
 <div class="paragraph">
-<p>In <a href="https://github.com/se-edu/addressbook-level4">AddressBook-Level4</a>, the <code>edit</code> command was performed by creating a new <code>Person</code> and passing it to a <code>UniquePersonList</code> in the model, which would then replace the to-be-edited <code>Person</code> with it.</p>
+<p>In <a href="https://github.com/se-edu/addressbook-level4">AddressBook-Level4</a>, the <code>edit</code> command was performed by creating a new <code>Person</code>
+and passing it to the <code>UniquePersonList</code> in the model, which would then replace the to-be-edited <code>Person</code> with it.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -807,7 +808,9 @@ the Model component having to be coupled to either of them. This is an example o
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Since EPIC has both <code>EpicEvent</code> and <code>Person</code> objects, which maintain references to one another, editing a <code>Person/EpicEvent</code> in this manner automatically updates the <code>EpicEvent/Person</code> objects that is associated with it.</p>
+<p>Pros: Since an <code>EpicEvent</code> maintain references to multiple <code>Person</code> objects, editing a <code>Person</code> in this manner
+automatically updates the <code>EpicEvent</code> objects which reference it. Similarly, editing an <code>EpicEvent</code> in this manner
+automatically updates the <code>Attendance</code> objects which reference it.</p>
 </li>
 <li>
 <p>Cons: Implementation of <code>undo</code> will be more difficult.</p>
@@ -823,7 +826,8 @@ the Model component having to be coupled to either of them. This is an example o
 <p>Pros: Implementation of <code>undo</code> is easier, since we can just replace the current <code>EventPlanner</code> with the previous one.</p>
 </li>
 <li>
-<p>Cons: Editing a <code>Person/EpicEvent</code> will require passing a copy of the newly-created <code>Person/EpicEvent</code> to all objects associated with the to-be-edited version, introducing significant overhead</p>
+<p>Cons: Editing a <code>Person/EpicEvent</code> will require passing a copy of the newly-created <code>Person/EpicEvent</code> to all objects
+associated with the to-be-edited version, introducing significant overhead.</p>
 </li>
 </ul>
 </div>
@@ -1002,9 +1006,12 @@ commands like <code>delete</code> if <code>filteredPersons</code> had been alter
 </table>
 </div>
 <div class="paragraph">
-<p>The user now decides to execute a new command, <code>clear</code>. As before, <code>clear</code> will be pushed into the <code>undoStack</code>. This time the <code>redoStack</code> is no longer empty. It will be purged as it no longer make sense to redo the <code>add n/David</code> command (this is the behavior that most modern desktop applications follow).</p>
+<p>The user now decides to execute a new command, <code>clear</code>. As before, <code>clear</code> will be pushed into the <code>undoStack</code>.
+This time the <code>redoStack</code> is no longer empty. It will be purged as it no longer makes sense to redo the <code>add n/David</code> command
+(this is the behavior that most modern desktop applications follow). <a href="#UndoRedoNewCommand2StackDiagram">Figure 18</a> below shows how
+the clear command changes the <code>UndoRedoStack</code>.</p>
 </div>
-<div class="imageblock">
+<div id="UndoRedoNewCommand2StackDiagram" class="imageblock">
 <div class="content">
 <img src="images/UndoRedoNewCommand2StackDiagram.png" alt="UndoRedoNewCommand2StackDiagram" width="800">
 </div>
@@ -1053,7 +1060,7 @@ This <code>oppositeCommand</code> is generated as part of the <code>execute()</c
 </div>
 <div class="paragraph">
 <p>The <code>oppositeCommand</code> is generated in the <code>execute()</code> method, after <code>preprocessUndoableCommand()</code>. This is because generating the <code>oppositeCommand</code>
-requires knowledge of the actual <code>Person/EpicEvent</code> objects to be modified. For example, the <code>oppositeCommand</code> for a <code>deletePersonCommand</code> is an <code>addPersonCommand</code>,
+requires knowledge of the actual <code>Person/EpicEvent</code> objects to be modified. For example, the <code>oppositeCommand</code> of a <code>deletePersonCommand</code> is an <code>addPersonCommand</code>,
 but we only know the person to be deleted after the pre-processing step.</p>
 </div>
 <div class="admonitionblock note">
@@ -1064,13 +1071,13 @@ but we only know the person to be deleted after the pre-processing step.</p>
 </td>
 <td class="content">
 Each <code>UndoableCommand</code> now requires its individual <code>generateOppositeCommand()</code> implementation. Hence, this method is made abstract in
-the abstract class <code>UndoableCommand</code>
+the abstract class <code>UndoableCommand</code>.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>There was no <code>Command</code> that could easily reverse the changes of a <code>ClearCommand</code>, hence a new <code>Command</code> <code>RestoreCommand</code> had to be created. Since the sole purpose
+<p>There was no <code>Command</code> that could easily reverse the changes caused by executing a <code>ClearCommand</code>, hence a new <code>Command</code> <code>RestoreCommand</code> had to be created. Since the sole purpose
 of this command is to serve as the <code>oppositeCommand</code> of a <code>ClearCommand</code>, this command is not directly accessible to the user, and can only be executed when
 the user undoes a <code>ClearCommand</code>.</p>
 </div>
@@ -1186,7 +1193,7 @@ the user undoes a <code>ClearCommand</code>.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Easier for new Computer Science undergraduates to understand, who are likely to be new incoming developers of our project.</p>
+<p>Pros: This will be easier to understand for new Computer Science undergraduates, who are likely to be the incoming developers of our project.</p>
 </li>
 <li>
 <p>Cons: Logic is duplicated twice. For example, when a new command is executed, we must remember to update * both <code>HistoryManager</code> and <code>UndoRedoStack</code>.</p>
@@ -1202,7 +1209,7 @@ the user undoes a <code>ClearCommand</code>.</p>
 <p>Pros: We do not need to maintain a separate stack, and just reuse what is already in the codebase.</p>
 </li>
 <li>
-<p>Cons: Requires dealing with commands that have already been undone: We must remember to skip these commands. Violates Single Responsibility Principle and Separation of Concerns as <code>HistoryManager</code> now needs to do two * different things.</p>
+<p>Cons: This requires dealing with commands that have already been undone - we must remember to skip these commands. This also violates the Single Responsibility Principle (SRP) and Separation of Concerns (SoC) as <code>HistoryManager</code> now needs to do two different things.</p>
 </li>
 </ul>
 </div>
@@ -1287,7 +1294,7 @@ need to implement the link later.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Ensures that person&#8217;s details will be safeguarded until they are no longer required.</p>
+<p>Pros: This ensures that all persons' details will be safeguarded until they are no longer required.</p>
 </li>
 <li>
 <p>Cons: Implementation is more complicated.</p>
@@ -1300,11 +1307,11 @@ need to implement the link later.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: User will not have to deregister persons/delete events before a person can be deleted.
+<p>Pros: The user will not have to deregister persons/delete events before a person can be deleted.
 Implementation is easier.</p>
 </li>
 <li>
-<p>Cons: User might absentmindedly delete a person when his/her details are still required
+<p>Cons: The user might absentmindedly delete a person when his/her details are still required
 (by an upcoming event he/she is registered for).</p>
 </li>
 </ul>
@@ -1319,9 +1326,10 @@ Implementation is easier.</p>
 <div class="sect3">
 <h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">4.5.1. Current Implementation</a></h4>
 <div class="paragraph">
-<p>A new feature in Java 8, <code>Predicate</code> supports the filtering of lists in a functional style.
-To list the persons registered for an event, we create a <code>Predicate</code> that tests whether a <code>Person</code>
-is in an <code>EpicEvent</code>, then pass it to <code>updateFilteredPersonList()</code>.</p>
+<p>To list the persons registered for an event, we create a <code>Predicate</code> that tests whether a <code>Person</code>
+is in an <code>EpicEvent</code>, then pass it to <code>updateFilteredPersonList()</code>. <code>Predicate</code> is a new feature in Java 8
+that supports the filtering of lists in a functional style. Incoming developers can learn how to use
+this feature at <a href="https://docs.oracle.com/javase/8/docs/api/java/util/function/Predicate.html">the official Java site</a>.</p>
 </div>
 </div>
 </div>
@@ -2943,7 +2951,7 @@ Expected: Similar to previous.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-15 13:23:45 UTC
+Last updated 2018-04-15 13:53:13 UTC
 </div>
 </div>
 </body>

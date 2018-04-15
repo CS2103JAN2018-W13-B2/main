@@ -203,13 +203,13 @@ Registrant refers to the person registered to a particular event.
 <p>Result Display: status bar that displays the result of user commands.</p>
 </li>
 <li>
-<p>People List Panel: panel that lists all persons stored in EPIC.</p>
+<p>Persons Pane: pane that lists all persons stored in EPIC.</p>
 </li>
 <li>
-<p>Event List Panel: panel that lists all events stored in EPIC.</p>
+<p>Events Pane: pane that lists all events stored in EPIC.</p>
 </li>
 <li>
-<p>Attendance List Panel: panel that lists all registrants in the selected event.</p>
+<p>Attendance Pane: pane that lists all registrants in the selected event.</p>
 </li>
 </ol>
 </div>
@@ -738,7 +738,7 @@ Registers the 2nd person in EPIC for AY201718 Graduation. See <a href="#register
 <div class="content">
 <img src="images/RegisterUG.png" alt="RegisterUG" width="790">
 </div>
-<div class="title">Figure 5. Illustration of <code>register</code> command (only the Attendees Pane is shown for clarity).</div>
+<div class="title">Figure 5. Illustration of <code>register</code> command (only the Attendance Pane is shown for clarity).</div>
 </div>
 </div>
 <div class="sect2">
@@ -860,7 +860,7 @@ be computed based on the filtered list. See <a href="#findregistrants">Figure 6<
 <div class="content">
 <img src="images/FindRegistrantsUG.png" alt="FindRegistrantsUG" width="790">
 </div>
-<div class="title">Figure 6. Illustration of <code>find-registrants</code> command (only the Attendees Pane is shown for clarity).</div>
+<div class="title">Figure 6. Illustration of <code>find-registrants</code> command (only the Attendance Pane is shown for clarity).</div>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -921,7 +921,7 @@ the 2nd event currently listed. See <a href="#toggle">Figure 7</a> below for UI 
 <div class="content">
 <img src="images/ToggleUG.png" alt="ToggleUG" width="790">
 </div>
-<div class="title">Figure 7. Illustration of <code>toggle</code> command (only the Attendees Pane is shown for clarity).</div>
+<div class="title">Figure 7. Illustration of <code>toggle</code> command (only the Attendance Pane is shown for clarity).</div>
 </div>
 </div>
 <div class="sect2">
@@ -957,7 +957,7 @@ Format: <code>clear</code></p>
 <div class="paragraph">
 <p>Restores EPIC to the state before the previous <em>undoable</em> command was executed.<br>
 There is no guarantee that the relative order of persons/events will be preserved after the undoing
-of a <code>delete</code> or <code>delete-event</code> command.<br>
+of a <code>delete</code> or <code>delete-event</code> command (see the third example).<br>
 Format: <code>undo</code></p>
 </div>
 <div class="admonitionblock note">
@@ -1012,7 +1012,7 @@ it shows that relative order of persons might not be preserved.<br></p>
 <h3 id="redoing-commands-code-redo-code"><a class="link" href="#redoing-commands-code-redo-code">4.23. Redoing Commands : <code>redo</code></a></h3>
 <div class="paragraph">
 <p>Reverses the most recent <code>undo</code> command. This will <strong>fail</strong> if the most recent command
-was neither <code>undo</code> nor <code>redo</code> (See last example below)<br>
+was neither <code>undo</code> nor <code>redo</code> (See last example below).<br>
 Format: <code>redo</code></p>
 </div>
 <div class="paragraph">
@@ -1257,7 +1257,7 @@ e.g. <code>toggle 1</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-15 13:23:45 UTC
+Last updated 2018-04-15 13:53:13 UTC
 </div>
 </div>
 </body>

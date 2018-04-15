@@ -16,28 +16,24 @@
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="introduction"><a class="link" href="#introduction">Introduction</a></h2>
+<h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This Project Portfolio details my contributions to past projects, showing that I am capable of producing functional code
-and working  in a team on a large project.</p>
+<p>This Project Portfolio details my contributions to project EPIC, which demonstrates that I am capable of producing functional code,
+and working in a team on a large project.</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="project-event-planning-isn-t-complicated-epic"><a class="link" href="#project-event-planning-isn-t-complicated-epic">PROJECT: Event Planning isn’t Complicated (EPIC)</a></h2>
-<div class="sectionbody">
 <hr>
 </div>
 </div>
 <div class="sect1">
-<h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
+<h2 id="project-epic"><a class="link" href="#project-epic">PROJECT: EPIC</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Event Planning isn’t Complicated (EPIC) is a desktop application used for <strong>event planning
-and registration for large organisations</strong>.
-EPIC is optimized for event planners who prefer typing to using the mouse.
-The size of EPIC&#8217;s codebase is &gt;10kLoC.</p>
+and registration for large organisations</strong>. EPIC handles event attendance management with
+simplicity and efficiency. By storing all of the contacts in a common database, the same person
+can be registered for multiple events without having to re-enter his or her details for each event.
+EPIC is optimized for event planners who prefer typing to using the mouse.</p>
 </div>
 </div>
 </div>
@@ -60,7 +56,7 @@ Two of the most notable ones are:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Editing of persons is done is a mutable manner.</p>
+<p>Editing of persons is done in a mutable manner.</p>
 </li>
 <li>
 <p>Deletion of persons still registered for an event is not allowed.</p>
@@ -87,10 +83,10 @@ data, without the need to duplicate the data and update each event manually.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Modified the Model component to allow navigability from events to persons</p>
+<p>Modified the Model component to allow navigability from events to persons.</p>
 </li>
 <li>
-<p>Added new commands to the Logic component, and provided their implementation</p>
+<p>Added new commands to the Logic component, and provided their implementation.</p>
 </li>
 <li>
 <p>Ensured that the UI component updates whenever a person is edited, even when it is done in a mutable manner, and similarly
@@ -115,8 +111,8 @@ and stored to facilitate undoing/redoing commands.</p>
 stage. This knowledge is stored alongside the command.</p>
 </li>
 <li>
-<p>Justification: The new implementation only requires essential, and hence minimal, information to be stored, <strong>significantly</strong>
-reducing memory consumption of EPIC.</p>
+<p>Justification: The new implementation only requires essential, and hence minimal, information to be stored, <strong>significantly
+reducing memory consumption</strong> of EPIC.</p>
 </li>
 </ul>
 </div>
@@ -225,7 +221,7 @@ Selecting an event can also be done with the <code>select</code> command in the 
 <div class="paragraph">
 <p>Restores EPIC to the state before the previous <em>undoable</em> command was executed.<br>
 There is no guarantee that the relative order of persons/events will be preserved after the undoing
-of a <code>delete</code> or <code>delete-event</code> command.<br>
+of a <code>delete</code> or <code>delete-event</code> command (see the third example).<br>
 Format: <code>undo</code></p>
 </div>
 <div class="admonitionblock note">
@@ -283,7 +279,7 @@ it shows that relative order of persons might not be preserved.<br></p>
 <h3 id="redoing-commands-code-redo-code"><a class="link" href="#redoing-commands-code-redo-code">Redoing Commands : <code>redo</code></a></h3>
 <div class="paragraph">
 <p>Reverses the most recent <code>undo</code> command. This will <strong>fail</strong> if the most recent command
-was neither <code>undo</code> nor <code>redo</code> (See last example below)<br>
+was neither <code>undo</code> nor <code>redo</code> (See last example below).<br>
 Format: <code>redo</code></p>
 </div>
 <div class="paragraph">
@@ -370,7 +366,7 @@ Registers the 2nd person in EPIC for AY201718 Graduation. See <a href="#register
 <div class="content">
 <img src="../images/RegisterUG.png" alt="RegisterUG" width="790">
 </div>
-<div class="title">Figure 2. Illustration of <code>register</code> command (only the Attendees Pane is shown for clarity).</div>
+<div class="title">Figure 2. Illustration of <code>register</code> command (only the Attendance Pane is shown for clarity).</div>
 </div>
 <div style="page-break-after: always;"></div>
 </div>
@@ -395,7 +391,8 @@ Registers the 2nd person in EPIC for AY201718 Graduation. See <a href="#register
 <div class="sect3">
 <h4 id="previous-implementation"><a class="link" href="#previous-implementation">Previous Implementation</a></h4>
 <div class="paragraph">
-<p>In <a href="https://github.com/se-edu/addressbook-level4">AddressBook-Level4</a>, the <code>edit</code> command was performed by creating a new <code>Person</code> and passing it to a <code>UniquePersonList</code> in the model, which would then replace the to-be-edited <code>Person</code> with it.</p>
+<p>In <a href="https://github.com/se-edu/addressbook-level4">AddressBook-Level4</a>, the <code>edit</code> command was performed by creating a new <code>Person</code>
+and passing it to the <code>UniquePersonList</code> in the model, which would then replace the to-be-edited <code>Person</code> with it.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -429,7 +426,9 @@ Registers the 2nd person in EPIC for AY201718 Graduation. See <a href="#register
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Since EPIC has both <code>EpicEvent</code> and <code>Person</code> objects, which maintain references to one another, editing a <code>Person/EpicEvent</code> in this manner automatically updates the <code>EpicEvent/Person</code> objects that is associated with it.</p>
+<p>Pros: Since an <code>EpicEvent</code> maintain references to multiple <code>Person</code> objects, editing a <code>Person</code> in this manner
+automatically updates the <code>EpicEvent</code> objects which reference it. Similarly, editing an <code>EpicEvent</code> in this manner
+automatically updates the <code>Attendance</code> objects which reference it.</p>
 </li>
 <li>
 <p>Cons: Implementation of <code>undo</code> will be more difficult.</p>
@@ -445,7 +444,8 @@ Registers the 2nd person in EPIC for AY201718 Graduation. See <a href="#register
 <p>Pros: Implementation of <code>undo</code> is easier, since we can just replace the current <code>EventPlanner</code> with the previous one.</p>
 </li>
 <li>
-<p>Cons: Editing a <code>Person/EpicEvent</code> will require passing a copy of the newly-created <code>Person/EpicEvent</code> to all objects associated with the to-be-edited version, introducing significant overhead</p>
+<p>Cons: Editing a <code>Person/EpicEvent</code> will require passing a copy of the newly-created <code>Person/EpicEvent</code> to all objects
+associated with the to-be-edited version, introducing significant overhead.</p>
 </li>
 </ul>
 </div>
@@ -484,9 +484,12 @@ commands like <code>delete</code> if <code>filteredPersons</code> had been alter
 </table>
 </div>
 <div class="paragraph">
-<p>The user now decides to execute a new command, <code>clear</code>. As before, <code>clear</code> will be pushed into the <code>undoStack</code>. This time the <code>redoStack</code> is no longer empty. It will be purged as it no longer make sense to redo the <code>add n/David</code> command (this is the behavior that most modern desktop applications follow).</p>
+<p>The user now decides to execute a new command, <code>clear</code>. As before, <code>clear</code> will be pushed into the <code>undoStack</code>.
+This time the <code>redoStack</code> is no longer empty. It will be purged as it no longer makes sense to redo the <code>add n/David</code> command
+(this is the behavior that most modern desktop applications follow). <a href="#UndoRedoNewCommand2StackDiagram">Figure 3</a> below shows how
+the clear command changes the <code>UndoRedoStack</code>.</p>
 </div>
-<div class="imageblock">
+<div id="UndoRedoNewCommand2StackDiagram" class="imageblock">
 <div class="content">
 <img src="../images/UndoRedoNewCommand2StackDiagram.png" alt="UndoRedoNewCommand2StackDiagram" width="800">
 </div>
@@ -518,7 +521,7 @@ This <code>oppositeCommand</code> is generated as part of the <code>execute()</c
 </div>
 <div class="paragraph">
 <p>The <code>oppositeCommand</code> is generated in the <code>execute()</code> method, after <code>preprocessUndoableCommand()</code>. This is because generating the <code>oppositeCommand</code>
-requires knowledge of the actual <code>Person/EpicEvent</code> objects to be modified. For example, the <code>oppositeCommand</code> for a <code>deletePersonCommand</code> is an <code>addPersonCommand</code>,
+requires knowledge of the actual <code>Person/EpicEvent</code> objects to be modified. For example, the <code>oppositeCommand</code> of a <code>deletePersonCommand</code> is an <code>addPersonCommand</code>,
 but we only know the person to be deleted after the pre-processing step.</p>
 </div>
 <div class="admonitionblock note">
@@ -529,13 +532,13 @@ but we only know the person to be deleted after the pre-processing step.</p>
 </td>
 <td class="content">
 Each <code>UndoableCommand</code> now requires its individual <code>generateOppositeCommand()</code> implementation. Hence, this method is made abstract in
-the abstract class <code>UndoableCommand</code>
+the abstract class <code>UndoableCommand</code>.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>There was no <code>Command</code> that could easily reverse the changes of a <code>ClearCommand</code>, hence a new <code>Command</code> <code>RestoreCommand</code> had to be created. Since the sole purpose
+<p>There was no <code>Command</code> that could easily reverse the changes caused by executing a <code>ClearCommand</code>, hence a new <code>Command</code> <code>RestoreCommand</code> had to be created. Since the sole purpose
 of this command is to serve as the <code>oppositeCommand</code> of a <code>ClearCommand</code>, this command is not directly accessible to the user, and can only be executed when
 the user undoes a <code>ClearCommand</code>.</p>
 </div>
@@ -654,7 +657,7 @@ need to implement the link later.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Ensures that person&#8217;s details will be safeguarded until they are no longer required.</p>
+<p>Pros: This ensures that all persons' details will be safeguarded until they are no longer required.</p>
 </li>
 <li>
 <p>Cons: Implementation is more complicated.</p>
@@ -667,11 +670,11 @@ need to implement the link later.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: User will not have to deregister persons/delete events before a person can be deleted.
+<p>Pros: The user will not have to deregister persons/delete events before a person can be deleted.
 Implementation is easier.</p>
 </li>
 <li>
-<p>Cons: User might absentmindedly delete a person when his/her details are still required
+<p>Cons: The user might absentmindedly delete a person when his/her details are still required
 (by an upcoming event he/she is registered for).</p>
 </li>
 </ul>
@@ -686,33 +689,19 @@ Implementation is easier.</p>
 <div class="sect3">
 <h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">Current Implementation</a></h4>
 <div class="paragraph">
-<p>A new feature in Java 8, <code>Predicate</code> supports the filtering of lists in a functional style.
-To list the persons registered for an event, we create a <code>Predicate</code> that tests whether a <code>Person</code>
-is in an <code>EpicEvent</code>, then pass it to <code>updateFilteredPersonList()</code>.</p>
+<p>To list the persons registered for an event, we create a <code>Predicate</code> that tests whether a <code>Person</code>
+is in an <code>EpicEvent</code>, then pass it to <code>updateFilteredPersonList()</code>. <code>Predicate</code> is a new feature in Java 8
+that supports the filtering of lists in a functional style. Incoming developers can learn how to use
+this feature at <a href="https://docs.oracle.com/javase/8/docs/api/java/util/function/Predicate.html">the official Java site</a>.</p>
 </div>
 </div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="project-nusmods-planner"><a class="link" href="#project-nusmods-planner">PROJECT: NUSMods Planner</a></h2>
-<div class="sectionbody">
-<hr>
-</div>
-</div>
-<div class="sect1">
-<h2 id="overview-2"><a class="link" href="#overview-2">Overview</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>NUSMods Planner is an automatic timetable generator, helping students to generate their timetable purely from
-specifications. More details can be found at <a href="https://github.com/bayweiheng/">my GitHub page</a></p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-15 13:23:45 UTC
+Last updated 2018-04-15 13:53:13 UTC
 </div>
 </div>
 </body>
