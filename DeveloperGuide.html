@@ -415,13 +415,13 @@ is used by components to communicate with other components using events (i.e. a 
 <p>Result Display: status bar that displays the result of user commands.</p>
 </li>
 <li>
-<p>People List Panel: pane that lists all persons.</p>
+<p>Persons Pane: pane that lists all persons.</p>
 </li>
 <li>
-<p>Event List Panel: pane that lists all events.</p>
+<p>Events Pane: pane that lists all events.</p>
 </li>
 <li>
-<p>Attendance List Panel: pane that lists all registrants in the user selected event.</p>
+<p>Attendance Pane: pane that lists all registrants in the user selected event.</p>
 </li>
 <li>
 <p>Person Card: a card that lists a person&#8217;s contact information.</p>
@@ -441,7 +441,7 @@ is used by components to communicate with other components using events (i.e. a 
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-If no  <code>EpicEvent</code> has been selected, the Attendance List Panel will be empty
+If no  <code>EpicEvent</code> has been selected, the Attendance Panewill be empty
 </td>
 </tr>
 </table>
@@ -1510,9 +1510,9 @@ registrants with the <code>toggle</code> command.</p>
 <div class="sect3">
 <h4 id="current-implementation-6"><a class="link" href="#current-implementation-6">4.7.1. Current Implementation</a></h4>
 <div class="paragraph">
-<p>The <code>find-registrant</code> command is passed to the <code>EventPlannerParser</code> object when then reads the parses the input and
+<p>The <code>find-registrant</code> command is passed to the <code>EventPlannerParser</code> object which then reads the parses the input and
 returns a <code>FindRegistrantCommand</code> object. When the <code>FindRegistrantCommand</code> object is executed, the Model filters the
-list of registrants and the Attendance List Panel is updated.</p>
+list of registrants and the Attendance Paneis updated.</p>
 </div>
 </div>
 <div class="sect3">
@@ -1529,7 +1529,7 @@ list of registrants and the Attendance List Panel is updated.</p>
 <p>Pros: The user can find multiple registrants using multiple keywords.</p>
 </li>
 <li>
-<p>Cons: If the user will not be able to search by full name as other registrants might be matched as well.</p>
+<p>Cons: The user will not be able to search by full name as other registrants might be matched as well.</p>
 </li>
 </ul>
 </div>
@@ -1542,13 +1542,13 @@ list of registrants and the Attendance List Panel is updated.</p>
 <p>Pros: The user can search by full name.</p>
 </li>
 <li>
-<p>Cons: Matching all keywords might be too restrictive and would not a useful filter to narrow down registrants.</p>
+<p>Cons: Matching all keywords might be too restrictive and would not be a useful filter to narrow down registrants.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Alternative 3</strong> Fuzzy Search</p>
+<p><strong>Alternative 3</strong>: Fuzzy Search</p>
 <div class="ulist">
 <ul>
 <li>
@@ -1573,11 +1573,11 @@ list of registrants and the Attendance List Panel is updated.</p>
   lists.</p>
 </div>
 <div class="paragraph">
-<p>In addition, <code>edit</code> and <code>edit-command</code> commands are now implemented in a mutable manner
+<p>In addition, <code>edit</code> and <code>edit-event</code> commands are now implemented in a mutable manner
  (see <a href="#edit-curr-implementation">Section 4.2.2</a>). As a result, the <code>ObservableList</code> that wraps the people and event data will no
  longer be notified of changes. The new UI must be notified of changes to data so it can refresh itself to reflect
  such changes. The UI will also have to respond to new commands such as the <code>select-event</code> and <code>toggle</code>.
- The <code>select-event</code> could invoke a change in the contents of the Attendance List Panel and <code>toggle</code> will toggle the
+ The <code>select-event</code> could invoke a change in the contents of the Attendance Pane and <code>toggle</code> will toggle the
  attendance status and is reflected in the UI in the form of the attendance icon change.</p>
 </div>
 <div class="sect3">
@@ -1615,7 +1615,7 @@ list of registrants and the Attendance List Panel is updated.</p>
 <p>To listen to changes in attendance. We enable the <code>AttendanceList</code> to report changes on the element by providing a properties extractor. First, we use the JavaBeans API to represent properties of <code>Attendance</code> that we want to listen to, which is the <code>hasAttendedEventProperty</code>, a <code>BooleanProperty</code> object.</p>
 </div>
 <div class="paragraph">
-<p>We then use an Extractor which is a Callback containing an array of <code>Observables</code> which are then observed by the <code>ObservableList</code>.</p>
+<p>We use an Extractor which is a Callback containing an array of <code>Observables</code> which are then observed by the <code>ObservableList</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1650,14 +1650,14 @@ list of registrants and the Attendance List Panel is updated.</p>
 </div>
 </li>
 <li>
-<p><strong>Alternative 2 (previous choice)</strong>: two-pane UI where the left pane is a 2 tab pane consisting of a list of persons and events, and the right pane is a list of registrants.</p>
+<p><strong>Alternative 2 (previous choice)</strong>: two-pane UI where the left pane is a 2 tab pane consisting of a list of persons and events, and the right pane is a list of registrants</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Merging the horizontal space for the list of persons and events will create more space for list of registrants. The user is likely to be more interested in the registrants' details.</p>
+<p>Pros: Merging the horizontal space for the list of persons and events will create more space for the list of registrants. The user is likely to be more interested in the registrants' details.</p>
 </li>
 <li>
-<p>Cons: If the user needs to access data for some tabbed pane that is not in focus to fill out a command, this would break his workflow. The user will have to delete his current command, execute a command to set focus to the desired tab, memorize the required details and reenter his previous command.</p>
+<p>Cons: If the user needs to access data for some tabbed pane that is not in focus to fill out a command, he would have to delete his current command, execute a command to set focus to the desired tab. He must then memorize the required details and reenter his previous command. This would break his workflow and be a great inconvenience.</p>
 </li>
 </ul>
 </div>
@@ -1686,7 +1686,7 @@ list of registrants and the Attendance List Panel is updated.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Alternative 1 (current choice): Use the JavaFX Beans Convention</p>
+<p><strong>Alternative 1 (current choice)</strong>: Use the JavaFX Beans Convention</p>
 <div class="ulist">
 <ul>
 <li>
@@ -1706,7 +1706,7 @@ list of registrants and the Attendance List Panel is updated.</p>
 <p>Pros: It is straightforward to force a <code>ListView</code> UI refresh by invoking its <code>refresh()</code> method.</p>
 </li>
 <li>
-<p>Cons: We will have to ensure that any action that could modify data force a UI refresh. In addition, constantly invoking a UI refresh could become a resource hog.</p>
+<p>Cons: We will have to ensure that any action that could modify data forces a UI refresh. In addition, constantly invoking a UI refresh could become a resource hog.</p>
 </li>
 </ul>
 </div>
@@ -1716,28 +1716,15 @@ list of registrants and the Attendance List Panel is updated.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="binding-data-to-attendance-panel"><a class="link" href="#binding-data-to-attendance-panel">4.8.3. Binding Data to Attendance Panel</a></h4>
+<h4 id="binding-data-to-attendance-pane"><a class="link" href="#binding-data-to-attendance-pane">4.8.3. Binding Data to Attendance Pane</a></h4>
 <div class="ulist">
 <ul>
 <li>
-<p>Alternative 1 (current choice): Wrap the selected <code>EpicEvent</code> in an <code>EpicEventObservable</code> object to listen for changes</p>
+<p><strong>Alternative 1 (current choice)</strong>: Bind <code>ObservableEpicEvent</code> to the Attendance Pane</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: We can listen to changes in the <code>EpicEventObservable</code> object to trigger a UI update.</p>
-</li>
-<li>
-<p>Cons: Creating a new class introduces more code bloat.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Alternative 1 (current choice): Bind <code>ObservableEpicEvent</code> to the Attendance Panel</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: As <code>ObservableEpicEvent</code> extends <code>Observable</code>, it can listen to when the selected event changes and update the Attendance Panel accordingly.</p>
+<p>Pros: As <code>ObservableEpicEvent</code> extends <code>Observable</code>, it can listen to when the selected event changes and update the Attendance Pane accordingly.</p>
 </li>
 <li>
 <p>Cons: More code has to be written and maintained as we are introducing an additional layer of abstraction.</p>
@@ -1746,11 +1733,11 @@ list of registrants and the Attendance List Panel is updated.</p>
 </div>
 </li>
 <li>
-<p>Alternative 2: Bind <code>ObservableList&lt;Attendance&gt;</code> to the Attendance Panel</p>
+<p>Alternative 2: Bind <code>ObservableList&lt;Attendance&gt;</code> to the Attendance Pane</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Binding data to the Attendance Panel is straightforward and the approach used to data to the People and Events Panels can be used here too.</p>
+<p>Pros: Binding data to the Attendance Pane is straightforward and the approach used to bind data to the People and Events Panels can be used here too.</p>
 </li>
 <li>
 <p>Cons: Logic to handle the switching of selected events is moved up to the <code>MainWindow</code>, increasing coupling between the <code>MainWindow</code> and <code>AttendanceListPanel</code>. It is a violation of Single Responsibility Principle as the <code>MainWindow</code> should only be concerned with displaying the main layout.</p>
@@ -1920,7 +1907,7 @@ The execution of it creates a <code>CsvEventPlannerStorage</code>. The subsequen
 <p>Pros: Excel files are well-formatted when opened with Microsoft Excel.</p>
 </li>
 <li>
-<p>Cons: Even though Microsoft Excel is used by many people, some may prefer other data processing applications that supports csv files but not excel files.</p>
+<p>Cons: Even though Microsoft Excel is used by many people, some may prefer other data processing applications that support csv files but not excel files.</p>
 </li>
 </ul>
 </div>
@@ -2205,7 +2192,7 @@ b. Require developers to download those libraries manually (this creates extra w
 </ul>
 </div>
 <div class="paragraph">
-<p><strong>Value proposition</strong>: streamline attendance taking and registration of event participants, far superior to traditional pen and paper registration</p>
+<p><strong>Value proposition</strong>: streamline attendance taking and registration of event registrants, far superior to traditional pen and paper registration</p>
 </div>
 <div class="paragraph">
 <p><strong>Feature Contribution</strong>:</p>
@@ -2220,7 +2207,7 @@ b. Require developers to download those libraries manually (this creates extra w
 <p>Minor: Add commands for searching list of registrants and displaying all registrants. This allows the user to filter list of registrants from a list of keywords.</p>
 </li>
 <li>
-<p>Major: Implemented a three pane view (persons, events, and event participant). The user should be able to view persons, events and registrants of an event at the same time. That would also allow the user to execute event administration commands as he can view both events and contacts at the same time.</p>
+<p>Major: Implemented a three pane view (persons, events, and event registrant). The user should be able to view persons, events and registrants of an event at the same time. That would also allow the user to execute event administration commands as he can view both events and contacts at the same time.</p>
 </li>
 </ul>
 </div>
@@ -2305,43 +2292,43 @@ b. Require developers to download those libraries manually (this creates extra w
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">event planner</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">add a new participant</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">add a new registrant</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">event planner</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">delete a participant</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">remove a participant that has withdrawn from the event</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">delete a registrant</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">remove a registrant that has withdrawn from the event</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">event planner</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">list all participants for the event</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">list all registrants for the event</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">event planner</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">edit a participant’s details</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">update a participant’s details upon request</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">edit a registrant’s details</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">update a registrant’s details upon request</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">event planner</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">mark attendance for a participant</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">mark attendance for a registrant</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">know who attended the event</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">event planner</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">find a participant by name</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">locate a participant without going through the entire list of participants</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">find a registrant by name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">locate a registrant without going through the entire list of registrants</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">event planner</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">have all participant’s data in persistent storage</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">have all registrant’s data in persistent storage</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">close the program without losing my data</p></td>
 </tr>
 <tr>
@@ -2365,36 +2352,36 @@ b. Require developers to download those libraries manually (this creates extra w
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">event planner managing large events</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">import participant contact information from csv</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">quickly add participants without manual typing</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">import registrant contact information from csv</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">quickly add registrants without manual typing</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">event planner managing large events</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">export participant contact information as csv</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">export registrant contact information as csv</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">use the data for other applications (e.g. presentation, data analysis)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">event planner managing many participants</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">find a participant by his/her initials</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">event planner managing many registrants</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">find a registrant by his/her initials</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">find persons quickly</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">event planner</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">manage participants based on tags</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">mass register/delete participants belonging to a certain group</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">manage registrants based on tags</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">mass register/delete registrants belonging to a certain group</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">participant</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">registrant</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">mark my attendance by scanning a QR code</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">make the process of marking attendance quicker</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">participant</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">registrant</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">mark my attendance by scanning a card with an RFID chip</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">make the process of marking attendance quicker</p></td>
 </tr>
@@ -2406,13 +2393,13 @@ b. Require developers to download those libraries manually (this creates extra w
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">participant</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">registrant</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">mark my attendance by scanning an NFC tag</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">make the process of marking attendance quicker</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">participant</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">registrant</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">see where I should be seated at the venue when I mark my attendance</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">find my seating location quicker</p></td>
 </tr>
@@ -2420,18 +2407,18 @@ b. Require developers to download those libraries manually (this creates extra w
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">event planner</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">synchronize application data across multiple devices</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">collaboratively edit participant information</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">collaboratively edit registrant information</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">participant</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">registrant</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">add feedback for the event</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">event planner</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">send out a mass email to all participants</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">send out a mass email to all registrants</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">send out information such as event details and QR codes quickly</p></td>
 </tr>
 <tr>
@@ -2443,8 +2430,8 @@ b. Require developers to download those libraries manually (this creates extra w
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">event planner</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">automatically email a reminder to all participants near the event date</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ensure participants do not accidentally forget about the event</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">automatically email a reminder to all registrants near the event date</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ensure registrants do not accidentally forget about the event</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
@@ -2467,7 +2454,7 @@ b. Require developers to download those libraries manually (this creates extra w
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">event planner</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">conduct a lucky draw for event participants</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">conduct a lucky draw for event registrants</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
@@ -2845,7 +2832,7 @@ b. Require developers to download those libraries manually (this creates extra w
 <p>Proprietary software, not open source.</p>
 </li>
 <li>
-<p>Participant contact information cannot be reused across multiple events - has to be re-entered.</p>
+<p>registrant contact information cannot be reused across multiple events - has to be re-entered.</p>
 </li>
 <li>
 <p>Editing guest list has to go through the company and hence is slow and a large hassle.</p>
@@ -2967,7 +2954,7 @@ Expected: Similar to previous.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-15 15:13:40 UTC
+Last updated 2018-04-15 15:37:26 UTC
 </div>
 </div>
 </body>
