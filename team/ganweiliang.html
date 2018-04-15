@@ -26,7 +26,9 @@
 <div class="sectionbody">
 <div class="paragraph">
 <p>Event Planning isn’t Complicated (EPIC) is a desktop application used for <strong>event planning
-and registration for large organisations</strong>.
+and registration for large organisations</strong>. EPIC handles event attendance management with
+simplicity and efficiency. By storing all of the contacts in a common database, the same person
+can be registered for multiple events without having to re-enter his or her details for each event.
 EPIC is optimized for event planners who prefer typing to using the mouse.</p>
 </div>
 </div>
@@ -280,12 +282,20 @@ easy to implement.</p>
 <p>When the <code>toggle</code> command is called, an instance of <code>ToggleAttendanceCommand</code> is created
 and it uses the index provided to find and save a reference to the <code>Attendance</code> object
 to be toggled. This is done so that the command can be undone by toggling the exact same
-<code>Attendance</code> object.</p>
+<code>Attendance</code> object. <a href="#TCD">Sequence Diagram for toggle command</a> below shows how the <code>toggle</code> command is processed
+in the logic component.</p>
+</div>
+<div id="TCD" class="imageblock">
+<div class="content">
+<img src="../images/ToggleAttendanceCommandSequenceDiagram.png" alt="ToggleAttendanceCommandSequenceDiagram" width="800">
+</div>
+<div class="title">Figure 5. Sequence Diagram for toggle command</div>
 </div>
 <div class="paragraph">
 <p>When the <code>ToggleAttendanceCommand</code> is executed, it obtains the relevant <code>Person</code> and
 <code>EpicEvent</code> from the stored <code>Attendance</code> object and triggers <code>toggleAttendance</code> from
-the <code>Model</code>. The actions that follow are shown in the sequence diagram below.</p>
+the <code>Model</code>. After which, the relevant <code>Attendance</code> object is replaced with a copy
+where the <code>hasAttendedEventProperty</code> is toggled.</p>
 </div>
 </div>
 <div class="sect3">
@@ -423,7 +433,7 @@ by iteratively registering each person without requiring the user to register ea
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-15 07:07:15 UTC
+Last updated 2018-04-15 07:28:29 UTC
 </div>
 </div>
 </body>
