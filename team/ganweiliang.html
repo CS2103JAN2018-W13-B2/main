@@ -252,21 +252,11 @@ The Model does not depend on any of the other three components. This reduces cou
 </div>
 </div>
 <div class="sect2">
-<h3 id="toggling-attendance"><a class="link" href="#toggling-attendance">Toggling Attendance</a></h3>
+<h3 id="toggle-attendance-feature"><a class="link" href="#toggle-attendance-feature">Toggle Attendance Feature</a></h3>
 <div class="sect3">
 <h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
 <div class="paragraph">
-<p>The implementation uses a class called <code>Attendance</code>, the structure of which is shown
-in <a href="#ACD">Structure of the Attendance class</a> below.</p>
-</div>
-<div id="ACD" class="imageblock">
-<div class="content">
-<img src="../images/ModelClassDiagram.png" alt="ModelClassDiagram" width="800px">
-</div>
-<div class="title">Figure 3. Structure of the Attendance class</div>
-</div>
-<div class="paragraph">
-<p>An instance of <code>Attendance</code> is created every time a person registers to an event and
+<p>The implementation uses a class called <code>Attendance</code>. An instance of <code>Attendance</code> is created every time a person registers to an event and
 it is stored inside the <code>EpicEvent</code>. The instance stores the corresponding <code>EpicEvent</code> and <code>Person</code>
 and stores a <code>boolean</code> representing whether the person has attended the event.
 This reduces coupling between the <code>Person</code> and <code>EpicEvent</code> class and allows the event
@@ -284,7 +274,7 @@ in the logic component.</p>
 <div class="content">
 <img src="../images/ToggleAttendanceCommandSequenceDiagram.png" alt="ToggleAttendanceCommandSequenceDiagram" width="800">
 </div>
-<div class="title">Figure 4. Sequence Diagram for toggle command</div>
+<div class="title">Figure 3. Sequence Diagram for toggle command</div>
 </div>
 <div class="paragraph">
 <p>When the <code>ToggleAttendanceCommand</code> is executed, it obtains the relevant <code>Person</code> and
@@ -428,7 +418,7 @@ by iteratively registering each person without requiring the user to register ea
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-15 10:55:08 UTC
+Last updated 2018-04-15 11:23:19 UTC
 </div>
 </div>
 </body>
