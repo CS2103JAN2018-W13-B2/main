@@ -43,23 +43,23 @@ EPIC is optimized for event planners who prefer typing to using the mouse.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Major enhancement</strong>: added <strong>commands to modify EpicEvents in the event list</strong></p>
+<p><strong>Major enhancement</strong>: Added <strong>commands to modify EpicEvents in the event list</strong>.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>What it does: allows the user to locate an event with <code>find-event</code> command and then to modify the located event by deleting the event or editing the information of the event with <code>delete-event</code> and <code>edit-event</code> respectively.</p>
+<p>What it does: The commands allow the user to locate an event with <code>find-event</code> command and then to modify the event by deleting it or editing its information with <code>delete-event</code> and <code>edit-event</code> respectively.</p>
 </li>
 <li>
-<p>Justification: These commands are essential to our product because EPIC is targeting at event planners who manage many events. Hence, event planners should be able to find the event they want to modify from multiple events easily and edit or delete an existing event as needed.</p>
+<p>Justification: These commands are essential to our product because EPIC targets at event planners who manage many events. Hence, event planners should be able to find the event they want to modify from multiple events easily and perform operations on it.</p>
 </li>
 <li>
-<p>Highlights: This enhancement provides several basic functions for EPIC so that further enhancements that interact with events in EIPC can build on it.</p>
+<p>Highlights: This enhancement provides several basic functions for EPIC so that further enhancements that interact with events in EPIC can build on it.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Minor enhancement</strong>: maintained the persistent storage of EPIC so that data is retained after EPIC being closed and users can continue their edits when they open the app next time.</p>
+<p><strong>Minor enhancement</strong>: Maintained the persistent storage of EPIC so that data is retained after EPIC is closed and users can continue their edits when they open the app next time.</p>
 </li>
 <li>
 <p><strong>Code contributed</strong>: [<a href="https://github.com/CS2103JAN2018-W13-B2/main/blob/master/collated/functional/jiangyue12392.md">Functional code</a>] [<a href="https://github.com/CS2103JAN2018-W13-B2/main/blob/master/collated/test/jiangyue12392.md">Test code</a>]</p>
@@ -163,7 +163,7 @@ Edits the name of the 2nd event to <code>Graduation Day</code> and clears all ex
 </li>
 <li>
 <p><code>edit-event 6 n/Career Talk 2018</code><br>
-Edits the name of the 6th event in the Events Pane to <code>Career Talk 2018</code>. See <a href="#editevent">Illustration of <code>edit-event</code> command (only the Events Pane is shown for clarity).</a> below for UI changes.<br></p>
+Edits the name of the 6th event in the Events Pane to <code>Career Talk 2018</code>. See <a href="#editevent">Figure 1</a> below for UI changes.<br></p>
 </li>
 </ul>
 </div>
@@ -214,7 +214,7 @@ Returns <code>Career Talk</code></p>
 </li>
 <li>
 <p><code>find-event Talk Competition</code><br>
-Returns any event having <code>Talk</code>, or <code>Competition</code> in its name. See <a href="#findevent">Illustration of <code>find-event</code> command (only the Events Pane is shown for clarity).</a> below for UI changes.<br></p>
+Returns any event having <code>Talk</code>, or <code>Competition</code> in its name. See <a href="#findevent">Figure 2</a> below for UI changes.<br></p>
 </li>
 </ul>
 </div>
@@ -303,7 +303,7 @@ Deletes the 1st event in the results of the <code>find-event</code> command.</p>
 </ol>
 </div>
 <div class="paragraph">
-<p>The Sequence Diagram (<a href="#SCSD">Interactions inside the Storage Component to restore data</a>) for interactions within the Storage Component to restore data is shown below.</p>
+<p>The Sequence Diagram (<a href="#SCSD">Figure 3</a>) for interactions within the Storage Component to restore data is shown below.</p>
 </div>
 <div id="SCSD" class="imageblock">
 <div class="content">
@@ -317,7 +317,7 @@ Deletes the 1st event in the results of the <code>find-event</code> command.</p>
 <p>The <code>find-event</code> command enables the user to find events from the event list with keywords. The command finds all events whose names contain any of the given keywords. The user can further modify the events with <code>edit-event</code> or <code>delete-event</code> command once the event is found.</p>
 </div>
 <div class="paragraph">
-<p><a href="#SDFEC">Sequence Diagram for <code>find-event</code> command</a> below shows how the <code>find-event</code> command is processed in the Logic component.</p>
+<p><a href="#SDFEC">Figure 4</a> below shows how the <code>find-event</code> command is processed in the Logic component.</p>
 </div>
 <div id="SDFEC" class="imageblock">
 <div class="content">
@@ -395,7 +395,7 @@ particular event in a csv file would enable the user to analyse the data using o
 The execution of it creates a <code>CsvEventPlannerStorage</code>. The subsequent export mechanism is handled by a <code>CsvEventPlannerStorage</code> where event data is parsed by <code>CsvUtil</code> and then exported as a file through <code>CsvFileStorage</code> using the file path specified by the user.</p>
 </div>
 <div class="paragraph">
-<p><a href="#SDCSV">Sequence Diagram for csv export</a> below shows how the csv event export is processed in the storage component.</p>
+<p><a href="#SDCSV">Figure 5</a> below shows how the csv event export is processed in the storage component.</p>
 </div>
 <div id="SDCSV" class="imageblock">
 <div class="content">
@@ -482,7 +482,7 @@ The execution of it creates a <code>CsvEventPlannerStorage</code>. The subsequen
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-15 15:10:53 UTC
+Last updated 2018-04-15 15:13:40 UTC
 </div>
 </div>
 </body>
