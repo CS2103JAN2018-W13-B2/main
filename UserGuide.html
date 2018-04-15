@@ -52,10 +52,10 @@
 <li><a href="#deleting-an-event-code-delete-event-code">4.13. Deleting an Event : <code>delete-event</code></a></li>
 <li><a href="#registering-a-person-for-an-event-code-register-code">4.14. Registering a Person for an Event: <code>register</code></a></li>
 <li><a href="#deregistering-a-person-from-an-event-code-deregister-code">4.15. Deregistering a Person from an Event: <code>deregister</code></a></li>
-<li><a href="#listing-all-event-participants-code-list-registered-code">4.16. Listing all Event Participants: <code>list-registered</code></a></li>
+<li><a href="#listing-all-event-registrants-code-list-registered-code">4.16. Listing all Event Registrants: <code>list-registered</code></a></li>
 <li><a href="#listing-all-event-participants-code-find-registrant-code">4.17. Listing all Event Participants: <code>find-registrant</code></a></li>
 <li><a href="#listing-all-event-participants-code-list-attendance-code">4.18. Listing all Event Participants: <code>list-attendance</code></a></li>
-<li><a href="#toggle-attendance-for-event-participant-code-toggle-code">4.19. Toggle Attendance for Event Participant : <code>toggle</code></a></li>
+<li><a href="#toggle-attendance-for-event-registrant-code-toggle-code">4.19. Toggle Attendance for Event Registrant : <code>toggle</code></a></li>
 <li><a href="#listing-entered-commands-code-history-code">4.20. Listing Entered Commands : <code>history</code></a></li>
 <li><a href="#clearing-all-entries-code-clear-code">4.21. Clearing all Entries : <code>clear</code></a></li>
 <li><a href="#undoing-commands-code-undo-code">4.22. Undoing Commands : <code>undo</code></a></li>
@@ -67,7 +67,7 @@
 <li><a href="#adding-feedback-for-an-event-from-a-participant-code-add-feedback-code-coming-in-v2-0">4.28. Adding Feedback for an Event from a Participant : <code>add-feedback</code> [coming in v2.0]</a></li>
 <li><a href="#exporting-event-details-to-a-csv-file-code-export-event-code-coming-in-v2-0">4.29. Exporting Event Details to a CSV file : <code>export-event</code> [coming in v2.0]</a></li>
 <li><a href="#registering-all-persons-with-a-particular-tag-to-an-event-code-register-by-tag-code-coming-in-v2-0">4.30. Registering all Persons with a Particular Tag to an Event : <code>register-by-tag</code> [coming in v2.0]</a></li>
-<li><a href="#adding-automatic-email-reminder-to-event-participants-code-add-reminder-code-coming-in-v2-0">4.31. Adding Automatic Email Reminder to Event Participants : <code>add-reminder</code> [coming in v2.0]</a></li>
+<li><a href="#adding-automatic-email-reminder-to-event-registrants-code-add-reminder-code-coming-in-v2-0">4.31. Adding Automatic Email Reminder to Event Registrants : <code>add-reminder</code> [coming in v2.0]</a></li>
 <li><a href="#adding-hotkeys-for-commands-code-add-hotkey-code-coming-in-v2-0">4.32. Adding Hotkeys for Commands : <code>add-hotkey</code> [coming in v2.0]</a></li>
 </ul>
 </li>
@@ -787,9 +787,9 @@ Deregisters the 1st person in the results of the <code>find</code> command from 
 </div>
 </div>
 <div class="sect2">
-<h3 id="listing-all-event-participants-code-list-registered-code"><a class="link" href="#listing-all-event-participants-code-list-registered-code">4.16. Listing all Event Participants: <code>list-registered</code></a></h3>
+<h3 id="listing-all-event-registrants-code-list-registered-code"><a class="link" href="#listing-all-event-registrants-code-list-registered-code">4.16. Listing all Event Registrants: <code>list-registered</code></a></h3>
 <div class="paragraph">
-<p>Lists all participants for the specified event.<br>
+<p>Lists all registrants for the specified event.<br>
 Format: <code>list-registered EVENT_NAME</code></p>
 </div>
 <div class="sidebarblock">
@@ -888,9 +888,9 @@ Format: <code>list-registered EVENT_NAME</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="toggle-attendance-for-event-participant-code-toggle-code"><a class="link" href="#toggle-attendance-for-event-participant-code-toggle-code">4.19. Toggle Attendance for Event Participant : <code>toggle</code></a></h3>
+<h3 id="toggle-attendance-for-event-registrant-code-toggle-code"><a class="link" href="#toggle-attendance-for-event-registrant-code-toggle-code">4.19. Toggle Attendance for Event Registrant : <code>toggle</code></a></h3>
 <div class="paragraph">
-<p>Toggles the attendance of a participant to an event from attended to not attended and vice versa.<br>
+<p>Toggles the attendance of a registrant to an event from attended to not attended and vice versa.<br>
 Format: <code>toggle INDEX</code></p>
 </div>
 <div class="sidebarblock">
@@ -898,8 +898,8 @@ Format: <code>toggle INDEX</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>Toggles the attendance of the participant at the specified <code>INDEX</code>.
-The index refers to the index number shown in the rightmost pane.</p>
+<p>Toggles the attendance of the registrant at the specified <code>INDEX</code>.
+The index refers to the index number shown in the Attendance Pane.</p>
 </li>
 <li>
 <p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
@@ -1101,9 +1101,9 @@ Format: <code>register-by-tag TAG EVENT_NAME</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="adding-automatic-email-reminder-to-event-participants-code-add-reminder-code-coming-in-v2-0"><a class="link" href="#adding-automatic-email-reminder-to-event-participants-code-add-reminder-code-coming-in-v2-0">4.31. Adding Automatic Email Reminder to Event Participants : <code>add-reminder</code> [coming in v2.0]</a></h3>
+<h3 id="adding-automatic-email-reminder-to-event-registrants-code-add-reminder-code-coming-in-v2-0"><a class="link" href="#adding-automatic-email-reminder-to-event-registrants-code-add-reminder-code-coming-in-v2-0">4.31. Adding Automatic Email Reminder to Event Registrants : <code>add-reminder</code> [coming in v2.0]</a></h3>
 <div class="paragraph">
-<p>Adds an automatic email reminder at the stipulated time to all event participants.<br>
+<p>Adds an automatic email reminder at the stipulated time to all event registrants.<br>
 Format: <code>add-reminder DAYS_OFFSET EVENT_NAME</code></p>
 </div>
 </div>
@@ -1257,7 +1257,7 @@ e.g. <code>toggle 1</code></p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-15 13:53:13 UTC
+Last updated 2018-04-15 14:48:25 UTC
 </div>
 </div>
 </body>
