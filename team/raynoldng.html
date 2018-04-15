@@ -26,7 +26,9 @@
 <div class="sectionbody">
 <div class="paragraph">
 <p>Event Planning isn’t Complicated (EPIC) is a desktop application used for <strong>event planning
-and registration for large organisations</strong>.
+and registration for large organisations</strong>. EPIC handles event attendance management with
+simplicity and efficiency. By storing all of the contacts in a common database, the same person
+can be registered for multiple events without having to re-enter his or her details for each event.
 EPIC is optimized for event planners who prefer typing to using the mouse.</p>
 </div>
 </div>
@@ -37,24 +39,32 @@ EPIC is optimized for event planners who prefer typing to using the mouse.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Major enhancement</strong>: overhauled UI to a three panel system that
-binds UI elements to data in the Model component and ensures that updates to data are reflected in the UI.</p>
+<p><strong>Major enhancement</strong>: overhauled UI to a three panel system that displays all persons, events and attendees of selected
+event in their respective panels.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>What it does: A three panel system displaying stored persons, events and attendees offers an intuitive user experience.</p>
+<p>What it does: A three panel system displaying stored persons, events and attendees. It auto updates itself when there
+are changes to data.</p>
 </li>
 <li>
-<p>Justification: The previous UI of a Person panel and browser panel does not meet the needs of EPIC&#8217;s use case.</p>
+<p>Justification: This feature <strong>enhances the user experience</strong> tremendously as the user can view all three panels
+without having to cycle between lists. Being able to view all three lists in a clean and intuitive interface empowers the user
+to type out commands that require parameters from all three lists without breaking his workflow. As such commands are
+the core functionailty of EPIC, it is imperative that UI is clean and user-friendly.</p>
 </li>
 <li>
-<p>Highlights: Leveraged several patterns such as the Model View Controller (MVC) Pattern, Observer Pattern and JavaFx Beans Convention to elegantly trigger UI updates upon data changes.</p>
+<p>Highlights: This enhancement leverages several patterns such as the Model View Controller (MVC) Pattern, Observer
+Pattern and JavaFx Beans Convention to elegantly trigger UI updates upon data changes. Using such patterns made UI
+updates <strong>automatic and resource-efficient</strong> The feature was implemented in a
+modular fashion, which makes maintenance and testing easy.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Minor enhancement</strong>: added the <code>list-event</code> command that lists all events stored in EPIC</p>
+<p><strong>Minor enhancement</strong>: added the <code>find-attendance</code> command that filters the attendance panel and the <code>list-attendance</code>
+command that resets it.</p>
 </li>
 <li>
 <p><strong>Code contributed</strong>: [<a href="https://github.com/CS2103JAN2018-W13-B2/main/blob/master/collated/functional/raynoldng.md">Functional code</a>] [<a href="https://github.com/CS2103JAN2018-W13-B2/main/blob/master/collated/test/raynoldng.md">Test code</a>]</p>
@@ -68,7 +78,7 @@ binds UI elements to data in the Model component and ensures that updates to dat
 <div class="ulist">
 <ul>
 <li>
-<p>Managed release <a href="https://github.com/CS2103JAN2018-W13-B2/main/releases/tag/1.4.1">v.1.4.1</a>  on GitHub</p>
+<p>Managed releases <a href="https://github.com/CS2103JAN2018-W13-B2/main/releases/tag/1.4.1">v.1.4.1</a>- <a href="https://github.com/CS2103JAN2018-W13-B2/main/releases/tag/v1.5rc">v.1.5rc</a>  on GitHub</p>
 </li>
 </ul>
 </div>
@@ -78,10 +88,10 @@ binds UI elements to data in the Model component and ensures that updates to dat
 <div class="ulist">
 <ul>
 <li>
-<p>Updated the GUI color scheme (Pull requests <a href="https://github.com">#33</a>, <a href="https://github.com">#34</a>)</p>
+<p>Fixed failing test cases due to incorrect data (Pull requests <a href="https://github.com/CS2103JAN2018-W13-B2/main/pull/110">#110</a>)</p>
 </li>
 <li>
-<p>Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests <a href="https://github.com">#36</a>, <a href="https://github.com">#38</a>)</p>
+<p>Wrote additional tests for existing features  (Pull requests <a href="https://github.com/CS2103JAN2018-W13-B2/main/pull/148">#148</a>, <a href="https://github.com/CS2103JAN2018-W13-B2/main/pull/170">#170</a>)</p>
 </li>
 </ul>
 </div>
@@ -91,7 +101,7 @@ binds UI elements to data in the Model component and ensures that updates to dat
 <div class="ulist">
 <ul>
 <li>
-<p>Did cosmetic tweaks to existing contents of the User Guide: <a href="https://github.com">#14</a></p>
+<p>Did cosmetic tweaks to existing contents of the User Guide: <a href="https://github.com/CS2103JAN2018-W13-B2/main/pull/158">#158</a></p>
 </li>
 </ul>
 </div>
@@ -155,14 +165,16 @@ binds UI elements to data in the Model component and ensures that updates to dat
 <p>Event List Panel: panel that lists all events stored in EPIC.</p>
 </li>
 <li>
-<p>Attendance List Panel: panel that lists all attendees in the selected event.
-=== Selecting an Event: <code>select-event</code></p>
+<p>Attendance List Panel: panel that lists all attendees in the selected event.</p>
 </li>
 </ol>
 </div>
+</div>
+<div class="sect2">
+<h3 id="selecting-an-event-code-select-event-code"><a class="link" href="#selecting-an-event-code-select-event-code">Selecting an Event: <code>select-event</code></a></h3>
 <div class="paragraph">
-<p>Selects the event identified by the index number used in the Events Pane.
-Attendance panel will show person registered for the selected event.</p>
+<p>Selects the event identified by the index number used in the Events List Pane.
+Attendance List Panel will display the persons registered for that event.</p>
 </div>
 <div class="paragraph">
 <p>Format: <code>select-event INDEX</code></p>
@@ -178,6 +190,78 @@ By default, the first event in the Event List Panel is the selected event.
 </td>
 </tr>
 </table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="listing-all-event-participants-code-find-attendance-code"><a class="link" href="#listing-all-event-participants-code-find-attendance-code">Listing all Event Participants: <code>find-attendance</code></a></h3>
+<div class="paragraph">
+<p>Finds registrants whose names contain any of the given keywords.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>find-attendance KEYWORD [MORE_KEYWORDS]</code></p>
+</div>
+<div class="paragraph">
+<p>If your event contains too many participants, it can be difficult to find information quickly. The
+<code>find-attendance</code> command can be used to narrow down participants by their name. Only persons whose
+names contain any of the given keys is displayed.</p>
+</div>
+<div class="paragraph">
+<p>In our example, we&#8217;ll apply a filter to display only participants from the IoT Talk Event with the
+name "Alex".</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Select the IoT Event by executing <code>select-event 1</code>.</p>
+</li>
+<li>
+<p>Execute <code>find-attendance alex</code>, this filters the attendance panel, hiding anyone whose name does
+not contain the word alex (case insensitive).</p>
+</li>
+<li>
+<p>To remove the filter, execute <code>list-attendance</code>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>When a filter is applied, the header of the attendance panel will display <code>filtered</code>, and the attendance statistic will
+be computed based on the filtered list (see <a href="#after-find-attendance">After the <code>find-attendance alex</code> command is executed</a>).</p>
+</div>
+<div id="before-find-attendance" class="imageblock">
+<div class="content">
+<img src="../images/before_find_attendance.png" alt="before find attendance" width="790">
+</div>
+<div class="title">Figure 2. Before the <code>find-attendance alex</code> command is executed</div>
+</div>
+<div id="after-find-attendance" class="imageblock">
+<div class="content">
+<img src="../images/after_find_attendance.png" alt="after find attendance" width="790">
+</div>
+<div class="title">Figure 3. After the <code>find-attendance alex</code> command is executed</div>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The search is case insensitive. e.g hans will match Hans.</p>
+</li>
+<li>
+<p>Only the name is searched.</p>
+</li>
+<li>
+<p>Only full words will be matched. e.g. Han will not match Hans.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="listing-all-event-participants-code-list-attendance-code"><a class="link" href="#listing-all-event-participants-code-list-attendance-code">Listing all Event Participants: <code>list-attendance</code></a></h3>
+<div class="paragraph">
+<p>Lists all participants for the specified event, removing any filter.<br>
+Format: <code>list-registered EVENT_NAME</code></p>
 </div>
 </div>
 </div>
@@ -196,6 +280,77 @@ By default, the first event in the Event List Panel is the selected event.
 </tbody>
 </table>
 <div class="sect2">
+<h3 id="find-registrant-feature"><a class="link" href="#find-registrant-feature">Find Registrant Feature</a></h3>
+<div class="paragraph">
+<p>The <code>find-registrant</code> command enables users to filter registrants of an event with keywords. Only registrants
+whose names contain any of the given keywords will be listed. The user can further toggle the attendance of the registants with the <code>toggle</code> command.</p>
+</div>
+<div class="paragraph">
+<p><a href="#SDSEC">Seqeuence Diagram for <code>find-registrant</code> command</a> below shows how the <code>find-registrant</code> command is processed in the Logic component.</p>
+</div>
+<div id="SDSEC" class="imageblock">
+<div class="content">
+<img src="../images/FindAttendanceSequenceDiagram.png" alt="FindAttendanceSequenceDiagram" width="650">
+</div>
+<div class="title">Figure 4. Seqeuence Diagram for <code>find-registrant</code> command</div>
+</div>
+<div class="sect3">
+<h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
+<div class="paragraph">
+<p>The <code>find-registrant</code> command is passed to the <code>EventPlannerParser</code> object when then reads the parses the input and returns a <code>FindRegistrantCommand</code> object. When the <code>FindRegistrantCommand</code> object is exceuted, the Model filters the list of registrants and the Attendance List Panel that is bind to the list of registrants is updated.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-keyword-matching-pattern"><a class="link" href="#aspect-keyword-matching-pattern">Aspect: Keyword Matching Pattern</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice)</strong>: Match any of the keywords</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: The user can find multiple registrants using multiple keywords.</p>
+</li>
+<li>
+<p>Cons: If the user will not be able to search by full name as other registrants might be matched as well</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2</strong>: Match all keywords</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: The user can search by full name.</p>
+</li>
+<li>
+<p>Cons: Matching all keywords might be too restrictive and would not a useful filter to narrow down registrants.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 3</strong> Fuzzy Search</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: The user can filter registrants with approximate keywords</p>
+</li>
+<li>
+<p>Cons: It is harder to implement fuzzy search</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="ui-component"><a class="link" href="#ui-component">UI Component</a></h3>
 <div class="paragraph">
 <p>The UI component is responsible for interfacing with the user. The UI component has three main responsibilities:</p>
@@ -206,10 +361,10 @@ By default, the first event in the Event List Panel is the selected event.
 <p>It executes user commands using the Logic component.</p>
 </li>
 <li>
-<p>It binds itself to some data in the Model component so that the UI can auto-update when data in the Model component changes.</p>
+<p>It binds itself to some data in the Model component so that the it can auto-update itself when data in the Model component changes.</p>
 </li>
 <li>
-<p>It responds to events raised from various parts of the App and updates the UI accordingly.</p>
+<p>It responds to events raised from various parts of the App and updates itself accordingly.</p>
 </li>
 </ul>
 </div>
@@ -222,7 +377,7 @@ By default, the first event in the Event List Panel is the selected event.
 <div class="content">
 <img src="../images/GUI.png" alt="GUI" width="800">
 </div>
-<div class="title">Figure 2. Overview of the Graphical User Interface of EPIC</div>
+<div class="title">Figure 5. Overview of the Graphical User Interface of EPIC</div>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -274,7 +429,7 @@ If no  <code>EpicEvent</code> has been selected, <code>AttendeeList</code> will 
 <div class="content">
 <img src="../images/UiClassDiagram.png" alt="UiClassDiagram" width="800">
 </div>
-<div class="title">Figure 3. Structure of the UI Component</div>
+<div class="title">Figure 6. Structure of the UI Component</div>
 </div>
 <div class="paragraph">
 <p><strong>API</strong> : <a href="{repoURL}/src/main/java/seedu/address/ui/Ui.java"><code>Ui.java</code></a></p>
@@ -294,7 +449,7 @@ For example, the layout of the <a href="{repoURL}/src/main/java/seedu/address/ui
 <p>In addition, <code>edit</code> and <code>edit-command</code> commands are now implemented in a mutable manner (see <a href="#edit-curr-implementation">[edit-curr-implementation]</a>). As a result, the <code>ObservableList</code> that wraps the people and event data will no longer be notified to changes. The new UI must be notified of changes to data so it can refresh itself to reflect such changes. The UI will also have to respond to new commands such as the <code>select-event</code> and <code>toggle</code>. The <code>select-event</code> could invoke a change in the contents of the Attendance Panel and <code>toggle</code> will toggle the attendance status and is reflected in the UI in the form of the attendance icon change.</p>
 </div>
 <div class="sect3">
-<h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
+<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">Current Implementation</a></h4>
 <div class="paragraph">
 <p>The UI now consists of 3 list panels: <code>PersonListPanel</code>, <code>EpicEventListPanel</code> and <code>AttendanceListPanel</code>. Each panel is a list of <code>PersonCard</code>, <code>EpicEventCard</code> and <code>AttendanceCard</code> respectively. Since the <code>AttendanceCard</code> has the same UI as <code>PersonCard</code> with the addition of the toggle icon, it extends <code>PersonCard</code>. The <code>model</code> maintains a <code>selectedEpicEvent</code> variable whose attendees will be displayed in the <code>AttendancePanel</code>.</p>
 </div>
@@ -340,13 +495,147 @@ For example, the layout of the <a href="{repoURL}/src/main/java/seedu/address/ui
 <p>By using the JavaBeans API to handle UI updates, the programmer does not have to care about manually refreshing the UI upon data updates.</p>
 </div>
 </div>
+<div class="sect3">
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">Design Considerations</a></h4>
+<div class="paragraph">
+<p>When deciding on the UI, the following aspects of user experience were considered:</p>
+</div>
+<div class="sect4">
+<h5 id="aspect-overall-ui-design"><a class="link" href="#aspect-overall-ui-design">Aspect: Overall UI Design</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice)</strong>: A 3 pane UI consisting of list of persons, events, and attendees for selected event</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: The user can view all 3 lists at the same time. He would know what arguments to supply when typing commands as he can read them off the list.</p>
+</li>
+<li>
+<p>Cons: The UI might become too cluttered as there are too many UI elements. However, given that EPIC is meant for modern computers with large displays, this should not be an issue.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2 (previous choice)</strong>: 2 pane UI where the left pane is a 2 tab pane consisting of list of persons and events, and the right pane is the list of attendees.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Merging the horizontal space for list of persons and events will create more space for list of attendees. The user is likely to be more interested in the attendees details.</p>
+</li>
+<li>
+<p>Cons: If the user needs to access data for some tabbed pane that is not in focus to fill out a command, this would break his workflow. The user will have to delete his current command, execute a command to set focus to the desired tab, memorize the required details and reenter his previous command.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 3</strong>: A common list that can display either list of persons, events or attendees for selected event</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: We only have to make minimal changes to the UI layout.</p>
+</li>
+<li>
+<p>Cons: Events, persons, and attendees must be displayed using the same <code>Card</code> class. This would result in tight coupling of the display graphics logic  for the three lists.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-updating-ui-when-data-changes"><a class="link" href="#aspect-updating-ui-when-data-changes">Aspect: Updating UI when Data Changes</a></h5>
+<div class="paragraph">
+<p>Previously, changes to <code>Person</code> would create a new <code>Person</code> object that would replace the previous object, triggering a UI refresh. Now that such changes to <code>Peron</code>, <code>EpicEvent</code> and <code>Attendance</code> objects only mutate it, the <code>ListView</code> is unable to listen to such changes.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Alternative 1 (current choice): Use the JavaFx Beans Convention</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Using the JavaBeans API to represent a property of an object allows property changes to be propagated to property change listeners. This is an elegant way to get the <code>ListView</code> to instantly update its elements.</p>
+</li>
+<li>
+<p>Cons: Using the JavaBeans API to represent object properties introduces coupling between the Model and UI components.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Alternative 2: Force all commands that change data to invoke a UI refresh</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: It is straight forward to force a <code>ListView</code> UI refresh by invoking its <code>refresh()</code> method.</p>
+</li>
+<li>
+<p>Cons: We will have to ensure that any action that could modify data force a UI refresh. In addition, constantly invoking a UI refresh could become a resource hog.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="binding-data-to-attendance-panel"><a class="link" href="#binding-data-to-attendance-panel">Binding Data to Attendance Panel</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Alternative 1 (current choice): Wrap the selected <code>EpicEvent</code> in an <code>EpicEventObservable</code> object to listen for changes</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: We can listen to changes in the <code>EpicEventObservable</code> object to trigger a UI update.</p>
+</li>
+<li>
+<p>Cons: Creating a new class introduces more code bloat.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Alternative 1 (current choice): Bind <code>ObservableEpicEvent</code> to the Attendance Panel</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: As <code>ObservableEpicEvent</code> extends <code>Observable</code>, it can listen to when the selected event changes and update the Attendance Panel accordingly.</p>
+</li>
+<li>
+<p>Cons: More code has to be written and maintained as we are introducing an additional layer of abstraction.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Alternative 2: Bind <code>ObservableList&lt;Attendance&gt;</code> to the Attendance Panel</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Binding data to the Attendance Panel is straight forward and the approach used to data to the People and Events Panels can be used here too.</p>
+</li>
+<li>
+<p>Cons: Logic to handle the switching of selected events is moved up to the <code>MainWindow</code>, increasing coupling between the <code>MainWindow</code> and <code>AttendanceListPanel</code>. It is a violation of Single Responsibility Principle as the <code>MainWindow</code> should only be concerned with displaying the main layout.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-15 01:48:14 UTC
+Last updated 2018-04-15 02:02:08 UTC
 </div>
 </div>
 </body>

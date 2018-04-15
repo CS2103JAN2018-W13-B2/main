@@ -55,10 +55,11 @@
 <li><a href="#register-deregister-persons-for-from-events">4.4. Register/Deregister Persons for/from Events</a></li>
 <li><a href="#list-registered-persons-for-an-event">4.5. List Registered Persons for an Event</a></li>
 <li><a href="#toggling-attendance">4.6. Toggling Attendance</a></li>
-<li><a href="#proposed-mass-registration">4.7. [Proposed] Mass Registration</a></li>
+<li><a href="#find-registrant-feature">4.7. Find Registrant Feature</a></li>
 <li><a href="#three-pane-ui">4.8. Three Pane UI</a></li>
-<li><a href="#proposed-export-an-event">4.9. [proposed] Export an Event</a></li>
-<li><a href="#logging">4.10. Logging</a></li>
+<li><a href="#logging">4.9. Logging</a></li>
+<li><a href="#proposed-mass-registration">4.10. [Proposed] Mass Registration</a></li>
+<li><a href="#proposed-export-an-event">4.11. [proposed] Export an Event</a></li>
 </ul>
 </li>
 <li><a href="#documentation">5. Documentation</a>
@@ -387,10 +388,10 @@ is used by components to communicate with other components using events (i.e. a 
 <p>It executes user commands using the Logic component.</p>
 </li>
 <li>
-<p>It binds itself to some data in the Model component so that the UI can auto-update when data in the Model component changes.</p>
+<p>It binds itself to some data in the Model component so that the it can auto-update itself when data in the Model component changes.</p>
 </li>
 <li>
-<p>It responds to events raised from various parts of the App and updates the UI accordingly.</p>
+<p>It responds to events raised from various parts of the App and updates itself accordingly.</p>
 </li>
 </ul>
 </div>
@@ -700,7 +701,7 @@ the Model component having to be coupled to either of them. This is an example o
 <div class="sect2">
 <h3 id="find-event-feature"><a class="link" href="#find-event-feature">4.1. Find Event Feature</a></h3>
 <div class="paragraph">
-<p>The find-event command enables the user to find events from the event list with keywords. The command finds all events whose names contain any of the given keywords. The user can further modify the events with <code>edit-event</code> or <code>delete-event</code> command once the event is found.</p>
+<p>The <code>find-event</code> command enables the user to find events from the event list with keywords. The command finds all events whose names contain any of the given keywords. The user can further modify the events with <code>edit-event</code> or <code>delete-event</code> command once the event is found.</p>
 </div>
 <div class="paragraph">
 <p><a href="#SDFEC">Figure 12</a> below shows how the <code>find-event</code> command is processed in the Logic component.</p>
@@ -1441,16 +1442,73 @@ has already been marked as attended when the user tries to mark the participant 
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-mass-registration"><a class="link" href="#proposed-mass-registration">4.7. [Proposed] Mass Registration</a></h3>
-<div class="sect3">
-<h4 id="proposed-implementation"><a class="link" href="#proposed-implementation">4.7.1. Proposed Implementation</a></h4>
+<h3 id="find-registrant-feature"><a class="link" href="#find-registrant-feature">4.7. Find Registrant Feature</a></h3>
 <div class="paragraph">
-<p>This feature is proposed to allow for mass registration of multiple persons to a single event.
-The proposed implementation is to make use of tags to select groups of persons to register for an event.
-It is proposed that the <code>Tag</code> class be split into <code>PersonTag</code> and <code>EpicEventTag</code> so as to differentiate
-the two. This allows for searching of persons by <code>PersonTag</code> and searching for events by <code>EpicEventTag</code>.
-By doing so, a group of persons can be identified by <code>PersonTag</code> and thus registered to an event
-by iteratively registering each person.</p>
+<p>The <code>find-registrant</code> command enables users to filter registrants of an event with keywords. Only registrants
+whose names contain any of the given keywords will be listed. The user can further toggle the attendance of the registants with the <code>toggle</code> command.</p>
+</div>
+<div class="paragraph">
+<p><a href="#SDSEC">Figure 22</a> below shows how the <code>find-registrant</code> command is processed in the Logic component.</p>
+</div>
+<div id="SDSEC" class="imageblock">
+<div class="content">
+<img src="images/FindAttendanceSequenceDiagram.png" alt="FindAttendanceSequenceDiagram" width="650">
+</div>
+<div class="title">Figure 22. Seqeuence Diagram for <code>find-registrant</code> command</div>
+</div>
+<div class="sect3">
+<h4 id="current-implementation-6"><a class="link" href="#current-implementation-6">4.7.1. Current Implementation</a></h4>
+<div class="paragraph">
+<p>The <code>find-registrant</code> command is passed to the <code>EventPlannerParser</code> object when then reads the parses the input and returns a <code>FindRegistrantCommand</code> object. When the <code>FindRegistrantCommand</code> object is exceuted, the Model filters the list of registrants and the Attendance List Panel that is bind to the list of registrants is updated.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">4.7.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-keyword-matching-pattern-2"><a class="link" href="#aspect-keyword-matching-pattern-2">Aspect: Keyword Matching Pattern</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice)</strong>: Match any of the keywords</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: The user can find multiple registrants using multiple keywords.</p>
+</li>
+<li>
+<p>Cons: If the user will not be able to search by full name as other registrants might be matched as well</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2</strong>: Match all keywords</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: The user can search by full name.</p>
+</li>
+<li>
+<p>Cons: Matching all keywords might be too restrictive and would not a useful filter to narrow down registrants.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 3</strong> Fuzzy Search</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: The user can filter registrants with approximate keywords</p>
+</li>
+<li>
+<p>Cons: It is harder to implement fuzzy search</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
 </div>
 </div>
 </div>
@@ -1463,7 +1521,7 @@ by iteratively registering each person.</p>
 <p>In addition, <code>edit</code> and <code>edit-command</code> commands are now implemented in a mutable manner (see <a href="#edit-curr-implementation">Section 4.2.2</a>). As a result, the <code>ObservableList</code> that wraps the people and event data will no longer be notified to changes. The new UI must be notified of changes to data so it can refresh itself to reflect such changes. The UI will also have to respond to new commands such as the <code>select-event</code> and <code>toggle</code>. The <code>select-event</code> could invoke a change in the contents of the Attendance Panel and <code>toggle</code> will toggle the attendance status and is reflected in the UI in the form of the attendance icon change.</p>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-6"><a class="link" href="#current-implementation-6">4.8.1. Current Implementation</a></h4>
+<h4 id="current-implementation-7"><a class="link" href="#current-implementation-7">4.8.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The UI now consists of 3 list panels: <code>PersonListPanel</code>, <code>EpicEventListPanel</code> and <code>AttendanceListPanel</code>. Each panel is a list of <code>PersonCard</code>, <code>EpicEventCard</code> and <code>AttendanceCard</code> respectively. Since the <code>AttendanceCard</code> has the same UI as <code>PersonCard</code> with the addition of the toggle icon, it extends <code>PersonCard</code>. The <code>model</code> maintains a <code>selectedEpicEvent</code> variable whose attendees will be displayed in the <code>AttendancePanel</code>.</p>
 </div>
@@ -1510,7 +1568,7 @@ by iteratively registering each person.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">4.8.2. Design Considerations</a></h4>
+<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">4.8.2. Design Considerations</a></h4>
 <div class="paragraph">
 <p>When deciding on the UI, the following aspects of user experience were considered:</p>
 </div>
@@ -1645,104 +1703,7 @@ by iteratively registering each person.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-export-an-event"><a class="link" href="#proposed-export-an-event">4.9. [proposed] Export an Event</a></h3>
-<div class="paragraph">
-<p>The proposed export command exports the names of the attendees, their phone numbers,
-their email addresses, their home addresses and their attendance information of a particular
-event to a csv file into a file path specified by the user. Having all the information of a
-particular event in a csv file would enable the user to analyse the data using other tools.</p>
-</div>
-<div class="sect3">
-<h4 id="proposed-implementation-2"><a class="link" href="#proposed-implementation-2">4.9.1. [proposed] Implementation</a></h4>
-<div class="paragraph">
-<p>The <code>export-event</code> command input is first parsed in <code>EventPlannerParser</code> to create an <code>ExportEventCommand</code>.
-The execution of it creates a <code>CsvEventPlannerStorage</code>. The subsequent export mechanism is handled by a <code>CsvEventPlannerStorage</code> where event data is parsed by <code>CsvUtil</code> and then exported as a file through <code>CsvFileStorage</code> using the file path specified by the user.</p>
-</div>
-<div class="paragraph">
-<p><a href="#SDCSV">Figure 22</a> below shows how the csv event export is processed in the storage component.</p>
-</div>
-<div id="SDCSV" class="imageblock">
-<div class="content">
-<img src="images/ExportEventSequenceDiagram.png" alt="ExportEventSequenceDiagram" width="650">
-</div>
-<div class="title">Figure 22. Sequence Diagram for csv export</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">4.9.2. Design Considerations</a></h4>
-<div class="paragraph">
-<p>When deciding on the export options, the following aspects of user experience are considered.</p>
-</div>
-<div class="sect4">
-<h5 id="aspect-data-to-be-exported"><a class="link" href="#aspect-data-to-be-exported">Aspect: Data to be Exported</a></h5>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Alternative 1 (current choice)</strong>: Name of the attendees, their phone number, their email address, their home address and their attendance information for the event</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: The information includes almost all the data users need for an event. The parsing of the data is straight forward.</p>
-</li>
-<li>
-<p>Cons: The tags of the attendees are not exported.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Alternative 2</strong>: All information for attendees including their tags</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: More information for users as compared to current implementation.</p>
-</li>
-<li>
-<p>Cons: The attendees may have zero or multiple tags. The uncertainty in the number of tags make parsing messy.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="aspect-format-of-exported-files"><a class="link" href="#aspect-format-of-exported-files">4.9.3. Aspect: Format of Exported Files</a></h4>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Alternative 1 (current choice)</strong>: csv files</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: The format can be imported and then processed by most data processing software in the market.</p>
-</li>
-<li>
-<p>Cons: The files are not reader friendly if they are open directly as a text file.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Alternative 2</strong>: excel files</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Excel files are well formatted when opened with Microsoft Excel software.</p>
-</li>
-<li>
-<p>Cons: Even though Microsoft Excel software is used by many people, some may prefer other data processing software that supports csv files but not excel files.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">4.10. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">4.9. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
@@ -1789,6 +1750,117 @@ Certain properties of the application can be controlled (e.g App name, logging l
 </td>
 </tr>
 </table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="proposed-mass-registration"><a class="link" href="#proposed-mass-registration">4.10. [Proposed] Mass Registration</a></h3>
+<div class="sect3">
+<h4 id="proposed-implementation"><a class="link" href="#proposed-implementation">4.10.1. Proposed Implementation</a></h4>
+<div class="paragraph">
+<p>This feature is proposed to allow for mass registration of multiple persons to a single event.
+The proposed implementation is to make use of tags to select groups of persons to register for an event.
+It is proposed that the <code>Tag</code> class be split into <code>PersonTag</code> and <code>EpicEventTag</code> so as to differentiate
+the two. This allows for searching of persons by <code>PersonTag</code> and searching for events by <code>EpicEventTag</code>.
+By doing so, a group of persons can be identified by <code>PersonTag</code> and thus registered to an event
+by iteratively registering each person.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="proposed-export-an-event"><a class="link" href="#proposed-export-an-event">4.11. [proposed] Export an Event</a></h3>
+<div class="paragraph">
+<p>The proposed export command exports the names of the attendees, their phone numbers,
+their email addresses, their home addresses and their attendance information of a particular
+event to a csv file into a file path specified by the user. Having all the information of a
+particular event in a csv file would enable the user to analyse the data using other tools.</p>
+</div>
+<div class="sect3">
+<h4 id="proposed-implementation-2"><a class="link" href="#proposed-implementation-2">4.11.1. [proposed] Implementation</a></h4>
+<div class="paragraph">
+<p>The <code>export-event</code> command input is first parsed in <code>EventPlannerParser</code> to create an <code>ExportEventCommand</code>.
+The execution of it creates a <code>CsvEventPlannerStorage</code>. The subsequent export mechanism is handled by a <code>CsvEventPlannerStorage</code> where event data is parsed by <code>CsvUtil</code> and then exported as a file through <code>CsvFileStorage</code> using the file path specified by the user.</p>
+</div>
+<div class="paragraph">
+<p><a href="#SDCSV">Figure 23</a> below shows how the csv event export is processed in the storage component.</p>
+</div>
+<div id="SDCSV" class="imageblock">
+<div class="content">
+<img src="images/ExportEventSequenceDiagram.png" alt="ExportEventSequenceDiagram" width="650">
+</div>
+<div class="title">Figure 23. Sequence Diagram for csv export</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-7"><a class="link" href="#design-considerations-7">4.11.2. Design Considerations</a></h4>
+<div class="paragraph">
+<p>When deciding on the export options, the following aspects of user experience are considered.</p>
+</div>
+<div class="sect4">
+<h5 id="aspect-data-to-be-exported"><a class="link" href="#aspect-data-to-be-exported">Aspect: Data to be Exported</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice)</strong>: Name of the attendees, their phone number, their email address, their home address and their attendance information for the event</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: The information includes almost all the data users need for an event. The parsing of the data is straight forward.</p>
+</li>
+<li>
+<p>Cons: The tags of the attendees are not exported.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2</strong>: All information for attendees including their tags</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: More information for users as compared to current implementation.</p>
+</li>
+<li>
+<p>Cons: The attendees may have zero or multiple tags. The uncertainty in the number of tags make parsing messy.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="aspect-format-of-exported-files"><a class="link" href="#aspect-format-of-exported-files">4.11.3. Aspect: Format of Exported Files</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice)</strong>: csv files</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: The format can be imported and then processed by most data processing software in the market.</p>
+</li>
+<li>
+<p>Cons: The files are not reader friendly if they are open directly as a text file.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2</strong>: excel files</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Excel files are well formatted when opened with Microsoft Excel software.</p>
+</li>
+<li>
+<p>Cons: Even though Microsoft Excel software is used by many people, some may prefer other data processing software that supports csv files but not excel files.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
 </div>
 </div>
 </div>
@@ -1852,7 +1924,7 @@ Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows y
 <div class="content">
 <img src="images/chrome_save_as_pdf.png" alt="chrome save as pdf" width="300">
 </div>
-<div class="title">Figure 23. Saving documentation as PDF files in Chrome</div>
+<div class="title">Figure 24. Saving documentation as PDF files in Chrome</div>
 </div>
 </div>
 </div>
@@ -2829,7 +2901,7 @@ Expected: Similar to previous.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-04-15 01:48:14 UTC
+Last updated 2018-04-15 02:02:08 UTC
 </div>
 </div>
 </body>
